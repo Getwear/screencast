@@ -9,8 +9,6 @@
     };
 
     function Layer($elem, params) {
-        var that = this;
-
         this.moveTo = function(coords) {
             var dfd = new $.Deferred();
             var targetX;
@@ -150,6 +148,8 @@
 
                     if (!options.stopAfterFrame) {
                         that.next();
+                    } else {
+                        that.played = false;
                     }
                 });
 
@@ -195,16 +195,32 @@
 
         };
 
-        this.goTo = function() {
+        this.goTo = function(frameNumber) {
+            var actions;
 
+            if (this.currentFrame !== frameNumber) {
+                this.currentFrame = frameNumber;
+            }
+
+            actions = this.scenario[frameNumber];
+            this._runFrame(actions);
         };
 
         this.next = function() {
+            this.currentFrame++;
 
+            if (this.currentFrame < this.scenario.length) {
+                this.goTo(this.currentFrame);
+            } else {
+                this.currentFrame = 0;
+            }
         };
 
         this.prev = function() {
-
+            if (this.currentFrame > 0) {
+                this.currentFrame--;
+                this.goTo(this.currentFrame);
+            }
         };
 
         this.init = function() {
