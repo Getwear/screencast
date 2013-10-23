@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Slideshow</title>
+    <link rel="stylesheet" href="./src/css/slideshow.css"/>
+    <link rel="stylesheet" href="./src/css/cursor.css"/>
+
+    <script src="./src/lib/jquery-1.10.2.js"></script>
+    <script src="./src/lib/lodash.2.2.1.js"></script>
+    <script src="./src/js/slideshow.js"></script>
+
+    <script>
+        $(function() {
+            var $slideshow = $('.slideshow').slideshow();
+
+            setTimeout(function() {
+                $slideshow.data('slideshow').start();
+            }, 500);
+        });
+    </script>
+</head>
+<body>
+<div class="slideshow">
+    <div class="slideshow-frame" onclick="return [
+        {
+            'cursor': [
+                ['moveTo', [275, 133]],
+                'click'
+            ]
+        }, {
+            'login': [
+                'focus',
+                ['typeText', 'konstntinopolsky@mail.ru'],
+                'blur'
+            ]
+        }, {
+            'cursor': [
+                ['moveTo', [305, 133]],
+                'click'
+            ]
+        },  {
+            'password': [
+                'focus',
+                ['type', 'password'],
+                'blur'
+            ]
+        }
+    ];">
+        <div class="login"></div>
+        <div class="password"></div>
+        <div class="cursor"></div>
+    </div>
+    <div class="movie">
+        <img src="./src/i/slide.png" alt=""/>
+    </div>
+</div>
+</body>
+</html>

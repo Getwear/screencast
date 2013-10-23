@@ -1,0 +1,30 @@
+.slideshow {
+    position: relative;
+    width: 363px;
+    height: 502px;
+}
+
+.login {
+    position: absolute;
+    top: 270px;
+    left: 128px;
+    width: 170px;
+    height: 25px;
+    border: solid 1px #ddd;
+    background: #FFF;
+}
+
+.password {
+    position: absolute;
+    top: 305px;
+    left: 128px;
+    width: 170px;
+    height: 25px;
+    border: solid 1px #ddd;
+    background: #FFF;
+}
+
+.focused {
+    outline: none;
+    box-shadow: 0 0 5px #2573ff;
+}

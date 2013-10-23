@@ -1,0 +1,6 @@
+.cursor {
+    position: absolute;
+    width: 19px;
+    height: 27px;
+    background: url(../i/cursor/default.png);
+}
