@@ -1,8 +1,11 @@
 (function(window, document, $, _, undefined) {
+    "use strict";
+
     var defaults = {
         actionDelay: 300,
         prefix: 'slideshow-',
-        autostart: false
+        autostart: false,
+        stopAfterFrame: false
     };
 
     function Layer($elem, params) {
@@ -26,18 +29,21 @@
             $elem.animate({
                 top: targetX + 'px',
                 left: targetY + 'px'
-            }, 1000, dfd.resolve);
+            }, 1000, function() {
+                console.log('move ended');
+                dfd.resolve();
+            });
 
             return dfd.promise();
         };
 
         this.typeText = function(text) {
             var dfd = new $.Deferred();
-
-            console.log('typing started');
+            console.log('type started');
 
             setTimeout(function() {
-                console.log('typing ended');
+                console.log('type ended');
+                dfd.resolve();
             }, 1000);
 
             return dfd.promise();
@@ -52,6 +58,7 @@
         };
 
         this.click = function() {
+            console.log('click');
             $elem.addClass('clicked');
         }
     }
@@ -59,19 +66,66 @@
     $.Slideshow = function($root, options) {
         var that = this;
         var slideshowData = $root.data();
-        var slideshow = $root[0];
 
         this.currentFrame = 0;
         this.$frames = $root.find('.' + options.prefix + 'frame');
         this.elems = {};
         this.scenario = [];
 
+        this.played = false;
+
         slideshowData.slideshow = this;
 
         this._createScenario = function() {
             this.$frames.each(function(index, elem) {
-                that.scenario.push(that._extractParams(elem));
+                that.scenario.push(that._getFrameActions(elem));
             });
+        };
+
+        this._getFrameActions = function(frame) {
+            var rawParams = this._extractParams(frame);
+            var steps = _.map(rawParams, this._parseStep, this);
+
+            return steps;
+        };
+
+        this._parseStep = function(step) {
+            var that = this;
+            var elem;
+            var result = [];
+
+            _.forEach(step, function(actions, layerName) {
+                if (layerName in that.elems) {
+                    elem = that.elems[layerName];
+                } else {
+                    elem = new Layer($root.find('.' + layerName), {});
+                    that.elems[layerName] = elem;
+                }
+
+                result.push(this._parseActions(elem, actions));
+            }, this);
+
+            return result;
+        };
+
+        this._parseActions = function(object, actions) {
+            var fnArray = _.map(actions, function(action) {
+                var fn;
+                var args;
+
+                if (_.isArray(action)) {
+                    fn = action[0];
+                    args = action[1];
+                } else {
+                    fn = action;
+                }
+
+                return function() {
+                    return object[fn](args);
+                }
+            });
+
+            return fnArray;
         };
 
         this._extractParams = function(elem) {
@@ -80,51 +134,61 @@
             return fn ? fn() : {};
         };
 
-        this.start = function() {
+        this._runFrame = function(steps) {
+            var dfd = new $.Deferred();
             var that = this;
-            var actions = this.scenario[this.currentFrame];
 
-            _.forEach(actions, function(action) {
-                _.forEach(action, function(actions, object) {
-                    var elem;
-                    var dfd = new $.Deferred();
-                    var actionsList;
+            $.when(_.reduce(steps, function (prev, current) {
+                    return $.when(prev).then(function () {
+                        return that._runStep(current);
+                    });
+                }, []))
+                .then(function () {
+                    $root.trigger('complete', {
+                        frame: that.currentFrame
+                    });
 
-                    if (object in that.elems) {
-                        elem = that.elems[object];
-                    } else {
-                        elem = new Layer($root.find('.' + object), {});
-                        that.elems[object] = elem;
+                    if (!options.stopAfterFrame) {
+                        that.next();
                     }
-
-                    actionsList = _.map(actions, function(actionName) {
-                        var fn;
-                        var args;
-                        if (_.isArray(actionName)) {
-                            fn = actionName[0];
-                            args = actionName[1];
-                        } else {
-                            fn = actionName;
-                        }
-
-                        return {
-                            fn: elem[fn] || function() {},
-                            args: args
-                        };
-                    });
-
-                    _.reduce(actionsList, function(prev, current) {
-                        $.when(prev.fn.call(elem, prev.args)).then(current.fn.call(elem, current.args));
-                        return current;
-                    }, {fn: function(){}});
-
-                    $.when.apply(actionsList).then(function() {
-                        console.log('done');
-                    });
-
-                    return dfd.promise();
                 });
+
+            return dfd.promise();
+        };
+
+        this._runStep = function(layers) {
+            var that = this;
+            var dfd = new $.Deferred();
+
+            $.when.apply($, _.map(layers, function (step) {
+                    return this._runActions(step);
+                }, that))
+                .then(function () {
+                    dfd.resolve();
+                });
+
+            return dfd.promise();
+        };
+
+        this._runActions = function(actions) {
+            var dfd = new $.Deferred();
+
+            var chain = _.reduce(actions, function(prev, current) {
+                return $.when(prev).then(current);
+            }, $.noop, that);
+
+            $.when(chain).then(function() {
+                dfd.resolve();
             });
+
+            return dfd.promise();
+        };
+
+        this.start = function() {
+            var actions = this.scenario[this.currentFrame];
+            this.played = true;
+
+            this._runFrame(actions);
         };
 
         this.stop = function() {

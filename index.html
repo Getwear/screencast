@@ -12,9 +12,14 @@
     <script>
         $(function() {
             var $slideshow = $('.slideshow').slideshow();
+            var instance = $slideshow.data('slideshow');
+
+            $slideshow.on('complete', function(e, data) {
+                console.log('Step %s Finished', data.frame);
+            });
 
             setTimeout(function() {
-                $slideshow.data('slideshow').start();
+                instance.start();
             }, 500);
         });
     </script>
@@ -41,7 +46,7 @@
         },  {
             'password': [
                 'focus',
-                ['type', 'password'],
+                ['typeText', 'password'],
                 'blur'
             ]
         }
