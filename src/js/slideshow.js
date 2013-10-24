@@ -50,6 +50,9 @@
                     'left': '-2000px',
                     'visibility': 'hidden'
                 });
+
+                $elem.addClass('typed');
+
                 if (text.length) {
                     $elem.text(function(index, content) {
                         content += text[0];
@@ -60,11 +63,13 @@
                     overflow = $dummy.width() - $elem.width();
 
                     if (overflow > 0) {
-                        $elem.css('text-indent', '-' + overflow + 'px');
+                        $elem.css('text-indent', '-' + (overflow + 2) + 'px');
                     }
                 } else {
                     $dummy.remove();
-                    $elem.css('text-indent', 0);
+                    $elem.
+                        removeClass('typed').
+                        css('text-indent', 0);
                     clearInterval(interval);
                     dfd.resolve();
                 }

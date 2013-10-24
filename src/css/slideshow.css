@@ -10,9 +10,38 @@
     left: 128px;
     width: 170px;
     height: 25px;
+    padding: 2px;
     overflow: hidden;
     border: solid 1px #ddd;
     background: #FFF;
+}
+
+.login.typed:after {
+    content: "";
+    display: inline-block;
+    height: 20px;
+    width: 0;
+    overflow: hidden;
+    vertical-align: middle;
+    border-left: solid 1px #333;
+    -webkit-animation: blink .5s infinite;
+    -o-animation: blink .5s infinite;
+    animation: blink .5s infinite;
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .password {
@@ -21,6 +50,7 @@
     left: 128px;
     width: 170px;
     height: 25px;
+    padding: 2px;
     overflow: hidden;
     border: solid 1px #ddd;
     background: #FFF;
