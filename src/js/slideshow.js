@@ -36,14 +36,21 @@
         };
 
         this.typeText = function(text) {
-            var dfd = new $.Deferred();
+            var dfd = new $.Deferred(),
+                interval;
 
-            console.log('type started');
-
-            setTimeout(function() {
-                console.log('type ended');
-                dfd.resolve();
-            }, 1000);
+            interval = setInterval(function() {
+                if (text.length) {
+                    $elem.text(function(index, content) {
+                        content += text[0];
+                        text = text.substr(1);
+                        return content;
+                    });
+                } else {
+                    clearInterval(interval);
+                    dfd.resolve();
+                }
+            }, 100);
 
             return dfd.promise();
         };
