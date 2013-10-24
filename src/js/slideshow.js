@@ -59,12 +59,12 @@
                 overflow,
                 defaults = {
                     'mask': false
-                };
+                },
+                $dummy = $("<div />").appendTo($BODY);
 
             params = $.extend({}, defaults, params);
 
             interval = setInterval(function() {
-                var $dummy = $("<div />").appendTo($BODY);
 
                 $dummy.css({
                     'position': 'absolute',
