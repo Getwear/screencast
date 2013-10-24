@@ -113,13 +113,13 @@
 
                 if (_.isArray(action)) {
                     fn = action[0];
-                    args = action[1];
+                    args = action.slice(1);
                 } else {
                     fn = action;
                 }
 
                 return function() {
-                    return object[fn](args);
+                    return object[fn].apply(object, args);
                 }
             });
 
