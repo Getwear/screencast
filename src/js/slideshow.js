@@ -43,10 +43,15 @@
             return dfd.promise();
         };
 
-        this.typeText = function(text) {
+        this.typeText = function(text, params) {
             var dfd = new $.Deferred(),
                 interval,
-                overflow;
+                overflow,
+                defaults = {
+                    'mask': false
+                };
+
+            params = $.extend({}, defaults, params);
 
             interval = setInterval(function() {
                 var $dummy = $("<div />").appendTo($BODY);
@@ -61,7 +66,11 @@
 
                 if (text.length) {
                     $elem.text(function(index, content) {
-                        content += text[0];
+                        if (!params.mask) {
+                            content += text[0];
+                        } else {
+                            content += "•";
+                        }
                         text = text.substr(1);
                         return content;
                     });

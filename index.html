@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Slideshow</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="./src/css/slideshow.css"/>
     <link rel="stylesheet" href="./src/css/cursor.css"/>
 
@@ -52,7 +53,7 @@
         },  {
             'password': [
                 ['addClass', 'focused'],
-                ['typeText', 'password'],
+                ['typeText', 'password', {'mask': true}],
                 ['removeClass', 'focused']
             ]
         }
