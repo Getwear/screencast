@@ -10,10 +10,10 @@
 
     function Layer($elem, params) {
         this.moveTo = function(coords) {
-            var dfd = new $.Deferred();
-            var targetX;
-            var targetY;
-            var $target;
+            var dfd = new $.Deferred(),
+                targetX,
+                targetY,
+                $target;
 
             if (_.isArray(coords)) {
                 targetX = coords[0];
@@ -37,6 +37,7 @@
 
         this.typeText = function(text) {
             var dfd = new $.Deferred();
+
             console.log('type started');
 
             setTimeout(function() {
@@ -62,8 +63,8 @@
     }
 
     $.Slideshow = function($root, options) {
-        var that = this;
-        var slideshowData = $root.data();
+        var that = this,
+            slideshowData = $root.data();
 
         this.currentFrame = 0;
         this.$frames = $root.find('.' + options.prefix + 'frame');
@@ -81,16 +82,16 @@
         };
 
         this._getFrameActions = function(frame) {
-            var rawParams = this._extractParams(frame);
-            var steps = _.map(rawParams, this._parseStep, this);
+            var rawParams = this._extractParams(frame),
+                steps = _.map(rawParams, this._parseStep, this);
 
             return steps;
         };
 
         this._parseStep = function(step) {
-            var that = this;
-            var elem;
-            var result = [];
+            var that = this,
+                elem,
+                result = [];
 
             _.forEach(step, function(actions, layerName) {
                 if (layerName in that.elems) {
@@ -108,8 +109,8 @@
 
         this._parseActions = function(object, actions) {
             var fnArray = _.map(actions, function(action) {
-                var fn;
-                var args;
+                var fn,
+                    args;
 
                 if (_.isArray(action)) {
                     fn = action[0];
@@ -133,8 +134,8 @@
         };
 
         this._runFrame = function(steps) {
-            var dfd = new $.Deferred();
-            var that = this;
+            var dfd = new $.Deferred(),
+                that = this;
 
             $.when(_.reduce(steps, function (prev, current) {
                     return $.when(prev).then(function () {
@@ -157,8 +158,8 @@
         };
 
         this._runStep = function(layers) {
-            var that = this;
-            var dfd = new $.Deferred();
+            var that = this,
+                dfd = new $.Deferred();
 
             $.when.apply($, _.map(layers, function (step) {
                     return this._runActions(step);
@@ -171,9 +172,10 @@
         };
 
         this._runActions = function(actions) {
-            var dfd = new $.Deferred();
+            var dfd = new $.Deferred(),
+                chain;
 
-            var chain = _.reduce(actions, function(prev, current) {
+            chain = _.reduce(actions, function(prev, current) {
                 return $.when(prev).then(current);
             }, $.noop, that);
 
@@ -186,8 +188,8 @@
 
         this.start = function() {
             var actions = this.scenario[this.currentFrame];
-            this.played = true;
 
+            this.played = true;
             this._runFrame(actions);
         };
 
@@ -234,9 +236,8 @@
 
     $.fn.slideshow = function(options) {
         return this.each(function() {
-            var that = this;
-            var $slideshow = $(this);
-            var slideshowData = $slideshow.data();
+            var $slideshow = $(this),
+                slideshowData = $slideshow.data();
 
             return new $.Slideshow($slideshow, $.extend({}, defaults, options, slideshowData)).init();
         });

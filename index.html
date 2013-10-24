@@ -11,8 +11,8 @@
 
     <script>
         $(function() {
-            var $slideshow = $('.slideshow').slideshow();
-            var instance = $slideshow.data('slideshow');
+            var $slideshow = $('.slideshow').slideshow(),
+                instance = $slideshow.data('slideshow');
 
             $slideshow.on('complete', function(e, data) {
                 console.log('Step %s Finished', data.frame);
