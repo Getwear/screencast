@@ -109,6 +109,7 @@
         screencastIsPlaying,
         lastActiveFrame,
         $play = $('#screencast-play'),
+        $replay = $('#screencast-replay'),
         $navLinks = $('.switch', '#screencast-nav');
 
     $fotorama
@@ -151,8 +152,13 @@
         });
 
     function fotoramaTurnOn () {
+      $replay.stop().fadeOut('fast', function () {
+        $replay.hide();
+      });
+
       fotorama = $fotorama
-          .fadeIn()
+          .stop()
+          .fadeIn('fast')
           .fotorama({
             width: $stage.width(),
             height: $stage.height(),
@@ -177,7 +183,7 @@
       fotorama.show({index: id});
     }
 
-    $play.on('click', function () {
+    $play.add($replay).on('click', function () {
       // Заводим фотораму
       fotoramaGoTo('home');
     });
@@ -190,8 +196,14 @@
     $(document).on('complete', '.screencast', function () {
       // Слушаем события о завершении анимации скринкаста
       if (fotorama) {
-        // Включаем следующий кадр
-        fotorama.show('>');
+        if (fotorama.activeIndex < fotorama.size - 1) {
+          // Включаем следующий кадр
+          fotorama.show('>');
+        } else {
+          // Останавливаем всё
+          $replay.fadeIn('fast');
+          screencastIsPlaying = false;
+        }
       }
     });
   });
@@ -259,7 +271,7 @@
             <div class="screencast-frame" onclick="return [
                   {
                     'cursor': [
-                      ['moveTo', [520, 220]],
+                      ['moveTo', 'waist'],
                       'click'
                     ]
                   },
@@ -329,6 +341,13 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="splash" id="screencast-replay" style="display: none;">
+        <div class="text">
+          <i class="play replay">&#9664;</i>
+          Повторить сначала
         </div>
       </div>
     </div>
