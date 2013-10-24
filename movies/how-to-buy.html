@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <link rel="shortcut icon" href="http://getwear.com/favicon.ico"/>
+
+  <link rel="stylesheet" href="getwear.com/css/style.css"/>
+  <link rel="stylesheet" href="getwear.com/css/fotorama/fotorama.css"/>
+  <script src="getwear.com/js/jquery-1.10.2.migrate.min.js"></script>
+  <script src="getwear.com/js/fotorama.js"></script>
+
+  <title>Как купить джинсы Гетвеар</title>
+</head>
+<body>
+<div class="l-min-max" id="root">
+
+<!-- Шапка (начало) -->
+<div class="b-header">
+  <div class="wrap">
+    <div class="logo">
+      <a href="frontpage.shtml" class="a_no-u"><i></i><u>getwear</u></a>
+    </div>
+    <ul class="menu">
+      <li><a href="catalog.shtml?men">Мужские</a></li>
+      <li class="strut">&nbsp;</li>
+      <li><a href="catalog.shtml?women">Женские</a></li>
+      <li class="strut">&nbsp;</li>
+      <li><a href="configurator.shtml">Свой дизайн<img class="img_menu"
+                                                       style="position: absolute; left: 20px; top: 7px;"
+                                                       src="http://static.getwear.com/__design-now.png"></a></li>
+      <li class="strut">&nbsp;</li>
+      <li><a href="?quality">Качество</a></li>
+      <li class="strut">&nbsp;</li>
+      <!-- !!! 28.03.12 Reviews (начало) -->
+      <li><a href="reviews.shtml">Отзывы</a></li>
+    </ul>
+    <div class="user-n-cart">
+      <span class="switch user">Миша Баранов</span>
+      <span class="strut">&nbsp;</span>
+      <a href="cart_full.shtml" class="cart"><i class="l"></i><i class="r"></i><span class="number">1</span></a>
+    </div>
+
+    <div class="l-clear"></div>
+  </div>
+</div>
+<!-- Шапка (конец) -->
+
+<div class="b-h1">
+  <h1>Как купить джинсы Гетвеар</h1>
+</div>
+
+<!-- Ролик (начало) -->
+<!-- ================================================================================================ -->
+<link rel="stylesheet" href="../src/css/slideshow.css"/>
+<link rel="stylesheet" href="../src/css/cursor.css"/>
+<script src="../src/lib/lodash.2.2.1.js"></script>
+<script src="../src/js/slideshow.js"></script>
+<style>
+  .b-movie .fotorama {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: none;
+    cursor: pointer;
+  }
+
+  .b-movie .size {
+    position: absolute;
+    width: 80px;
+    height: 132px;
+    top: 217px;
+    left: 624px;
+  }
+
+  .b-movie .size-input {
+    height: 12.5%;
+    text-align: right;
+    padding: 1px;
+  }
+
+  .b-movie .size-input.focused {
+    padding: 0;
+    border: 1px solid #4473bf;
+    box-shadow: #3376e3 0 0 10px, rgba(0,0,0,.5) 0 3px 4px -1px inset;
+  }
+
+  .b-movie .size-input:first-child {
+    border-top-right-radius: 3px;
+  }
+
+  .b-movie .size-input:last-child {
+    border-bottom-right-radius: 3px;
+  }
+</style>
+
+<script>
+  $(function () {
+    var $stage = $('#screencast-stage'),
+        $fotorama = $('#screencast-fotorama'),
+        fotorama,
+        currentScreencast,
+        screencastIsPlaying,
+        lastActiveFrame,
+        $play = $('#screencast-play'),
+        $navLinks = $('.switch', '#screencast-nav');
+
+    $fotorama
+        .on('fotorama:show', function (e, fotorama, extra) {
+          var activeFrame = fotorama.activeFrame;
+
+          if (lastActiveFrame === activeFrame) {
+            return;
+          }
+
+          if (currentScreencast) {
+            // Останавливаем текущий кусочек скринкаста
+            currentScreencast.stop();
+          }
+
+          var screencast = $('.slideshow', activeFrame.$stageFrame).slideshow().data('slideshow');
+
+          if (screencast) {
+            // Запускаем новый кусочек
+            // Глобальны window.currentScreencast временно, для управления из консоли (currentScreencast.start())
+            window.currentScreencast = currentScreencast = screencast;
+            screencast.start();
+          }
+
+          // Выделяем активную ссылоку под скринкастом
+          $navLinks
+              .filter('[data-section="' + activeFrame.section + '"]')
+              .addClass('switch_selected')
+              .siblings()
+              .removeClass('switch_selected');
+
+          lastActiveFrame = activeFrame;
+        })
+        .on('click', function () {
+          if (currentScreencast) {
+            // Пауза
+            currentScreencast[screencastIsPlaying ? 'stop' : 'start']();
+            screencastIsPlaying = !screencastIsPlaying;
+          }
+        });
+
+    function fotoramaTurnOn () {
+      fotorama = $fotorama
+          .fadeIn()
+          .fotorama({
+            width: $stage.width(),
+            height: $stage.height(),
+            nav: false,
+            transition: 'dissolve',
+            trackpad: false,
+            arrows: false,
+            click: false,
+            swipe: false,
+            fit: 'none'
+          })
+          .data('fotorama');
+    }
+
+    // Глобальны window.fotoramaGoTo временно, для управления из консоли (fotoramaGoTo('<'), fotoramaGoTo('>'))
+    window.fotoramaGoTo = function fotoramaGoTo (id) {
+      if (!fotorama) {
+        // Если фоторама ещё не инициирована, включаем её
+        fotoramaTurnOn();
+      }
+
+      fotorama.show({index: id});
+    }
+
+    $play.on('click', function () {
+      // Заводим фотораму
+      fotoramaGoTo('home');
+    });
+
+    $navLinks.on('click', function () {
+      // Переход к началу секции
+      fotoramaGoTo($(this).data('section'));
+    });
+
+    $(document).on('complete', '.slideshow', function () {
+      // Слушаем события о завершении анимации скринкаста
+      if (fotorama) {
+        // Включаем следующий кадр
+        fotorama.show('>');
+      }
+    });
+  });
+</script>
+
+
+<div class="b-movie">
+  <div class="b-movie__wrap">
+
+    <div class="stage" id="screencast-stage">
+      <div class="splash" id="screencast-play">
+        <img src="i/how-to-buy/home-blur.jpg">
+
+        <div class="text">
+          <i class="play">&#9654;</i>
+          Смотреть ролик
+        </div>
+      </div>
+
+      <div class="fotorama" data-auto="false" id="screencast-fotorama">
+        <div id="home" data-img="i/how-to-buy/home.jpg">
+          <div class="slideshow">
+            <div class="slideshow-frame" onclick="return [
+                  {
+                    'cursor': [
+                      ['moveTo', [490, 20]],
+                      'click'
+                    ]
+                  }
+              ];">
+              <div class="cursor" style="left: 300px; top: 100px;"></div>
+            </div>
+          </div>
+        </div>
+        <div id="design" data-section="design" data-img="i/how-to-buy/design.jpg">
+          <div class="slideshow">
+            <div class="slideshow-frame" onclick="return [
+                  {
+                    'cursor': [
+                      ['moveTo', [160, 100]],
+                      'click'
+                    ]
+                  }
+              ];">
+              <div class="cursor" style="left: 490px; top: 20px;"></div>
+            </div>
+          </div>
+        </div>
+        <div data-section="design" data-img="i/how-to-buy/design-men.jpg">
+          <div class="slideshow">
+            <div class="slideshow-frame" onclick="return [
+                  {
+                    'cursor': [
+                      ['moveTo', [760, 210]],
+                      'click'
+                    ]
+                  }
+              ];">
+              <div class="cursor" style="left: 160px; top: 100px;"></div>
+            </div>
+          </div>
+        </div>
+        <div id="size" data-section="size" data-img="i/how-to-buy/size.jpg">
+          <div class="slideshow">
+            <div class="slideshow-frame" onclick="return [
+                  {
+                    'cursor': [
+                      ['moveTo', [520, 220]],
+                      'click'
+                    ]
+                  },
+                  {
+                    'cursor': [
+                      ['fadeTo', 100, 0]
+                    ],
+                    'waist': [
+                      ['addClass', 'focused'],
+                      ['typeText', '86'],
+                      ['removeClass', 'focused']
+                    ]
+                  },
+                  {
+                    'hip': [
+                      ['addClass', 'focused'],
+                      ['typeText', '92'],
+                      ['removeClass', 'focused']
+                    ]
+                  },
+                  {
+                    'thigh': [
+                      ['addClass', 'focused'],
+                      ['typeText', '56'],
+                      ['removeClass', 'focused']
+                    ]
+                  },
+                  {
+                    'knee': [
+                      ['addClass', 'focused'],
+                      ['typeText', '39'],
+                      ['removeClass', 'focused']
+                    ]
+                  },
+                  {
+                    'calf': [
+                      ['addClass', 'focused'],
+                      ['typeText', '37'],
+                      ['removeClass', 'focused']
+                    ]
+                  },
+                  {
+                    'inseam': [
+                      ['addClass', 'focused'],
+                      ['typeText', '75'],
+                      ['removeClass', 'focused']
+                    ]
+                  },
+                  {
+                    'length': [
+                      ['addClass', 'focused'],
+                      ['typeText', '96'],
+                      ['removeClass', 'focused']
+                    ]
+                  }
+              ];">
+              <div class="cursor" style="left: 760px; top: 210px;"></div>
+              <div class="size">
+                <div class="size-input waist"></div>
+                <div class="size-input hip"></div>
+                <div class="size-input thigh"></div>
+                <div class="size-input knee"></div>
+                <div class="size-input calf"></div>
+                <div class="size-input inseam"></div>
+                <div class="size-input length"></div>
+                <div class="size-input jeans-size"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav" id="screencast-nav">
+      <span class="switch" data-section="design">Дизайн</span>
+      <span class="switch" data-section="size">Мерки</span>
+      <span class="switch" data-section="cart">Корзина</span>
+      <span class="switch" data-section="checkout">Оплата</span>
+    </div>
+
+  </div>
+</div>
+<!-- ================================================================================================ -->
+<!-- Ролик (конец) -->
+
+<!-- Футер (начало) -->
+<div class="b-footer">
+  <div class="copyright">
+    <div class="col-1">
+      <p><i class="logo"></i>2013, Гетвеар<br/>
+        <small>100500 джинсов от 100500 дизайнеров</small>
+      </p>
+
+      <p class="social">
+        <a href="http://www.facebook.com/Getwear" class="a_no-u facebook"><i></i><u>Лайк</u></a>
+        <a href="http://twitter.com/#!/getwear" class="a_no-u twitter"><i></i><u>Фолоу</u></a>
+        <a href="mailto:info@getwear.com" class="a_no-u mail"><i class="mail"></i><u>Контакт</u></a>
+      </p>
+    </div>
+    <div class="col-2">
+      <p>
+        <a href="text.shtml">Какая-то юридическая фигня</a>
+      </p>
+    </div>
+
+    <div class="l-clear"></div>
+  </div>
+</div>
+<!-- Футер (конец) -->
+</div>
+</body>
+</html>
