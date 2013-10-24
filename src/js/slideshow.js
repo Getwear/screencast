@@ -48,17 +48,17 @@
             return dfd.promise();
         };
 
-        this.focus = function() {
-            $elem.addClass('focused');
-        };
-
-        this.blur = function() {
-            $elem.removeClass('focused');
-        };
-
         this.click = function() {
             console.log('click');
             $elem.addClass('clicked');
+        };
+
+        this.addClass = this.setClass = function(className) {
+            $elem.addClass(className);
+        };
+
+        this.removeClass = this.deleteClass = function(className) {
+            $elem.removeClass(className);
         }
     }
 
