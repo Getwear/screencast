@@ -53,10 +53,10 @@
 
 <!-- Ролик (начало) -->
 <!-- ================================================================================================ -->
-<link rel="stylesheet" href="../src/css/slideshow.css"/>
+<link rel="stylesheet" href="../src/css/screencast.css"/>
 <link rel="stylesheet" href="../src/css/cursor.css"/>
 <script src="../src/lib/lodash.2.2.1.js"></script>
-<script src="../src/js/slideshow.js"></script>
+<script src="../src/js/screencast.js"></script>
 <style>
   .b-movie .fotorama {
     position: absolute;
@@ -124,7 +124,7 @@
             currentScreencast.stop();
           }
 
-          var screencast = $('.slideshow', activeFrame.$stageFrame).slideshow().data('slideshow');
+          var screencast = $('.screencast', activeFrame.$stageFrame).screencast().data('screencast');
 
           if (screencast) {
             // Запускаем новый кусочек
@@ -187,7 +187,7 @@
       fotoramaGoTo($(this).data('section'));
     });
 
-    $(document).on('complete', '.slideshow', function () {
+    $(document).on('complete', '.screencast', function () {
       // Слушаем события о завершении анимации скринкаста
       if (fotorama) {
         // Включаем следующий кадр
@@ -213,8 +213,8 @@
 
       <div class="fotorama" data-auto="false" id="screencast-fotorama">
         <div id="home" data-img="i/how-to-buy/home.jpg">
-          <div class="slideshow">
-            <div class="slideshow-frame" onclick="return [
+          <div class="screencast">
+            <div class="screencast-frame" onclick="return [
                   {
                     'cursor': [
                       ['moveTo', [490, 20]],
@@ -227,8 +227,8 @@
           </div>
         </div>
         <div id="design" data-section="design" data-img="i/how-to-buy/design.jpg">
-          <div class="slideshow">
-            <div class="slideshow-frame" onclick="return [
+          <div class="screencast">
+            <div class="screencast-frame" onclick="return [
                   {
                     'cursor': [
                       ['moveTo', [160, 100]],
@@ -241,8 +241,8 @@
           </div>
         </div>
         <div data-section="design" data-img="i/how-to-buy/design-men.jpg">
-          <div class="slideshow">
-            <div class="slideshow-frame" onclick="return [
+          <div class="screencast">
+            <div class="screencast-frame" onclick="return [
                   {
                     'cursor': [
                       ['moveTo', [760, 210]],
@@ -255,8 +255,8 @@
           </div>
         </div>
         <div id="size" data-section="size" data-img="i/how-to-buy/size.jpg">
-          <div class="slideshow">
-            <div class="slideshow-frame" onclick="return [
+          <div class="screencast">
+            <div class="screencast-frame" onclick="return [
                   {
                     'cursor': [
                       ['moveTo', [520, 220]],
