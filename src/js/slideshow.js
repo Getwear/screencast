@@ -75,7 +75,7 @@
                     $dummy.remove();
                     $elem.
                         removeClass('typed').
-                        css('text-indent', 0);
+                        animate({'text-indent': 0});
                     clearInterval(interval);
                     dfd.resolve();
                 }
