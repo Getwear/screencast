@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Slideshow</title>
+    <title>screencast</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./src/css/slideshow.css"/>
+    <link rel="stylesheet" href="src/css/screencast.css"/>
     <link rel="stylesheet" href="./src/css/cursor.css"/>
 
     <script src="./src/lib/jquery-1.10.2.js"></script>
     <script src="./src/lib/lodash.2.2.1.js"></script>
-    <script src="./src/js/slideshow.js"></script>
+    <script src="src/js/screencast.js"></script>
 
     <script>
         $(function() {
-            var $slideshow = $('.slideshow').slideshow(),
-                instance = $slideshow.data('slideshow');
+            var $screencast = $('.screencast').screencast(),
+                instance = $screencast.data('screencast');
 
-            $slideshow.on('complete', function(e, data) {
+            $screencast.on('complete', function(e, data) {
                 console.log('Step %s Finished', data.frame);
             });
 
@@ -30,8 +30,8 @@
     </script>
 </head>
 <body>
-<div class="slideshow">
-    <div class="slideshow-frame" onclick="return [
+<div class="screencast">
+    <div class="screencast-frame" onclick="return [
         {
             'cursor': [
                 ['moveTo', [133, 275]],
