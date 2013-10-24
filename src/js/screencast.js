@@ -3,7 +3,7 @@
 
     var defaults = {
         actionDelay: 300,
-        prefix: 'slideshow-',
+        prefix: 'screencast-',
         autostart: false,
         stopAfterFrame: false,
         moveSpeed: 100
@@ -156,9 +156,9 @@
         }
     }
 
-    $.Slideshow = function($root, options) {
+    $.Screencast = function($root, options) {
         var that = this,
-            slideshowData = $root.data();
+            screencastData = $root.data();
 
         this.currentFrame = 0;
         this.$frames = $root.find('.' + options.prefix + 'frame');
@@ -166,7 +166,7 @@
         this.scenario = [];
         this._played = false;
 
-        slideshowData.slideshow = this;
+        screencastData.screencast = this;
 
         this._createScenario = function() {
             this.$frames.each(function(index, elem) {
@@ -324,7 +324,7 @@
         };
 
         this.status = function() {
-            if(this._played) {
+            if (this._played) {
                 return "played";
             } else {
                 if (this.currentFrame === 0) {
@@ -344,12 +344,12 @@
         };
     };
 
-    $.fn.slideshow = function(options) {
+    $.fn.screencast = function(options) {
         return this.each(function() {
-            var $slideshow = $(this),
-                slideshowData = $slideshow.data();
+            var $screencast = $(this),
+                screencastData = $screencast.data();
 
-            return new $.Slideshow($slideshow, $.extend({}, defaults, options, slideshowData)).init();
+            return new $.Screencast($screencast, $.extend({}, defaults, options, screencastData)).init();
         });
     }
 })(window, document, jQuery, _, undefined);
