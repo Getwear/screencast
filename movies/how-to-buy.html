@@ -107,6 +107,7 @@
         fotorama,
         currentScreencast,
         screencastIsPlaying,
+        screencastIsEnded,
         lastActiveFrame,
         $play = $('#screencast-play'),
         $replay = $('#screencast-replay'),
@@ -152,10 +153,6 @@
         });
 
     function fotoramaTurnOn () {
-      $replay.stop().fadeOut('fast', function () {
-        $replay.hide();
-      });
-
       fotorama = $fotorama
           .stop()
           .fadeIn('fast')
@@ -178,6 +175,14 @@
       if (!fotorama) {
         // Если фоторама ещё не инициирована, включаем её
         fotoramaTurnOn();
+      }
+
+      if (screencastIsEnded) {
+        screencastIsEnded = false;
+
+        $replay.stop().fadeOut('fast', function () {
+          $replay.hide();
+        });
       }
 
       fotorama.show({index: id});
@@ -203,6 +208,7 @@
           // Останавливаем всё
           $replay.fadeIn('fast');
           screencastIsPlaying = false;
+          screencastIsEnded = true;
         }
       }
     });
