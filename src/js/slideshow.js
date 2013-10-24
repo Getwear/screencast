@@ -70,8 +70,7 @@
         this.$frames = $root.find('.' + options.prefix + 'frame');
         this.elems = {};
         this.scenario = [];
-
-        this.played = false;
+        this._played = false;
 
         slideshowData.slideshow = this;
 
@@ -150,7 +149,7 @@
                     if (!options.stopAfterFrame) {
                         that.next();
                     } else {
-                        that.played = false;
+                        that._played = false;
                     }
                 });
 
@@ -189,7 +188,7 @@
         this.start = function() {
             var actions = this.scenario[this.currentFrame];
 
-            this.played = true;
+            this._played = true;
             this._runFrame(actions);
         };
 
@@ -222,6 +221,18 @@
             if (this.currentFrame > 0) {
                 this.currentFrame--;
                 this.goTo(this.currentFrame);
+            }
+        };
+
+        this.status = function() {
+            if(this._played) {
+                return "played";
+            } else {
+                if (this.currentFrame === 0) {
+                    return "stopped";
+                } else {
+                    return "paused";
+                }
             }
         };
 
