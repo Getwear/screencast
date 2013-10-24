@@ -15,22 +15,28 @@
             var dfd = new $.Deferred(),
                 targetX,
                 targetY,
-                $target;
+                $target,
+                selector;
 
             if (_.isArray(coords)) {
                 targetX = coords[0];
                 targetY = coords[1];
             } else {
-                $target = $(coords);
-                targetX = $target.position().left;
-                targetY = $target.position().top;
+                if (coords[0] !== '.' && coords[0] !== "#") {
+                    selector = '.' + coords;
+                } else {
+                    selector = coords;
+                }
+
+                $target = $(selector);
+                targetX = $target.position().left + ($target.width() / 2);
+                targetY = $target.position().top + ($target.height() / 2);
             }
 
             $elem.animate({
-                top: targetX + 'px',
-                left: targetY + 'px'
+                top: targetY + 'px',
+                left: targetX + 'px'
             }, 1000, function() {
-                console.log('move ended');
                 dfd.resolve();
             });
 
