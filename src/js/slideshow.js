@@ -5,18 +5,26 @@
         actionDelay: 300,
         prefix: 'slideshow-',
         autostart: false,
-        stopAfterFrame: false
+        stopAfterFrame: false,
+        moveSpeed: 100
     };
+
+    function calculateDistance(x, y) {
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+    }
 
     function Layer($elem, params) {
         var $BODY = $('body');
 
         this.moveTo = function(coords) {
             var dfd = new $.Deferred(),
+                x = $elem.position().left,
+                y = $elem.position().top,
                 targetX,
                 targetY,
                 $target,
-                selector;
+                selector,
+                duration;
 
             if (_.isArray(coords)) {
                 targetX = coords[0];
@@ -33,10 +41,12 @@
                 targetY = $target.position().top + ($target.height() / 2);
             }
 
+            duration = calculateDistance(targetX - x, targetY - y) / defaults.moveSpeed * 1000;
+
             $elem.animate({
                 top: targetY + 'px',
                 left: targetX + 'px'
-            }, 1000, function() {
+            }, duration, function() {
                 dfd.resolve();
             });
 
