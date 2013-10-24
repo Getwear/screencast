@@ -10,6 +10,7 @@
     left: 128px;
     width: 170px;
     height: 25px;
+    overflow: hidden;
     border: solid 1px #ddd;
     background: #FFF;
 }
@@ -20,6 +21,7 @@
     left: 128px;
     width: 170px;
     height: 25px;
+    overflow: hidden;
     border: solid 1px #ddd;
     background: #FFF;
 }

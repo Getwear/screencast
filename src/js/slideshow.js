@@ -9,6 +9,8 @@
     };
 
     function Layer($elem, params) {
+        var $BODY = $('body');
+
         this.moveTo = function(coords) {
             var dfd = new $.Deferred(),
                 targetX,
@@ -37,16 +39,32 @@
 
         this.typeText = function(text) {
             var dfd = new $.Deferred(),
-                interval;
+                interval,
+                overflow;
 
             interval = setInterval(function() {
+                var $dummy = $("<div />").appendTo($BODY);
+
+                $dummy.css({
+                    'position': 'absolute',
+                    'left': '-2000px',
+                    'visibility': 'hidden'
+                });
                 if (text.length) {
                     $elem.text(function(index, content) {
                         content += text[0];
                         text = text.substr(1);
                         return content;
                     });
+                    $dummy.text($elem.text());
+                    overflow = $dummy.width() - $elem.width();
+
+                    if (overflow > 0) {
+                        $elem.css('text-indent', '-' + overflow + 'px');
+                    }
                 } else {
+                    $dummy.remove();
+                    $elem.css('text-indent', 0);
                     clearInterval(interval);
                     dfd.resolve();
                 }
