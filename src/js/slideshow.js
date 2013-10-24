@@ -15,6 +15,14 @@
 
     function Layer($elem, params) {
         var $BODY = $('body');
+        this.stopped = false;
+
+        this.stopAction = function() {
+            if (!this.stopped) {
+                $elem.trigger('stopAction');
+                this.stopped = true;
+            }
+        };
 
         this.moveTo = function(coords) {
             var dfd = new $.Deferred(),
@@ -50,6 +58,12 @@
                 dfd.resolve();
             });
 
+            $elem.on('stopAction', function() {
+                $elem.stop(true);
+
+                dfd.reject();
+            });
+
             return dfd.promise();
         };
 
@@ -60,6 +74,7 @@
                 defaults = {
                     'mask': false
                 },
+                immediatelyStop = false,
                 $dummy = $("<div />").appendTo($BODY);
 
             params = $.extend({}, defaults, params);
@@ -74,7 +89,7 @@
 
                 $elem.addClass('typed');
 
-                if (text.length) {
+                if (text.length && !immediatelyStop) {
                     $elem.text(function(index, content) {
                         if (!params.mask) {
                             content += text[0];
@@ -100,16 +115,31 @@
                 }
             }, 100);
 
+            $elem.on('stopAction', function() {
+                immediatelyStop = true;
+                dfd.reject();
+            });
+
             return dfd.promise();
         };
 
         this.fadeTo =function(duration, opacity, easing) {
+            var dfd = $.Deferred();
+
             if (typeof opacity === 'undefined') {
                 opacity = duration;
                 duration = 400;
             }
 
-            $elem.fadeTo(duration, opacity);
+            $elem.fadeTo(duration, opacity, function() {
+                dfd.resolve();
+            });
+
+            $elem.on('stopAction', function() {
+                dfd.reject();
+            });
+
+            return dfd.promise();
         };
 
         this.click = function() {
@@ -171,21 +201,26 @@
         };
 
         this._parseActions = function(object, actions) {
-            var fnArray = _.map(actions, function(action) {
-                var fn,
-                    args;
+            var that = this,
+                fnArray = _.map(actions, function (action) {
+                    var fn,
+                        args;
 
-                if (_.isArray(action)) {
-                    fn = action[0];
-                    args = action.slice(1);
-                } else {
-                    fn = action;
-                }
+                    if (_.isArray(action)) {
+                        fn = action[0];
+                        args = action.slice(1);
+                    } else {
+                        fn = action;
+                    }
 
-                return function() {
-                    return object[fn].apply(object, args);
-                }
-            });
+                    return function () {
+                        $root.on('stop', function() {
+                            object.stopAction();
+                        });
+
+                        return object[fn].apply(object, args);
+                    }
+                });
 
             return fnArray;
         };
@@ -240,7 +275,7 @@
 
             chain = _.reduce(actions, function(prev, current) {
                 return $.when(prev).then(current);
-            }, $.noop, that);
+            }, $.noop);
 
             $.when(chain).then(function() {
                 dfd.resolve();
@@ -257,7 +292,7 @@
         };
 
         this.stop = function() {
-
+            $root.trigger('stop');
         };
 
         this.goTo = function(frameNumber) {
