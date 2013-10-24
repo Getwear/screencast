@@ -28,3 +28,12 @@
     outline: none;
     box-shadow: 0 0 5px #2573ff;
 }
+
+.box {
+    position: absolute;
+    top: 350px;
+    left: 125px;
+    height: 35px;
+    width: 100px;
+    background: rgba(255, 91, 15, 0.80);
+}

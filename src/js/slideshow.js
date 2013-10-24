@@ -48,6 +48,15 @@
             return dfd.promise();
         };
 
+        this.fadeTo =function(duration, opacity, easing) {
+            if (typeof opacity === 'undefined') {
+                opacity = duration;
+                duration = 400;
+            }
+
+            $elem.fadeTo(duration, opacity);
+        };
+
         this.click = function() {
             console.log('click');
             $elem.addClass('clicked');
