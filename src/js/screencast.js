@@ -24,7 +24,7 @@
             }
         };
 
-        this.moveTo = function(coords) {
+        this.moveTo = function(coords, params) {
             var dfd = new $.Deferred(),
                 x = $elem.position().left,
                 y = $elem.position().top,
@@ -33,6 +33,8 @@
                 $target,
                 selector,
                 duration;
+
+            params = params || {};
 
             if (_.isArray(coords)) {
                 targetX = coords[0];
@@ -49,7 +51,7 @@
                 targetY = $target.position().top + ($target.height() / 2);
             }
 
-            duration = calculateDistance(targetX - x, targetY - y) / defaults.moveSpeed * 1000;
+            duration = params.duration || calculateDistance(targetX - x, targetY - y) / defaults.moveSpeed * 1000;
 
             $elem.animate({
                 top: targetY + 'px',
