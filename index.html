@@ -23,6 +23,10 @@
                 instance.start();
             });
 
+            $('.pause').on('click', function() {
+                instance.pause();
+            });
+
             $('.stop').on('click', function() {
                 instance.stop();
             });
@@ -33,7 +37,7 @@
 <div class="screencast" onclick="return [
     {
         'cursor': [
-            ['wait', 1000],
+            ['wait', 100],
             ['moveTo', [133, 275], {'duration': 4000}],
             'click'
         ],
@@ -71,8 +75,9 @@
     </div>
 </div>
 <p>
-    <button class="start">Запустить</button>
-    <button class="stop">Остановить</button>
+    <button class="start">Старт</button>
+    <button class="pause">Пауза</button>
+    <button class="stop">Стоп</button>
 </p>
 </body>
 </html>

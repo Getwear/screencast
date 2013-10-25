@@ -1,6 +1,7 @@
 (function(window, document, $, _, undefined) {
     "use strict";
 
+    // Лучше пока это не использовать. Андер констракшн, все дела
     var defaults = {
         actionDelay: 300,
         prefix: 'screencast-',
@@ -15,17 +16,38 @@
 
     function Layer($elem, params) {
         var $BODY = $('body');
-        this.stopped = false;
+        this._stopped = false;
+        this._paused = false;
+        this._left = parseInt($elem.css('left')) || 0;
+        this._right = parseInt($elem.css('right')) || 0;
+        this._top = parseInt($elem.css('top')) || 0;
+        this._bottom = parseInt($elem.css('bottom')) || 0;
+        this._opacity = $elem.css('opacity');
+        this._text = $elem.text();
 
-        this.stopAction = function() {
-            if (!this.stopped) {
-                $elem.trigger('stopAction');
-                this.stopped = true;
+        this.pause = function() {
+            if (!this._paused) {
+                $elem.trigger('layer.pause');
+                this._paused = true;
             }
         };
 
+        this.stopAction = function() {
+            if (!this._stopped) {
+                $elem.trigger('layer.stop');
+                this._paused = false;
+                this._stopped = true;
+            }
+        };
+
+        this.play = function() {
+            this._stopped = false;
+            this._paused = false;
+        }
+
         this.moveTo = function(coords, params) {
-            var dfd = new $.Deferred(),
+            var that = this,
+                dfd = new $.Deferred(),
                 x = $elem.position().left,
                 y = $elem.position().top,
                 targetX,
@@ -60,8 +82,16 @@
                 dfd.resolve();
             });
 
-            $elem.on('stopAction', function() {
-                $elem.stop(true);
+            $elem.on('layer.pause', function() {
+                $elem.stop();
+            });
+
+            $elem.on('layer.stop', function() {
+                $elem.stop();
+                $elem.css({
+                    left: that._left,
+                    top: that._top
+                });
 
                 dfd.reject();
             });
@@ -71,6 +101,7 @@
 
         this.typeText = function(text, params) {
             var dfd = new $.Deferred(),
+                that = this,
                 interval,
                 overflow,
                 defaults = {
@@ -117,16 +148,27 @@
                 }
             }, 100);
 
-            $elem.on('stopAction', function() {
+            $elem.on('layer.stop', function() {
                 immediatelyStop = true;
+                $dummy.remove();
+                // Нужен ли нам immediatelyStop, если мы чистим интервал?
+                clearInterval(interval);
+                $elem.text(that._text);
                 dfd.reject();
+            });
+
+            $elem.on('layer.pause', function() {
+                immediatelyStop = true;
+                $dummy.remove();
+                clearInterval(interval);
             });
 
             return dfd.promise();
         };
 
         this.fadeTo = function(duration, opacity, easing) {
-            var dfd = $.Deferred();
+            var dfd = $.Deferred(),
+                that = this;
 
             if (typeof opacity === 'undefined') {
                 opacity = duration;
@@ -137,8 +179,13 @@
                 dfd.resolve();
             });
 
-            $elem.on('stopAction', function() {
+            $elem.on('layer.stop', function() {
+                $elem.css('opacity', that._opacity);
                 dfd.reject();
+            });
+
+            $elem.on('layer.pause', function() {
+                $elem.stop();
             });
 
             return dfd.promise();
@@ -152,9 +199,13 @@
                 dfd.resolve();
             }, delay);
 
-            $elem.on('stopAction', function() {
+            $elem.on('layer.stop', function() {
                 clearTimeout(timeout);
                 dfd.reject();
+            });
+
+            $elem.on('layer.pause', function() {
+                clearTimeout(timeout);
             });
 
             return dfd.promise();
@@ -254,6 +305,14 @@
                             object.stopAction();
                         });
 
+                        $root.on('pause', function() {
+                            object.pause();
+                        });
+
+                        $root.on('play', function() {
+                            object.play();
+                        });
+
                         return object[fn].apply(object, args);
                     }
                 });
@@ -323,12 +382,21 @@
         this.start = function() {
             var actions = this.scenario[this.currentFrame];
 
-            this._played = true;
-            this._runFrame(actions);
+            if (!this._played) {
+                this._played = true;
+                this._runFrame(actions);
+                $root.trigger('play');
+            }
+        };
+
+        this.pause = function() {
+            $root.trigger('pause');
+            this._played = false;
         };
 
         this.stop = function() {
             $root.trigger('stop');
+            this._played = false;
         };
 
         this.goTo = function(frameNumber) {
