@@ -59,6 +59,13 @@
 <script src="../src/js/screencast.js"></script>
 <style>
   .b-movie .fotorama {
+    background: #fff;
+    display: none;
+    cursor: pointer;
+  }
+
+  .b-movie .fotorama,
+  .b-movie .screencast {
     position: absolute;
     top: 0;
     right: 0;
@@ -66,9 +73,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: #fff;
-    display: none;
-    cursor: pointer;
+  }
+
+  .b-movie .cursor {
+    z-index: 100;
   }
 
   .b-movie .size {
@@ -88,7 +96,7 @@
   .b-movie .size-input.focused {
     padding: 0;
     border: 1px solid #4473bf;
-    box-shadow: #3376e3 0 0 10px, rgba(0,0,0,.5) 0 3px 4px -1px inset;
+    box-shadow: #3376e3 0 0 10px, rgba(0, 0, 0, .5) 0 3px 4px -1px inset;
   }
 
   .b-movie .size-input:first-child {
@@ -232,26 +240,38 @@
       </div>
 
       <div class="fotorama" data-auto="false" id="screencast-fotorama">
-        <div id="home" data-img="i/how-to-buy/home.jpg">
-          <div class="screencast">
-            <div class="screencast-frame" onclick="return [
+        <div id="home" data-img="i/how-to-buy/home.jpg" class="screencast" onclick="return [
                   {
+                    'subtitles': [
+                      ['fadeTo', 1, 0],
+                      ['wait', 500],
+                      ['fadeTo', 200, 1],
+                      ['wait', 2000]
+                    ],
                     'cursor': [
-                      ['moveTo', [300, 100], {'duration': 1}],
+                      ['moveTo', [250, 290], {'duration': 1}],
                       ['wait', 1000],
+                      ['moveTo', [700, 280], {'duration': 2000}]
+                    ]
+                  },
+                  {
+                    'subtitles': [
+                      ['fadeTo', 1000, 0]
+                    ],
+                    'cursor': [
+                      ['wait', 1500],
                       ['moveTo', [490, 20], {'duration': 1000}],
                       ['wait', 200],
                       'click'
                     ]
                   }
               ];">
-              <div class="cursor"></div>
-            </div>
+          <div class="cursor"></div>
+          <div class="subtitles" style="top: 40%;">
+            <div class="subtitles__wrap">Качественные джинсы по вашему дизайну и мерке</div>
           </div>
         </div>
-        <div id="design" data-section="design" data-img="i/how-to-buy/design.jpg">
-          <div class="screencast">
-            <div class="screencast-frame" onclick="return [
+        <div id="design" data-section="design" data-img="i/how-to-buy/design.jpg" class="screencast" onclick="return [
                   {
                     'cursor': [
                       ['moveTo', [490, 20], {'duration': 1}],
@@ -262,13 +282,9 @@
                     ]
                   }
               ];">
-              <div class="cursor"></div>
-            </div>
-          </div>
+          <div class="cursor"></div>
         </div>
-        <div data-section="design" data-img="i/how-to-buy/design-men.jpg">
-          <div class="screencast">
-            <div class="screencast-frame" onclick="return [
+        <div data-section="design" data-img="i/how-to-buy/design-men.jpg" class="screencast" onclick="return [
                   {
                     'cursor': [
                       ['moveTo', [160, 100], {'duration': 1}],
@@ -279,13 +295,9 @@
                     ]
                   }
               ];">
-              <div class="cursor"></div>
-            </div>
-          </div>
+          <div class="cursor"></div>
         </div>
-        <div id="size" data-section="size" data-img="i/how-to-buy/size.jpg">
-          <div class="screencast">
-            <div class="screencast-frame" onclick="return [
+        <div id="size" data-section="size" data-img="i/how-to-buy/size.jpg" class="screencast" onclick="return [
                   {
                     'cursor': [
                       ['fadeTo', 0, 1],
@@ -354,18 +366,16 @@
                     ]
                   }
               ];">
-              <div class="cursor" style="left: 760px; top: 210px;"></div>
-              <div class="size">
-                <div class="size-input waist"></div>
-                <div class="size-input hip"></div>
-                <div class="size-input thigh"></div>
-                <div class="size-input knee"></div>
-                <div class="size-input calf"></div>
-                <div class="size-input inseam"></div>
-                <div class="size-input length"></div>
-                <div class="size-input jeans-size"></div>
-              </div>
-            </div>
+          <div class="cursor" style="left: 760px; top: 210px;"></div>
+          <div class="size">
+            <div class="size-input waist"></div>
+            <div class="size-input hip"></div>
+            <div class="size-input thigh"></div>
+            <div class="size-input knee"></div>
+            <div class="size-input calf"></div>
+            <div class="size-input inseam"></div>
+            <div class="size-input length"></div>
+            <div class="size-input jeans-size"></div>
           </div>
         </div>
       </div>
