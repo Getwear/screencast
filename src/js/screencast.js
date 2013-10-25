@@ -125,7 +125,7 @@
             return dfd.promise();
         };
 
-        this.fadeTo =function(duration, opacity, easing) {
+        this.fadeTo = function(duration, opacity, easing) {
             var dfd = $.Deferred();
 
             if (typeof opacity === 'undefined') {
@@ -138,6 +138,22 @@
             });
 
             $elem.on('stopAction', function() {
+                dfd.reject();
+            });
+
+            return dfd.promise();
+        };
+
+        this.wait = function(delay) {
+            var dfd = $.Deferred(),
+                timeout;
+
+            timeout = setTimeout(function() {
+                dfd.resolve();
+            }, delay);
+
+            $elem.on('stopAction', function() {
+                clearTimeout(timeout);
                 dfd.reject();
             });
 
