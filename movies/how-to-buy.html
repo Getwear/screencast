@@ -60,8 +60,8 @@
 <style>
   .b-movie .fotorama {
     background: #fff;
-    display: none;
     cursor: pointer;
+    display: none;
   }
 
   .b-movie .fotorama,
@@ -122,37 +122,17 @@
         $navLinks = $('.switch', '#screencast-nav');
 
     $fotorama
-        .on('fotorama:show', function (e, fotorama, extra) {
-          var activeFrame = fotorama.activeFrame;
+        .on('fotorama:showend', function (e, fotorama, extra) {
+          var activeFrame = fotorama.activeFrame,
+              $frame = activeFrame.$stageFrame;
 
-          if (lastActiveFrame === activeFrame) {
-            return;
+          if (!$frame.data('state')) {
+              $frame.on('f:load f:error', function () {
+                  fotorama.activeFrame.$stageFrame === $frame && catchFrame(activeFrame, $frame);
+              });
+          } else {
+              catchFrame(activeFrame, $frame);
           }
-
-          if (currentScreencast) {
-            // Останавливаем текущий кусочек скринкаста
-            currentScreencast.stop();
-          }
-
-          var screencast = $('.screencast', activeFrame.$stageFrame).screencast({
-            moveSpeed: 2000
-          }).data('screencast');
-
-          if (screencast) {
-            // Запускаем новый кусочек
-            // Глобальны window.currentScreencast временно, для управления из консоли (currentScreencast.start())
-            window.currentScreencast = currentScreencast = screencast;
-            screencast.start();
-          }
-
-          // Выделяем активную ссылоку под скринкастом
-          $navLinks
-              .filter('[data-section="' + activeFrame.section + '"]')
-              .addClass('switch_selected')
-              .siblings()
-              .removeClass('switch_selected');
-
-          lastActiveFrame = activeFrame;
         })
         .on('click', function () {
           if (currentScreencast) {
@@ -161,6 +141,37 @@
             screencastIsPlaying = !screencastIsPlaying;
           }
         });
+
+    function catchFrame (activeFrame, $frame) {
+        if (lastActiveFrame === activeFrame) {
+          return;
+        }
+
+        if (currentScreencast) {
+          // Останавливаем текущий кусочек скринкаста
+          currentScreencast.stop();
+        }
+
+        var screencast = $('.screencast', $frame)
+            .screencast()
+            .data('screencast');
+
+        if (screencast) {
+          // Запускаем новый кусочек
+          // Глобальны window.currentScreencast временно, для управления из консоли (currentScreencast.start())
+          window.currentScreencast = currentScreencast = screencast;
+          screencast.start();
+        }
+
+        // Выделяем активную ссылоку под скринкастом
+        $navLinks
+            .filter('[data-section="' + activeFrame.section + '"]')
+            .addClass('switch_selected')
+            .siblings()
+            .removeClass('switch_selected');
+
+        lastActiveFrame = activeFrame;
+    }
 
     function fotoramaTurnOn () {
       fotorama = $fotorama
@@ -266,7 +277,7 @@
                     ]
                   }
               ];">
-          <div class="cursor"></div>
+          <div class="cursor" style="left: 250px; top: 290px;"></div>
           <div class="subtitles" style="top: 40%;">
             <div class="subtitles__wrap">Качественные джинсы по вашему дизайну и мерке</div>
           </div>
@@ -282,7 +293,7 @@
                     ]
                   }
               ];">
-          <div class="cursor"></div>
+          <div class="cursor" style="left: 490px; top: 20px;"></div>
         </div>
         <div data-section="design" data-img="i/how-to-buy/design-men.jpg" class="screencast" onclick="return [
                   {
@@ -295,13 +306,13 @@
                     ]
                   }
               ];">
-          <div class="cursor"></div>
+          <div class="cursor" style="left: 160px; top: 100px;"></div>
         </div>
         <div id="size" data-section="size" data-img="i/how-to-buy/size.jpg" class="screencast" onclick="return [
                   {
                     'cursor': [
-                      ['fadeTo', 0, 1],
                       ['moveTo', [760, 210], {'duration': 1}],
+                      ['fadeTo', 0, 1],
                       ['moveTo', [650, 220]],
                       'click'
                     ]
