@@ -24,7 +24,7 @@
             }
         };
 
-        this.moveTo = function(coords) {
+        this.moveTo = function(coords, params) {
             var dfd = new $.Deferred(),
                 x = $elem.position().left,
                 y = $elem.position().top,
@@ -33,6 +33,8 @@
                 $target,
                 selector,
                 duration;
+
+            params = params || {};
 
             if (_.isArray(coords)) {
                 targetX = coords[0];
@@ -49,7 +51,7 @@
                 targetY = $target.position().top + ($target.height() / 2);
             }
 
-            duration = calculateDistance(targetX - x, targetY - y) / defaults.moveSpeed * 1000;
+            duration = params.duration || calculateDistance(targetX - x, targetY - y) / defaults.moveSpeed * 1000;
 
             $elem.animate({
                 top: targetY + 'px',
@@ -123,7 +125,7 @@
             return dfd.promise();
         };
 
-        this.fadeTo =function(duration, opacity, easing) {
+        this.fadeTo = function(duration, opacity, easing) {
             var dfd = $.Deferred();
 
             if (typeof opacity === 'undefined') {
@@ -142,9 +144,39 @@
             return dfd.promise();
         };
 
+        this.wait = function(delay) {
+            var dfd = $.Deferred(),
+                timeout;
+
+            timeout = setTimeout(function() {
+                dfd.resolve();
+            }, delay);
+
+            $elem.on('stopAction', function() {
+                clearTimeout(timeout);
+                dfd.reject();
+            });
+
+            return dfd.promise();
+        };
+
         this.click = function() {
-            console.log('click');
-            $elem.addClass('clicked');
+            var dfd = $.Deferred(),
+                timeout;
+
+            $elem.addClass('cursor-click');
+            timeout = setTimeout(function() {
+                $elem.removeClass('cursor-click');
+                dfd.resolve();
+            }, 500);
+
+            $elem.on('stopAction', function() {
+                clearTimeout(timeout);
+                $elem.removeClass('cursor-click');
+                dfd.reject();
+            });
+
+            return dfd.promise();
         };
 
         this.addClass = this.setClass = function(className) {
@@ -169,9 +201,13 @@
         screencastData.screencast = this;
 
         this._createScenario = function() {
-            this.$frames.each(function(index, elem) {
-                that.scenario.push(that._getFrameActions(elem));
-            });
+            if (this.$frames.length) {
+                this.$frames.each(function(index, elem) {
+                    that.scenario.push(that._getFrameActions(elem));
+                });
+            } else {
+                that.scenario.push(that._getFrameActions($root[0]));
+            }
         };
 
         this._getFrameActions = function(frame) {

@@ -4,3 +4,33 @@
     height: 27px;
     background: url(../i/cursor/default.png);
 }
+
+.cursor-click::before {
+    content: "";
+    position: absolute;
+    left: -19px;
+    top: -17px;
+    height: 49px;
+    width: 49px;
+    background: url(../i/cursor/click.png);
+    -webkit-animation: dissolve .5s;
+}
+
+@-webkit-keyframes dissolve {
+    0% {
+        -webkit-transform: scale(0.5);
+        opacity: 0;
+    }
+    35% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+    65% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(0.5);
+        opacity: 0;
+    }
+}
