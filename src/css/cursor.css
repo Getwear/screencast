@@ -34,3 +34,11 @@
         opacity: 0;
     }
 }
+
+.cursor-pointer {
+    background-image: url(../i/cursor/pointer.png);
+}
+
+.cursor-text {
+    background-image: url(../i/cursor/text.png);
+}
