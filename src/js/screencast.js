@@ -54,7 +54,8 @@
                 targetY,
                 $target,
                 selector,
-                duration;
+                duration,
+                easing;
 
             params = params || {};
 
@@ -74,11 +75,12 @@
             }
 
             duration = params.duration || calculateDistance(targetX - x, targetY - y) / defaults.moveSpeed * 1000;
+            easing = params.easing || "easeInOutCubic";
 
             $elem.animate({
                 top: targetY + 'px',
                 left: targetX + 'px'
-            }, duration, function() {
+            }, duration, easing, function() {
                 dfd.resolve();
             });
 
