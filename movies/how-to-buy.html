@@ -126,7 +126,9 @@
             currentScreencast.stop();
           }
 
-          var screencast = $('.screencast', activeFrame.$stageFrame).screencast().data('screencast');
+          var screencast = $('.screencast', activeFrame.$stageFrame).screencast({
+            moveSpeed: 2000
+          }).data('screencast');
 
           if (screencast) {
             // Запускаем новый кусочек
@@ -235,12 +237,15 @@
             <div class="screencast-frame" onclick="return [
                   {
                     'cursor': [
-                      ['moveTo', [490, 20]],
+                      ['moveTo', [300, 100], {'duration': 1}],
+                      ['wait', 1000],
+                      ['moveTo', [490, 20], {'duration': 1000}],
+                      ['wait', 200],
                       'click'
                     ]
                   }
               ];">
-              <div class="cursor" style="left: 300px; top: 100px;"></div>
+              <div class="cursor"></div>
             </div>
           </div>
         </div>
@@ -249,12 +254,15 @@
             <div class="screencast-frame" onclick="return [
                   {
                     'cursor': [
-                      ['moveTo', [160, 100]],
+                      ['moveTo', [490, 20], {'duration': 1}],
+                      ['wait', 1000],
+                      ['moveTo', [160, 100], {'duration': 1500}],
+                      ['wait', 200],
                       'click'
                     ]
                   }
               ];">
-              <div class="cursor" style="left: 490px; top: 20px;"></div>
+              <div class="cursor"></div>
             </div>
           </div>
         </div>
@@ -263,12 +271,15 @@
             <div class="screencast-frame" onclick="return [
                   {
                     'cursor': [
-                      ['moveTo', [760, 210]],
+                      ['moveTo', [160, 100], {'duration': 1}],
+                      ['wait', 1000],
+                      ['moveTo', [760, 210], {'duration': 1500}],
+                      ['wait', 200],
                       'click'
                     ]
                   }
               ];">
-              <div class="cursor" style="left: 160px; top: 100px;"></div>
+              <div class="cursor"></div>
             </div>
           </div>
         </div>
@@ -277,7 +288,9 @@
             <div class="screencast-frame" onclick="return [
                   {
                     'cursor': [
-                      ['moveTo', 'waist'],
+                      ['fadeTo', 0, 1],
+                      ['moveTo', [760, 210], {'duration': 1}],
+                      ['moveTo', [650, 220]],
                       'click'
                     ]
                   },
@@ -288,6 +301,7 @@
                     'waist': [
                       ['addClass', 'focused'],
                       ['typeText', '86'],
+                      ['wait', 350],
                       ['removeClass', 'focused']
                     ]
                   },
@@ -295,6 +309,7 @@
                     'hip': [
                       ['addClass', 'focused'],
                       ['typeText', '92'],
+                      ['wait', 300],
                       ['removeClass', 'focused']
                     ]
                   },
@@ -302,6 +317,7 @@
                     'thigh': [
                       ['addClass', 'focused'],
                       ['typeText', '56'],
+                      ['wait', 250],
                       ['removeClass', 'focused']
                     ]
                   },
@@ -309,6 +325,7 @@
                     'knee': [
                       ['addClass', 'focused'],
                       ['typeText', '39'],
+                      ['wait', 450],
                       ['removeClass', 'focused']
                     ]
                   },
@@ -316,6 +333,7 @@
                     'calf': [
                       ['addClass', 'focused'],
                       ['typeText', '37'],
+                      ['wait', 400],
                       ['removeClass', 'focused']
                     ]
                   },
@@ -323,6 +341,7 @@
                     'inseam': [
                       ['addClass', 'focused'],
                       ['typeText', '75'],
+                      ['wait', 350],
                       ['removeClass', 'focused']
                     ]
                   },
@@ -330,7 +349,8 @@
                     'length': [
                       ['addClass', 'focused'],
                       ['typeText', '96'],
-                      ['removeClass', 'focused']
+                      ['removeClass', 'focused'],
+                      ['wait', 2000]
                     ]
                   }
               ];">
