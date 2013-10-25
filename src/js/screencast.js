@@ -161,8 +161,22 @@
         };
 
         this.click = function() {
-            console.log('click');
-            $elem.addClass('clicked');
+            var dfd = $.Deferred(),
+                timeout;
+
+            $elem.addClass('cursor-click');
+            timeout = setTimeout(function() {
+                $elem.removeClass('cursor-click');
+                dfd.resolve();
+            }, 500);
+
+            $elem.on('stopAction', function() {
+                clearTimeout(timeout);
+                $elem.removeClass('cursor-click');
+                dfd.reject();
+            });
+
+            return dfd.promise();
         };
 
         this.addClass = this.setClass = function(className) {
