@@ -30,51 +30,49 @@
     </script>
 </head>
 <body>
-<div class="screencast">
-    <div class="screencast-frame" onclick="return [
-        {
-            'cursor': [
-                ['wait', 1000],
-                ['moveTo', [133, 275], {'duration': 4000}],
-                'click'
-            ],
-            'box': [
-                ['fadeTo', .3]
-            ]
-        }, {
-            'login': [
-                ['addClass', 'focused'],
-                ['typeText', 'konstntinopolsky@longdomain.ru'],
-                ['removeClass', 'focused']
-            ]
-        }, {
-            'cursor': [
-                ['moveTo', 'password'],
-                'click'
-            ],
-            'box': [
-                ['fadeTo', 800, 0.9]
-            ]
-        },  {
-            'password': [
-                ['addClass', 'focused'],
-                ['typeText', 'password', {'mask': true}],
-                ['removeClass', 'focused']
-            ]
-        }
-    ];">
-        <div class="login"></div>
-        <div class="password"></div>
-        <div class="cursor"></div>
-        <div class="box"></div>
-    </div>
+<div class="screencast" onclick="return [
+    {
+        'cursor': [
+            ['wait', 1000],
+            ['moveTo', [133, 275], {'duration': 4000}],
+            'click'
+        ],
+        'box': [
+            ['fadeTo', .3]
+        ]
+    }, {
+        'login': [
+            ['addClass', 'focused'],
+            ['typeText', 'konstntinopolsky@longdomain.ru'],
+            ['removeClass', 'focused']
+        ]
+    }, {
+        'cursor': [
+            ['moveTo', 'password'],
+            'click'
+        ],
+        'box': [
+            ['fadeTo', 800, 0.9]
+        ]
+    },  {
+        'password': [
+            ['addClass', 'focused'],
+            ['typeText', 'password', {'mask': true}],
+            ['removeClass', 'focused']
+        ]
+    }
+];">
+    <div class="login"></div>
+    <div class="password"></div>
+    <div class="cursor"></div>
+    <div class="box"></div>
     <div class="movie">
         <img src="./src/i/slide.png" alt=""/>
     </div>
-    <p>
-        <button class="start">Запустить</button>
-        <button class="stop">Остановить</button>
-    </p>
 </div>
+<p>
+    <button class="start">Запустить</button>
+    <button class="stop">Остановить</button>
+</p>
 </body>
 </html>

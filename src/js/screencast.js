@@ -201,9 +201,13 @@
         screencastData.screencast = this;
 
         this._createScenario = function() {
-            this.$frames.each(function(index, elem) {
-                that.scenario.push(that._getFrameActions(elem));
-            });
+            if (this.$frames.length) {
+                this.$frames.each(function(index, elem) {
+                    that.scenario.push(that._getFrameActions(elem));
+                });
+            } else {
+                that.scenario.push(that._getFrameActions($root[0]));
+            }
         };
 
         this._getFrameActions = function(frame) {
