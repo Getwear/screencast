@@ -110,7 +110,8 @@
                     'mask': false
                 },
                 immediatelyStop = false,
-                $dummy = $("<div />").appendTo($BODY);
+                $dummy = $("<div />").appendTo($BODY),
+                $textField = $elem.find(".type-text").length && $elem.find(".type-text") || $elem;
 
             params = $.extend({}, defaults, params);
 
@@ -125,7 +126,7 @@
                 $elem.addClass('typed');
 
                 if (text.length && !immediatelyStop) {
-                    $elem.text(function(index, content) {
+                    $textField.text(function(index, content) {
                         if (!params.mask) {
                             content += text[0];
                         } else {
@@ -134,17 +135,16 @@
                         text = text.substr(1);
                         return content;
                     });
-                    $dummy.text($elem.text());
-                    overflow = $dummy.width() - $elem.width();
+                    $dummy.text($textField.text());
+                    overflow = $dummy.width() - $textField.width();
 
                     if (overflow > 0) {
-                        $elem.css('text-indent', '-' + (overflow + 2) + 'px');
+                        $textField.css('text-indent', '-' + (overflow + 2) + 'px');
                     }
                 } else {
                     $dummy.remove();
-                    $elem.
-                        removeClass('typed').
-                        animate({'text-indent': 0});
+                    $elem.removeClass('typed');
+                    $textField.animate({'text-indent': 0});
                     clearInterval(interval);
                     dfd.resolve();
                 }
@@ -155,7 +155,8 @@
                 $dummy.remove();
                 // Нужен ли нам immediatelyStop, если мы чистим интервал?
                 clearInterval(interval);
-                $elem.text(that._text);
+                $elem.removeClass('typed');
+                $textField.text(that._text);
                 dfd.reject();
             });
 

@@ -38,8 +38,8 @@
 <div class="screencast" onclick="return [
     {
         'cursor': [
-            ['wait', 100],
-            ['moveTo', [133, 275], {'duration': 4000}],
+//            ['wait', 1000],
+            ['moveTo', [133, 275], {'duration': 400}],
             'click'
         ],
         'box': [
@@ -62,13 +62,15 @@
     },  {
         'password': [
             ['addClass', 'focused'],
-            ['typeText', 'password', {'mask': true}],
+            ['typeText', 'passwordpasswordpassword', {'mask': true}],
             ['removeClass', 'focused']
         ]
     }
 ];">
     <div class="login"></div>
-    <div class="password"></div>
+    <div class="password">
+        <div class="type-text">hello</div>
+    </div>
     <div class="cursor"></div>
     <div class="box"></div>
     <div class="movie">
