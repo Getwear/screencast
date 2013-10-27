@@ -56,6 +56,10 @@
     background: #FFF;
 }
 
+.password .type-text {
+    margin-right: 15px;
+}
+
 .focused {
     outline: none;
     box-shadow: 0 0 5px #2573ff;

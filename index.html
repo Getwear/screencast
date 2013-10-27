@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./src/css/cursor.css"/>
 
     <script src="./src/lib/jquery-1.10.2.js"></script>
+    <script src="./src/lib/jquery.easing.1.3.js"></script>
     <script src="./src/lib/lodash.2.2.1.js"></script>
     <script src="src/js/screencast.js"></script>
 
@@ -23,6 +24,10 @@
                 instance.start();
             });
 
+            $('.pause').on('click', function() {
+                instance.pause();
+            });
+
             $('.stop').on('click', function() {
                 instance.stop();
             });
@@ -33,8 +38,8 @@
 <div class="screencast" onclick="return [
     {
         'cursor': [
-            ['wait', 1000],
-            ['moveTo', [133, 275], {'duration': 4000}],
+//            ['wait', 1000],
+            ['moveTo', [133, 275], {'duration': 400}],
             'click'
         ],
         'box': [
@@ -57,13 +62,15 @@
     },  {
         'password': [
             ['addClass', 'focused'],
-            ['typeText', 'password', {'mask': true}],
+            ['typeText', 'passwordpasswordpassword', {'mask': true}],
             ['removeClass', 'focused']
         ]
     }
 ];">
     <div class="login"></div>
-    <div class="password"></div>
+    <div class="password">
+        <div class="type-text">hello</div>
+    </div>
     <div class="cursor"></div>
     <div class="box"></div>
     <div class="movie">
@@ -71,8 +78,9 @@
     </div>
 </div>
 <p>
-    <button class="start">Запустить</button>
-    <button class="stop">Остановить</button>
+    <button class="start">Старт</button>
+    <button class="pause">Пауза</button>
+    <button class="stop">Стоп</button>
 </p>
 </body>
 </html>
