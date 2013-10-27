@@ -61,8 +61,15 @@
 }
 
 .focused {
-    outline: none;
-    box-shadow: 0 0 5px #2573ff;
+    outline: 0;
+    border: 1px solid #4473bf!important;
+    background: #fff;
+    -webkit-box-shadow: #3376e3 0 0 10px,
+        rgba(0,0,0,.5) 0 3px 4px -1px inset;
+    -moz-box-shadow: #3376e3 0 0 10px,
+        rgba(0,0,0,.5) 0 3px 4px -1px inset;
+    box-shadow: #3376e3 0 0 10px,
+        rgba(0,0,0,.5) 0 3px 4px -1px inset;
 }
 
 .box {
