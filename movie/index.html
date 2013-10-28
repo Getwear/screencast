@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="shortcut icon" href="http://getwear.com/favicon.ico">
+
+    <link rel="stylesheet" href="getwear.com/css/style.css">
+    <link rel="stylesheet" href="getwear.com/css/fotorama/fotorama.css">
+    <script src="getwear.com/js/jquery-1.10.2.migrate.min.js"></script>
+    <script src="getwear.com/js/fotorama.js"></script>
+
+    <title>Как купить джинсы Гетвеар</title>
+
+
+    <!--Ресурсы для скринкаста-->
+    <script src="../src/lib/jquery.easing.1.3.js"></script>
+    <script src="../src/lib/lodash.2.2.1.js"></script>
+    <script src="../src/js/screencast.js"></script>
+    <!--/Ресурсы для скринкаста-->
+
+    <script>
+    $(function() {
+        var $stage = $('#screencast-stage'),
+            $fotorama = $('#screencast-fotorama'),
+            fotorama,
+            currentScreencast,
+            screencastIsPlaying,
+            screencastIsEnded,
+            lastActiveFrame,
+            $play = $('#screencast-play'),
+            $replay = $('#screencast-replay'),
+            $navLinks = $('.switch', '#screencast-nav');
+
+
+        function fotoramaTurnOn () {
+            fotorama = $fotorama
+                .stop()
+                .fadeIn('fast')
+                .fotorama({
+                    width: $stage.width(),
+                    height: $stage.height(),
+                    nav: false,
+                    transition: 'dissolve',
+                    trackpad: false,
+                    arrows: true,
+                    click: false,
+                    swipe: false,
+                    fit: 'none'
+                })
+                .data('fotorama');
+        }
+
+        window.fotoramaGoTo = function fotoramaGoTo (id) {
+            if (!fotorama) {
+                // Если фоторама ещё не инициирована, включаем её
+                fotoramaTurnOn();
+            }
+
+            if (screencastIsEnded) {
+                screencastIsEnded = false;
+
+                $replay.stop().fadeOut('fast', function () {
+                    $replay.hide();
+                });
+            }
+
+            fotorama.show({index: id});
+        };
+
+        $play.add($replay).on('click', function () {
+            // Заводим фотораму
+            fotoramaGoTo('home');
+        });
+
+        $navLinks.on('click', function () {
+            // Переход к началу секции
+            fotoramaGoTo($(this).data('section'));
+        });
+    });
+    </script>
+</head>
+<body>
+<div class="l-min-max" id="root">
+<div class="b-header"></div>
+
+<div class="b-h1">
+    <h1>Как купить джинсы Гетвеар</h1>
+</div>
+
+<div class="b-movie">
+    <div class="b-movie__wrap">
+        <div class="stage" id="screencast-stage">
+            <div class="splash" id="screencast-play">
+                <img src="i/how-to-buy/00-blur.jpg">
+                <img src="i/how-to-buy/01-home.png" style="display: none;"> <!-- ← Предзагрузка -->
+
+                <div class="text">
+                    <i class="play">&#9654;</i>
+                    Смотреть ролик
+                </div>
+            </div>
+
+            <div class="fotorama" data-auto="false" id="screencast-fotorama">
+                <div id="home" data-img="i/how-to-buy/01-home.png" class="screencast">
+
+                </div>
+
+                <div id="design" data-img="i/how-to-buy/02-design.png" class="screencast">
+
+                </div>
+
+                <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast">
+
+                </div>
+
+                <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast">
+
+                </div>
+
+                <div id="measures" data-img="i/how-to-buy/05-measures.png" class="screencast">
+
+                </div>
+
+                <div id="cart" data-img="i/how-to-buy/06-cart.png" class="screencast">
+
+                </div>
+
+                <div id="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast">
+
+                </div>
+            </div>
+
+            <div class="splash" id="screencast-replay" style="display: none;">
+                <div class="text">
+                    <i class="play replay">&#9664;</i>
+                    Повторить сначала
+                </div>
+            </div>
+        </div>
+        <div class="nav" id="screencast-nav">
+            <span class="switch" data-section="design">Дизайн</span>
+            <span class="switch" data-section="measures">Мерки</span>
+            <span class="switch" data-section="cart">Корзина</span>
+            <span class="switch" data-section="checkout">Оплата</span>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
