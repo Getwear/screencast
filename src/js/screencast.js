@@ -46,22 +46,13 @@
             this._paused = false;
         };
 
-        this.moveTo = function(coords, params) {
-            var that = this,
-                dfd = new $.Deferred(),
-                x = $elem.position().left,
-                y = $elem.position().top,
-                targetX,
-                targetY,
-                $target,
-                duration,
-                easing;
-
-            params = params || {};
+        this._getCoords = function(coords) {
+            var x,
+                y,
+                $target;
 
             if (_.isArray(coords)) {
-                targetX = coords[0];
-                targetY = coords[1];
+                return coords;
             } else {
                 if (coords[0] !== '.' && coords[0] !== "#") {
                     $target = this.params.root.find('.' + coords);
@@ -69,16 +60,30 @@
                     $target = $(coords);
                 }
 
-                targetX = $target.position().left + ($target.width() / 2);
-                targetY = $target.position().top + ($target.height() / 2);
-            }
+                x = $target.position().left + ($target.width() / 2);
+                y = $target.position().top + ($target.height() / 2);
 
-            duration = params.duration || calculateDistance(targetX - x, targetY - y) / defaults.moveSpeed * 1000;
+                return [x, y];
+            }
+        };
+
+        this.moveTo = function(coords, params) {
+            var that = this,
+                dfd = new $.Deferred(),
+                x = $elem.position().left,
+                y = $elem.position().top,
+                duration,
+                easing;
+
+            coords = this._getCoords(coords);
+            params = params || {};
+
+            duration = params.duration || calculateDistance(coords[0] - x, coords[1] - y) / defaults.moveSpeed * 1000;
             easing = params.easing || "easeInOutCubic";
 
             $elem.animate({
-                top: targetY + 'px',
-                left: targetX + 'px'
+                top: coords[1] + 'px',
+                left: coords[0] + 'px'
             }, duration, easing, function() {
                 dfd.resolve();
             });
@@ -101,35 +106,41 @@
         };
 
         this.circleAround = function(coords, params) {
-            params = params || {};
-
             var dfd = new $.Deferred(),
                 that = this,
-                r = params.radius || 20,
+                r,
                 angle = 0,
-                easing = params.easing || "easeInOutCubic",
-                duration = params.duration || 500;
+                easing,
+                duration;
 
-            this.moveTo([coords[0], coords[1] + r]).then(function() {
-                $elem.animate({
-                    angle: 360
-                }, {
-                    duration: duration,
-                    easing: easing,
-                    step: function(val, tween) {
+            coords = this._getCoords(coords);
+            params = params || {};
 
-                        angle = val / 180 * Math.PI;
+            easing = params.easing || "easeInOutCubic",
+            duration = params.duration || 500;
+            r = params.radius || 20;
 
-                        // считаем новые координаты
-                        $elem.css('left', coords[0] + Math.sin(angle) * r);
-                        $elem.css('top', coords[1] + Math.cos(angle) * r);
-                    },
-                    complete: function() {
-                        $elem[0].angle = 0;
-                        dfd.resolve();
-                    }
+            this.moveTo([coords[0], coords[1] + r])
+                .then(function () {
+                    $elem.animate({
+                        angle: 360
+                    }, {
+                        duration: duration,
+                        easing: easing,
+                        step: function (val, tween) {
+
+                            angle = val / 180 * Math.PI;
+
+                            // считаем новые координаты
+                            $elem.css('left', coords[0] + Math.sin(angle) * r);
+                            $elem.css('top', coords[1] + Math.cos(angle) * r);
+                        },
+                        complete: function () {
+                            $elem[0].angle = 0;
+                            dfd.resolve();
+                        }
+                    });
                 });
-            });
 
             $elem.on('layer.pause', function() {
                 $elem.stop();
