@@ -296,7 +296,8 @@
                         'cursor': [
                             ['wait', 800],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [620, 248]]
+                            ['moveTo', [620, 248]],
+                            ['addClass', 'cursor-pointer'],
                         ]
                      }, {
                         'craft-tool-hover': [
@@ -306,6 +307,7 @@
                      }, {
                         'cursor': [
                             'click',
+                            ['removeClass', 'cursor-pointer'],
                             ['addClass', 'cursor-tool']
                         ],
                         'craft-tool-hover': [
@@ -329,6 +331,9 @@
                             ['fadeTo', 0, 1],
                             ['removeClass', 'g-display-none'],
                             ['fadeTo', 1, 200]
+                        ],
+                        'craft-buttons': [
+                            ['removeClass', 'g-display-none'],
                         ]
                      },  {
                         'cursor': [
@@ -399,10 +404,55 @@
                 </div>
 
                 <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast"
-                     onclick="return [
-                     ];">
+                     onclick="return [{
+                        'cursor': [
+                            ['wait', 300],
+                            ['removeClass', 'cursor-pointer'],
+                            ['circleAround', [328, 280], {
+                                'radius': 25
+                            }],
+                            ['wait', 200],
+                            ['moveTo', [620, 166]],
+                            ['circleAround', [624, 165], {
+                                'radius': 40
+                            }],
+                            ['wait', 300],
+                            ['moveTo', [630, 394]],
+                            ['circleAround', [628, 390], {
+                                'radius': 38
+                            }],
+                            ['wait', 100],
+                            ['moveTo', [500, 475]],
+                            ['addClass', 'cursor-pointer'],
+                            'click'
+                        ]
+                     }, {
+                        'model-result-back': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 2000],
+                            ['click']
+                        ]
+                     }, {
+                        'model-result-back': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'cursor': [
+                            ['wait', 500],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [788, 145]],
+                            ['circleAround', [790, 143]],
+                            ['wait', 300],
+                            ['moveTo', [771, 219]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 200],
+                            'click'
+                        ]
+                     }];">
                     <div class="model model-result-back g-display-none"></div>
-                    <div class="cursor"></div>
+                    <div class="cursor cursor-pointer" style="left: 191px; top: 169px;"></div>
                 </div>
 
                 <div id="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
