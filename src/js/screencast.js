@@ -233,7 +233,6 @@
         this.popup = function(action, params) {
             var that = this,
                 dfd = new $.Deferred(),
-                position,
                 x,
                 y,
                 $popover;
