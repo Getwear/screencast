@@ -1,12 +1,12 @@
 (function(window, document, $, _, undefined) {
     "use strict";
 
+    // Лучше пока это не использовать. Андер констракшн, все дела
     var defaults = {
         actionDelay: 300,
         prefix: 'screencast-',
         autostart: false,
-        stopAfterFrame: false,
-        moveSpeed: 100
+        stopAfterFrame: false
     };
 
     function calculateDistance(x, y) {
@@ -14,54 +14,150 @@
     }
 
     function Layer($elem, params) {
-        var $BODY = $('body');
-        this.stopped = false;
+        var $BODY = $('body'),
+            defaults = {
+                offsetx: 0,
+                offsety: 0,
+                moveSpeed: 100
+            };
+
+        this._stopped = false;
+        this._paused = false;
+        this._left = parseInt($elem.css('left')) || 0;
+        this._right = parseInt($elem.css('right')) || 0;
+        this._top = parseInt($elem.css('top')) || 0;
+        this._bottom = parseInt($elem.css('bottom')) || 0;
+        this._opacity = $elem.css('opacity');
+        this._text = $elem.text();
+        this.params = $.extend({}, defaults, params);
+
+        this.pause = function() {
+            if (!this._paused) {
+                $elem.trigger('layer.pause');
+                this._paused = true;
+            }
+        };
 
         this.stopAction = function() {
-            if (!this.stopped) {
-                $elem.trigger('stopAction');
-                this.stopped = true;
+            if (!this._stopped) {
+                $elem.trigger('layer.stop');
+                this._paused = false;
+                this._stopped = true;
+            }
+        };
+
+        this.play = function() {
+            this._stopped = false;
+            this._paused = false;
+        };
+
+        this._getCoords = function(coords) {
+            var x,
+                y,
+                $target;
+
+            if (_.isArray(coords)) {
+                return coords;
+            } else {
+                if (coords[0] !== '.' && coords[0] !== "#") {
+                    $target = this.params.root.find('.' + coords);
+                } else {
+                    $target = $(coords);
+                }
+
+                x = $target.position().left + ($target.outerWidth(true) / 2) - this.params.offsetx;
+                y = $target.position().top + ($target.outerHeight(true) / 2) - this.params.offsety;
+
+                return [x, y];
             }
         };
 
         this.moveTo = function(coords, params) {
-            var dfd = new $.Deferred(),
+            var that = this,
+                dfd = new $.Deferred(),
                 x = $elem.position().left,
                 y = $elem.position().top,
-                targetX,
-                targetY,
-                $target,
-                selector,
-                duration;
+                duration,
+                easing;
 
+            coords = this._getCoords(coords);
             params = params || {};
 
-            if (_.isArray(coords)) {
-                targetX = coords[0];
-                targetY = coords[1];
-            } else {
-                if (coords[0] !== '.' && coords[0] !== "#") {
-                    selector = '.' + coords;
-                } else {
-                    selector = coords;
-                }
-
-                $target = $(selector);
-                targetX = $target.position().left + ($target.width() / 2);
-                targetY = $target.position().top + ($target.height() / 2);
-            }
-
-            duration = params.duration || calculateDistance(targetX - x, targetY - y) / defaults.moveSpeed * 1000;
+            duration = params.duration || calculateDistance(coords[0] - x, coords[1] - y) / defaults.moveSpeed * 1000;
+            easing = params.easing || "easeInOutCubic";
 
             $elem.animate({
-                top: targetY + 'px',
-                left: targetX + 'px'
-            }, duration, function() {
+                top: coords[1] + 'px',
+                left: coords[0] + 'px'
+            }, duration, easing, function() {
                 dfd.resolve();
             });
 
-            $elem.on('stopAction', function() {
-                $elem.stop(true);
+            $elem.on('layer.pause', function() {
+                $elem.stop();
+            });
+
+            $elem.on('layer.stop', function() {
+                $elem.stop();
+                $elem.css({
+                    left: that._left,
+                    top: that._top
+                });
+
+                dfd.reject();
+            });
+
+            return dfd.promise();
+        };
+
+        this.circleAround = function(coords, params) {
+            var dfd = new $.Deferred(),
+                that = this,
+                r,
+                angle = 0,
+                easing,
+                duration;
+
+            coords = this._getCoords(coords);
+            params = params || {};
+
+            easing = params.easing || "easeInOutCubic",
+            duration = params.duration || 500;
+            r = params.radius || 20;
+
+            this.moveTo([coords[0], coords[1] + r])
+                .then(function () {
+                    $elem.animate({
+                        angle: 360
+                    }, {
+                        duration: duration,
+                        easing: easing,
+                        step: function (val, tween) {
+
+                            angle = val / 180 * Math.PI;
+
+                            // считаем новые координаты
+                            $elem.css('left', coords[0] + Math.sin(angle) * r);
+                            $elem.css('top', coords[1] + Math.cos(angle) * r);
+                        },
+                        complete: function () {
+                            $elem[0].angle = 0;
+                            dfd.resolve();
+                        }
+                    });
+                });
+
+            $elem.on('layer.pause', function() {
+                $elem.stop();
+            });
+
+            $elem.on('layer.stop', function() {
+                $elem[0].angle = 0;
+                $elem.stop();
+                $elem.css({
+                    left: that._left,
+                    top: that._top
+                });
 
                 dfd.reject();
             });
@@ -71,13 +167,17 @@
 
         this.typeText = function(text, params) {
             var dfd = new $.Deferred(),
+                that = this,
                 interval,
                 overflow,
                 defaults = {
                     'mask': false
                 },
                 immediatelyStop = false,
-                $dummy = $("<div />").appendTo($BODY);
+                $dummy = $("<div />").appendTo($BODY),
+                $textField = $elem.find(".type-text").length && $elem.find(".type-text") || $elem,
+                currentText = "",
+                fieldWidth = $textField.width();
 
             params = $.extend({}, defaults, params);
 
@@ -92,53 +192,142 @@
                 $elem.addClass('typed');
 
                 if (text.length && !immediatelyStop) {
-                    $elem.text(function(index, content) {
+                    $textField.text(function(index, content) {
                         if (!params.mask) {
-                            content += text[0];
+                            currentText = content + text[0];
                         } else {
-                            content += "•";
+                            currentText = content + "•";
                         }
                         text = text.substr(1);
-                        return content;
+                        return currentText;
                     });
-                    $dummy.text($elem.text());
-                    overflow = $dummy.width() - $elem.width();
+                    $dummy.text(currentText);
+                    overflow = $dummy.width() - fieldWidth;
 
                     if (overflow > 0) {
-                        $elem.css('text-indent', '-' + (overflow + 2) + 'px');
+                        $textField.css('text-indent', '-' + (overflow + 2) + 'px');
                     }
                 } else {
                     $dummy.remove();
-                    $elem.
-                        removeClass('typed').
-                        animate({'text-indent': 0});
+                    $elem.removeClass('typed');
+                    $textField.animate({'text-indent': 0});
                     clearInterval(interval);
                     dfd.resolve();
                 }
             }, 100);
 
-            $elem.on('stopAction', function() {
+            $elem.on('layer.stop', function() {
                 immediatelyStop = true;
+                $dummy.remove();
+                // Нужен ли нам immediatelyStop, если мы чистим интервал?
+                clearInterval(interval);
+                $elem.removeClass('typed');
+                $textField.text(that._text);
                 dfd.reject();
+            });
+
+            $elem.on('layer.pause', function() {
+                immediatelyStop = true;
+                $dummy.remove();
+                clearInterval(interval);
             });
 
             return dfd.promise();
         };
 
-        this.fadeTo = function(duration, opacity, easing) {
-            var dfd = $.Deferred();
+        this.popup = function(action, params) {
+            var that = this,
+                dfd = new $.Deferred(),
+                x,
+                y,
+                $popover;
 
-            if (typeof opacity === 'undefined') {
-                opacity = duration;
-                duration = 400;
+            params = params || {};
+
+            if (action === 'show') {
+                $popover = $('<div class="popup popup-' + params.position + '"><div class="popup-arrow"></div><div class="popup-content">' + params.text  + '</div></div>');
+
+                $popover.appendTo($elem);
+                $popover.css({'opacity': 0}).show();
+
+                switch(params.position) {
+                    case 'top':
+                        x = params.coords[0] - $popover.width() / 2;
+                        y = params.coords[1] - $popover.height();
+
+                        break;
+
+                    case 'bottom':
+                        x = params.coords[0] - $popover.width() / 2;
+                        y = params.coords[1];
+
+                        break;
+
+                    case 'left':
+                        x = params.coords[0] - $popover.width();
+                        y = params.coords[1] - $popover.height() / 2;
+
+                        break;
+
+                    case 'right':
+                        x = params.coords[0];
+                        y = params.coords[1] - $popover.height() / 2;
+
+                        break;
+                }
+
+                $popover
+                    .css({
+                        left: x,
+                        top: y
+                    })
+                    .animate({
+                        opacity: 1
+                    }, function () {
+                        dfd.resolve()
+                    });
+            } else {
+                $popover = $elem
+                    .find('.popup')
+                    .animate({
+                        'opacity': 0
+                    }, function() {
+                        $(this).remove();
+                        dfd.resolve();
+                    });
             }
+
+            $elem.on('layer.stop', function() {
+                $popover = $elem
+                    .find('.popover')
+                    .remove();
+                dfd.reject();
+            });
+
+            $elem.on('layer.pause', function() {
+                $elem.stop();
+            });
+
+            return dfd.promise();
+        };
+
+        this.fadeTo = function(opacity, duration, easing) {
+            var dfd = $.Deferred(),
+                that = this;
+
+            duration = duration || 400;
 
             $elem.fadeTo(duration, opacity, function() {
                 dfd.resolve();
             });
 
-            $elem.on('stopAction', function() {
+            $elem.on('layer.stop', function() {
+                $elem.css('opacity', that._opacity);
                 dfd.reject();
+            });
+
+            $elem.on('layer.pause', function() {
+                $elem.stop();
             });
 
             return dfd.promise();
@@ -152,9 +341,13 @@
                 dfd.resolve();
             }, delay);
 
-            $elem.on('stopAction', function() {
+            $elem.on('layer.stop', function() {
                 clearTimeout(timeout);
                 dfd.reject();
+            });
+
+            $elem.on('layer.pause', function() {
+                clearTimeout(timeout);
             });
 
             return dfd.promise();
@@ -219,14 +412,22 @@
 
         this._parseStep = function(step) {
             var that = this,
+                $layer,
                 elem,
+                params,
                 result = [];
 
             _.forEach(step, function(actions, layerName) {
                 if (layerName in that.elems) {
                     elem = that.elems[layerName];
                 } else {
-                    elem = new Layer($root.find('.' + layerName), {});
+                    if (layerName.indexOf(".") === 0 || layerName.indexOf("#") === 0) {
+                        $layer = $(layerName);
+                    } else {
+                        $layer = $root.find('.' + layerName);
+                    }
+                    params = $.extend({}, $layer.data(), {root: $root});
+                    elem = new Layer($layer, params);
                     that.elems[layerName] = elem;
                 }
 
@@ -252,6 +453,14 @@
                     return function () {
                         $root.on('stop', function() {
                             object.stopAction();
+                        });
+
+                        $root.on('pause', function() {
+                            object.pause();
+                        });
+
+                        $root.on('play', function() {
+                            object.play();
                         });
 
                         return object[fn].apply(object, args);
@@ -323,12 +532,21 @@
         this.start = function() {
             var actions = this.scenario[this.currentFrame];
 
-            this._played = true;
-            this._runFrame(actions);
+            if (!this._played) {
+                this._played = true;
+                this._runFrame(actions);
+                $root.trigger('play');
+            }
+        };
+
+        this.pause = function() {
+            $root.trigger('pause');
+            this._played = false;
         };
 
         this.stop = function() {
             $root.trigger('stop');
+            this._played = false;
         };
 
         this.goTo = function(frameNumber) {

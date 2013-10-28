@@ -56,16 +56,47 @@
     background: #FFF;
 }
 
+.password .type-text {
+    margin-right: 15px;
+}
+
 .focused {
-    outline: none;
-    box-shadow: 0 0 5px #2573ff;
+    outline: 0;
+    border: 1px solid #4473bf!important;
+    background: #fff;
+    -webkit-box-shadow: #3376e3 0 0 10px,
+        rgba(0,0,0,.5) 0 3px 4px -1px inset;
+    -moz-box-shadow: #3376e3 0 0 10px,
+        rgba(0,0,0,.5) 0 3px 4px -1px inset;
+    box-shadow: #3376e3 0 0 10px,
+        rgba(0,0,0,.5) 0 3px 4px -1px inset;
 }
 
 .box {
+    display: none;
     position: absolute;
-    top: 350px;
-    left: 125px;
+    top: 50px;
+    left: 50px;
     height: 35px;
-    width: 100px;
-    background: rgba(255, 91, 15, 0.80);
+    width: 50px;
+    background: rgb(255, 91, 15);
+    border-radius: 6px;
+    opacity: 0;
+}
+
+.target {
+    width: 50px;
+    height: 50px;
+    margin: 0 30px;
+    border: solid 2px red;
+    border-radius: 50%;
+}
+
+.movie {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }

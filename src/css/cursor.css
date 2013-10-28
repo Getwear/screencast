@@ -34,3 +34,15 @@
         opacity: 0;
     }
 }
+
+.cursor-hidden {
+    display: none;
+}
+
+.cursor-pointer {
+    background-image: url(../i/cursor/pointer.png);
+}
+
+.cursor-text {
+    background-image: url(../i/cursor/text.png);
+}
