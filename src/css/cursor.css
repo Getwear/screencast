@@ -35,6 +35,10 @@
     }
 }
 
+.cursor-hidden {
+    display: none;
+}
+
 .cursor-pointer {
     background-image: url(../i/cursor/pointer.png);
 }
