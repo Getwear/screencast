@@ -1,7 +1,19 @@
 .screencast {
     position: relative;
-    width: 363px;
-    height: 502px;
+    width: 100%;
+    height: 100%;
+}
+
+.model {
+    position: absolute;
+    width: 545px;
+    height: 547px;
+    left: 365px;
+    top: 120px;
+}
+
+.model-man-base {
+
 }
 
 .login {
@@ -99,4 +111,23 @@
     right: 0;
     bottom: 0;
     z-index: -1;
+}
+
+.pay-disabled {
+    background: #f0f0ed;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    _width: 10000px;
+    _height: 10000px;
+    _background: url(/i/clouddrive/disabled.gif?1354544133);
+    z-index: 5;
+    top: 0;
+    left: 0;
+    filter: alpha(Opacity=70);
+    opacity: 1;
 }

@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="shortcut icon" href="http://getwear.com/favicon.ico">
+
+    <link rel="stylesheet" href="getwear.com/css/style.css">
+    <link rel="stylesheet" href="getwear.com/css/fotorama/fotorama.css">
+    <script src="getwear.com/js/jquery-1.10.2.migrate.min.js"></script>
+    <script src="getwear.com/js/fotorama.js"></script>
+
+    <title>Как купить джинсы Гетвеар</title>
+
+
+    <!--Ресурсы для скринкаста-->
+    <script src="../src/lib/jquery.easing.1.3.js"></script>
+    <script src="../src/lib/lodash.2.2.1.js"></script>
+    <script src="../src/js/screencast.js"></script>
+
+    <link rel="stylesheet" href="css/screencast.css"/>
+    <link rel="stylesheet" href="../src/css/cursor.css"/>
+    <link rel="stylesheet" href="../src/css/popup.css"/>
+    <!--/Ресурсы для скринкаста-->
+
+    <script>
+    $(function() {
+        var $stage = $('#screencast-stage'),
+            $fotorama = $('#screencast-fotorama'),
+            fotorama,
+            currentScreencast,
+            screencastIsPlaying,
+            screencastIsEnded,
+            lastActiveFrame,
+            $play = $('#screencast-play'),
+            $replay = $('#screencast-replay'),
+            $navLinks = $('.switch', '#screencast-nav');
+
+        $fotorama
+                .on('fotorama:showend', function (e, fotorama, extra) {
+                    var activeFrame = fotorama.activeFrame,
+                            $frame = activeFrame.$stageFrame;
+
+                    if (!$frame.data('state')) {
+                        $frame.on('f:load f:error', function () {
+                            fotorama.activeFrame.$stageFrame === $frame && catchFrame(activeFrame, $frame);
+                        });
+                    } else {
+                        catchFrame(activeFrame, $frame);
+                    }
+                })
+                .on('click', function () {
+                    if (currentScreencast) {
+                        // Пауза
+                        currentScreencast[screencastIsPlaying ? 'stop' : 'start']();
+                        screencastIsPlaying = !screencastIsPlaying;
+                    }
+                });
+
+        function catchFrame (activeFrame, $frame) {
+            if (lastActiveFrame === activeFrame) {
+                return;
+            }
+
+            if (currentScreencast) {
+                // Останавливаем текущий кусочек скринкаста
+                currentScreencast.stop();
+            }
+
+            var screencast = $('.screencast', $frame)
+                    .screencast()
+                    .data('screencast');
+
+            if (screencast) {
+                // Запускаем новый кусочек
+                // Глобальны window.currentScreencast временно, для управления из консоли (currentScreencast.start())
+                window.currentScreencast = currentScreencast = screencast;
+                screencast.start();
+            }
+
+            // Выделяем активную ссылоку под скринкастом
+            $navLinks
+                    .filter('[data-section="' + activeFrame.section + '"]')
+                    .addClass('switch_selected')
+                    .siblings()
+                    .removeClass('switch_selected');
+
+            lastActiveFrame = activeFrame;
+        }
+
+        function fotoramaTurnOn () {
+            fotorama = $fotorama
+                .stop()
+                .fadeIn('fast')
+                .fotorama({
+                    width: $stage.width(),
+                    height: $stage.height(),
+                    nav: false,
+                    transition: 'dissolve',
+                    trackpad: false,
+                    arrows: true,
+                    click: false,
+                    swipe: false,
+                    fit: 'none'
+                })
+                .data('fotorama');
+        }
+
+        window.fotoramaGoTo = function fotoramaGoTo (id) {
+            if (!fotorama) {
+                // Если фоторама ещё не инициирована, включаем её
+                fotoramaTurnOn();
+            }
+
+            if (screencastIsEnded) {
+                screencastIsEnded = false;
+
+                $replay.stop().fadeOut('fast', function () {
+                    $replay.hide();
+                });
+            }
+
+            fotorama.show({index: id});
+        };
+
+        $play.add($replay).on('click', function () {
+            // Заводим фотораму
+            fotoramaGoTo('home');
+        });
+
+        $navLinks.on('click', function () {
+            // Переход к началу секции
+            fotoramaGoTo($(this).data('section'));
+        });
+
+        $(document).on('complete', '.screencast', function () {
+            // Слушаем события о завершении анимации скринкаста
+            if (fotorama) {
+                if (fotorama.activeIndex < fotorama.size - 1) {
+                    // Включаем следующий кадр
+                    fotorama.show('>');
+                } else {
+                    // Останавливаем всё
+                    $replay.fadeIn('fast');
+                    screencastIsPlaying = false;
+                    screencastIsEnded = true;
+                }
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+<div class="l-min-max" id="root">
+<div class="b-header"></div>
+
+<div class="b-h1">
+    <h1>Как купить джинсы Гетвеар</h1>
+</div>
+
+<div class="b-movie">
+    <div class="b-movie__wrap">
+        <div class="stage" id="screencast-stage">
+            <div class="splash" id="screencast-play">
+                <img src="i/how-to-buy/00-blur.jpg">
+                <img src="i/how-to-buy/01-home.png" style="display: none;"> <!-- ← Предзагрузка -->
+
+                <div class="text">
+                    <i class="play">&#9654;</i>
+                    Смотреть ролик
+                </div>
+            </div>
+
+            <div class="fotorama" data-auto="false" id="screencast-fotorama">
+                <div id="home" data-img="i/how-to-buy/01-home.png" class="screencast"
+                     onclick="return [
+                    {
+                        'subtitles': [
+                            ['fadeTo', 1, 0],
+                            ['wait', 500],
+                            ['fadeTo', 1, 200],
+                            ['wait', 2000]
+                        ],
+                        'cursor': [
+                            ['wait', 1000],
+                            ['moveTo', [700, 280], {'duration': 2000}]
+                        ]
+                    }, {
+                        'subtitles': [
+                            ['fadeTo', 0, 1000]
+                        ],
+                        'cursor': [
+                            ['wait', 1500],
+                            ['moveTo', [490, 20], {'duration': 1000}],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 200],
+                            'click'
+                        ]
+                    }];">
+                    <div class="subtitles" style="top: 40%; opacity: 200; display: block;">
+                        <div class="subtitles__wrap">Качественные джинсы по вашему дизайну и мерке</div>
+                    </div>
+                    <div class="cursor" style="left: 250px; top: 290px;"></div>
+                </div>
+
+                <div id="design" data-img="i/how-to-buy/02-design.png" class="screencast"
+                     onclick="return [
+                     {
+                        'gender-switch': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['moveTo', 'gender-switch'],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 500],
+                            ['click']
+                        ]
+                     }, {
+                        'gender-switch': [
+                            ['fadeTo', 1, 1]
+                        ],
+                        'model-man-base': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 300],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [330, 115]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 100],
+                            'click'
+                        ]
+                     }, {
+                        'type': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 200],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [361, 368]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 100],
+                            'click'
+                        ]
+                     }, {
+                        'model-man-base': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'type': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'model-man-straight': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 500],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [610, 285]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 100],
+                            'click'
+                        ]
+                     }, {
+                        'model-man-straight': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'model-man-low': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 300],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [195, 205]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 100],
+                            'click',
+                            ['wait', 500]
+                        ]
+                     }];">
+                    <div class="gender-switch g-display-none"></div>
+                    <div class="model model-man-base g-display-none"></div>
+                    <div class="model model-man-straight g-display-none"></div>
+                    <div class="model model-man-low g-display-none"></div>
+                    <div class="type g-display-none"></div>
+                    <div class="cursor" style="top: 20px; left: 490px;"></div>
+                </div>
+
+                <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast"
+                     onclick="return [{
+                        'cursor': [
+                            ['wait', 800],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [620, 248]],
+                            ['addClass', 'cursor-pointer'],
+                        ]
+                     }, {
+                        'craft-tool-hover': [
+                            ['removeClass', 'g-display-none'],
+                            ['wait', 200]
+                        ]
+                     }, {
+                        'cursor': [
+                            'click',
+                            ['removeClass', 'cursor-pointer'],
+                            ['addClass', 'cursor-tool']
+                        ],
+                        'craft-tool-hover': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'craft-tool-active': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 100],
+                            ['fadeTo', 0.7, 1],
+                            ['moveTo', [531, 179]],
+                            ['fadeTo', 1, 1],
+                            ['wait', 100],
+                            ['moveTo', [552, 325]],
+                            ['fadeTo', 0.7, 1]
+                        ]
+                     }, {
+                        'craft-result-1': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
+                        ],
+                        'craft-buttons': [
+                            ['removeClass', 'g-display-none'],
+                        ]
+                     },  {
+                        'cursor': [
+                            ['wait', 200],
+                            ['fadeTo', 0.7, 1],
+                            ['moveTo', [552, 389]],
+                            ['fadeTo', 1, 1],
+                            ['wait', 100],
+                            ['moveTo', [553, 450]],
+                            ['fadeTo', 0.7, 1]
+                        ]
+                     }, {
+                        'craft-result-2': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
+                        ]
+                     },  {
+                        'cursor': [
+                            ['wait', 100],
+                            ['fadeTo', 0.7, 1],
+                            ['moveTo', [451, 187]],
+                            ['fadeTo', 1, 1],
+                            ['wait', 100],
+                            ['moveTo', [445, 287]],
+                            ['fadeTo', 0.7, 1]
+                        ]
+                     }, {
+                        'craft-result-3': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
+                        ]
+                     },  {
+                        'cursor': [
+                            ['wait', 300],
+                            ['fadeTo', 0.7, 1],
+                            ['moveTo', [440, 361]],
+                            ['fadeTo', 1, 1],
+                            ['wait', 100],
+                            ['moveTo', [448, 452]],
+                            ['fadeTo', 0.7, 1]
+                        ]
+                     }, {
+                        'craft-result-4': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 300],
+                            ['moveTo', [191, 169]],
+                            ['removeClass', 'cursor-tool'],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 200],
+                            'click'
+                        ]
+                     }];">
+                    <div class="craft-buttons g-display-none"></div>
+                    <div class="craft-tool craft-tool-hover g-display-none"></div>
+                    <div class="craft-tool craft-tool-active g-display-none"></div>
+                    <div class="craft-result-1 g-display-none"></div>
+                    <div class="craft-result-2 g-display-none"></div>
+                    <div class="craft-result-3 g-display-none"></div>
+                    <div class="craft-result-4 g-display-none"></div>
+                    <div class="cursor cursor-pointer" style="left: 195px; top: 205px;"></div>
+                </div>
+
+                <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast"
+                     onclick="return [{
+                        'cursor': [
+                            ['wait', 300],
+                            ['removeClass', 'cursor-pointer'],
+                            ['circleAround', [328, 280], {
+                                'radius': 25
+                            }],
+                            ['wait', 200],
+                            ['moveTo', [620, 166]],
+                            ['circleAround', [624, 165], {
+                                'radius': 40
+                            }],
+                            ['wait', 300],
+                            ['moveTo', [630, 394]],
+                            ['circleAround', [628, 390], {
+                                'radius': 38
+                            }],
+                            ['wait', 100],
+                            ['moveTo', [500, 475]],
+                            ['addClass', 'cursor-pointer'],
+                            'click'
+                        ]
+                     }, {
+                        'model-result-back': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 2000],
+                            ['click']
+                        ]
+                     }, {
+                        'model-result-back': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'cursor': [
+                            ['wait', 500],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [788, 145]],
+                            ['circleAround', [790, 143]],
+                            ['wait', 300],
+                            ['moveTo', [771, 219]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 200],
+                            'click'
+                        ]
+                     }];">
+                    <div class="model model-result-back g-display-none"></div>
+                    <div class="cursor cursor-pointer" style="left: 191px; top: 169px;"></div>
+                </div>
+
+                <div id="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
+                     onclick="return [{
+
+                     }];">
+                    <div class="size-help size-help-2 g-display-none"></div>
+                    <div class="size-help size-help-3 g-display-none"></div>
+                    <div class="size-help size-help-4 g-display-none"></div>
+                    <div class="size-help size-help-5 g-display-none"></div>
+                    <div class="size-help size-help-6 g-display-none"></div>
+                    <div class="size-help size-help-7 g-display-none"></div>
+                    <div class="cursor"></div>
+                </div>
+
+                <div id="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
+                     onclick="return [
+                     ];">
+                    <div class="cart-frame">
+                        <img class="cart-bg" src="i/how-to-buy/06-cart.png" alt=""/>
+                    </div>
+                    <div class="cart-selector g-display-none"></div>
+                    <div class="cursor"></div>
+                </div>
+
+                <div id="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast"
+                     onclick="return [
+                     ];">
+                    <div class="checkout-frame">
+                        <img class="checkout-bg" src="i/how-to-buy/07-checkout.png" alt=""/>
+                    </div>
+                    <div class="checkout-disabled"></div>
+                </div>
+            </div>
+
+            <div class="splash" id="screencast-replay" style="display: none;">
+                <div class="text">
+                    <i class="play replay">&#9664;</i>
+                    Повторить сначала
+                </div>
+            </div>
+        </div>
+        <div class="nav" id="screencast-nav">
+            <span class="switch" data-section="design">Дизайн</span>
+            <span class="switch" data-section="measures">Мерки</span>
+            <span class="switch" data-section="cart">Корзина</span>
+            <span class="switch" data-section="checkout">Оплата</span>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
