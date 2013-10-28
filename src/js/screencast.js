@@ -111,7 +111,9 @@
                 },
                 immediatelyStop = false,
                 $dummy = $("<div />").appendTo($BODY),
-                $textField = $elem.find(".type-text").length && $elem.find(".type-text") || $elem;
+                $textField = $elem.find(".type-text").length && $elem.find(".type-text") || $elem,
+                currentText = "",
+                fieldWidth = $textField.width();
 
             params = $.extend({}, defaults, params);
 
@@ -128,15 +130,15 @@
                 if (text.length && !immediatelyStop) {
                     $textField.text(function(index, content) {
                         if (!params.mask) {
-                            content += text[0];
+                            currentText = content + text[0];
                         } else {
-                            content += "•";
+                            currentText = content + "•";
                         }
                         text = text.substr(1);
-                        return content;
+                        return currentText;
                     });
-                    $dummy.text($textField.text());
-                    overflow = $dummy.width() - $textField.width();
+                    $dummy.text(currentText);
+                    overflow = $dummy.width() - fieldWidth;
 
                     if (overflow > 0) {
                         $textField.css('text-indent', '-' + (overflow + 2) + 'px');
