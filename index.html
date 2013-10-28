@@ -37,16 +37,21 @@
 </head>
 <body>
 <div class="screencast" onclick="return [
-    {
-        'cursor': [
-            ['wait', 1000],
-            ['moveTo', [133, 275], {'duration': 400}],
-            'click'
-        ],
+     {
         'box': [
-            ['fadeTo', .8]
+            ['fadeTo', .8, 800]
         ]
     }, {
+        'cursor': [
+            ['wait', 1000],
+            ['moveTo', [133, 275], {'duration': 900}],
+            ['addClass', 'cursor-text'],
+            'click'
+        ]
+    }, {
+        'cursor': [
+            ['addClass', 'cursor-hidden']
+        ],
         'login': [
             ['addClass', 'focused'],
             ['typeText', 'konstntinopolsky@longdomain.ru'],
@@ -58,20 +63,22 @@
                 'position': 'top',
                 'text': 'Привет, я попап!'
             }]
-        ],
-        '#extra': [
-            ['moveTo', [300, 300]]
         ]
     }, {
         'cursor': [
+            ['removeClass', 'cursor-text'],
+            ['removeClass', 'cursor-hidden'],
             ['moveTo', 'password'],
             'click',
-            ['moveTo', 'target']
+            ['addClass', 'cursor-text']
         ],
         'box': [
-            ['fadeTo', 800, 0.9]
+            ['fadeTo', 0]
         ]
-    },  {
+    }, {
+        'cursor': [
+            ['addClass', 'cursor-hidden']
+        ],
         'password': [
             ['addClass', 'focused'],
             ['typeText', 'password', {'mask': true}],
@@ -82,16 +89,31 @@
         ]
     }, {
         'cursor': [
-            ['circleAround', [200, 200]]
+            ['removeClass', 'cursor-text'],
+            ['removeClass', 'cursor-hidden'],
+            ['moveTo', 'target'],
+            'click',
+            ['wait', 300]
+        ]
+    }, {
+        'cursor': [
+            ['moveTo', [200, 210]]
+        ]
+    }, {
+        'cursor': [
+            ['addClass', 'cursor-pointer'],
+            ['circleAround', [200, 200]],
+            ['removeClass', 'cursor-pointer'],
+            ['moveTo', [340, 110]]
         ]
     }
 ];">
     <div class="login"></div>
     <div class="firstPopover"></div>
     <div class="password">
-        <div class="type-text">hello</div>
+        <div class="type-text"></div>
     </div>
-    <div class="cursor" data-offsetX="4" data-offsetY="4"></div>
+    <div class="cursor" data-offsetX="6" data-offsetY="8"></div>
     <div class="box"></div>
     <div class="target"></div>
     <div class="movie">
@@ -103,12 +125,5 @@
     <button class="pause">Пауза</button>
     <button class="stop">Стоп</button>
 </p>
-<div id="extra" style="background: #F00;
-                       width: 100px;
-                       height: 100px;
-                       position: absolute;
-                       left: 30px;
-                       top: 30px;
-                       display: none;"></div>
 </body>
 </html>

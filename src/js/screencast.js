@@ -311,14 +311,11 @@
             return dfd.promise();
         };
 
-        this.fadeTo = function(duration, opacity, easing) {
+        this.fadeTo = function(opacity, duration, easing) {
             var dfd = $.Deferred(),
                 that = this;
 
-            if (typeof opacity === 'undefined') {
-                opacity = duration;
-                duration = 400;
-            }
+            duration = duration || 400;
 
             $elem.fadeTo(duration, opacity, function() {
                 dfd.resolve();
