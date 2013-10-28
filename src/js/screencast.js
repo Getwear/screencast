@@ -377,7 +377,7 @@
 
         this.removeClass = this.deleteClass = function(className) {
             $elem.removeClass(className);
-        }
+        };
     }
 
     $.Screencast = function($root, options) {

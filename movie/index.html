@@ -192,6 +192,7 @@
                         'cursor': [
                             ['wait', 1500],
                             ['moveTo', [490, 20], {'duration': 1000}],
+                            ['addClass', 'cursor-pointer'],
                             ['wait', 200],
                             'click'
                         ]
@@ -204,11 +205,88 @@
 
                 <div id="design" data-img="i/how-to-buy/02-design.png" class="screencast"
                      onclick="return [
-                     ];">
+                     {
+                        'gender-switch': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['moveTo', 'gender-switch'],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 500],
+                            ['click'],
+                        ]
+                     }, {
+                        'gender-switch': [
+                            ['fadeTo', 1, 1]
+                        ],
+                        'model-man-base': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 300],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [330, 115]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 100],
+                            'click'
+                        ]
+                     }, {
+                        'type': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 200],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [361, 368]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 100],
+                            'click'
+                        ]
+                     }, {
+                        'model-man-base': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'type': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'model-man-straight': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 500],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [610, 285]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 100],
+                            'click'
+                        ]
+                     }, {
+                        'model-man-straight': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'model-man-low': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 300],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [195, 205]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 100],
+                            'click',
+                            ['wait', 500]
+                        ]
+                     }];">
                     <div class="gender-switch g-display-none"></div>
                     <div class="model model-man-base g-display-none"></div>
-                    <div class="model model-man-low g-display-none"></div>
                     <div class="model model-man-straight g-display-none"></div>
+                    <div class="model model-man-low g-display-none"></div>
                     <div class="type g-display-none"></div>
                     <div class="cursor" style="top: 20px; left: 490px;"></div>
                 </div>
