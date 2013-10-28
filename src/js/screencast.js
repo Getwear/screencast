@@ -230,6 +230,83 @@
             return dfd.promise();
         };
 
+        this.popup = function(action, params) {
+            var that = this,
+                dfd = new $.Deferred(),
+                position,
+                x,
+                y,
+                $popover;
+
+            params = params || {};
+
+            if (action === 'show') {
+                $popover = $('<div class="popup popup-' + params.position + '"><div class="popup-arrow"></div><div class="popup-content">' + params.text  + '</div></div>');
+
+                $popover.appendTo($elem);
+                $popover.css({'opacity': 0}).show();
+
+                switch(params.position) {
+                    case 'top':
+                        x = params.coords[0] - $popover.width() / 2;
+                        y = params.coords[1] - $popover.height();
+
+                        break;
+
+                    case 'bottom':
+                        x = params.coords[0] - $popover.width() / 2;
+                        y = params.coords[1];
+
+                        break;
+
+                    case 'left':
+                        x = params.coords[0] - $popover.width();
+                        y = params.coords[1] - $popover.height() / 2;
+
+                        break;
+
+                    case 'right':
+                        x = params.coords[0];
+                        y = params.coords[1] - $popover.height() / 2;
+
+                        break;
+                }
+
+                $popover
+                    .css({
+                        left: x,
+                        top: y
+                    })
+                    .animate({
+                        opacity: 1
+                    }, function () {
+                        dfd.resolve()
+                    });
+            } else {
+                $popover = $elem
+                    .find('.popup')
+                    .animate({
+                        'opacity': 0
+                    }, function() {
+                        $(this).remove();
+                        dfd.resolve();
+                    });
+            }
+
+            $elem.on('layer.stop', function() {
+                $popover = $elem
+                    .find('.popover')
+                    .remove();
+                dfd.reject();
+            });
+
+            $elem.on('layer.pause', function() {
+                $elem.stop();
+            });
+
+            return dfd.promise();
+        };
+
         this.fadeTo = function(duration, opacity, easing) {
             var dfd = $.Deferred(),
                 that = this;
