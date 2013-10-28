@@ -60,8 +60,8 @@
                     $target = $(coords);
                 }
 
-                x = $target.position().left + ($target.width() / 2);
-                y = $target.position().top + ($target.height() / 2);
+                x = $target.position().left + ($target.outerWidth(true) / 2);
+                y = $target.position().top + ($target.outerHeight(true) / 2);
 
                 return [x, y];
             }

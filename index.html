@@ -65,7 +65,8 @@
     }, {
         'cursor': [
             ['moveTo', 'password'],
-            'click'
+            'click',
+            ['moveTo', 'target']
         ],
         'box': [
             ['fadeTo', 800, 0.9]
@@ -92,6 +93,7 @@
     </div>
     <div class="cursor"></div>
     <div class="box"></div>
+    <div class="target"></div>
     <div class="movie">
         <img src="./src/i/slide.png" alt=""/>
     </div>
@@ -106,6 +108,7 @@
                        height: 100px;
                        position: absolute;
                        left: 30px;
-                       top: 30px;"></div>
+                       top: 30px;
+                       display: none;"></div>
 </body>
 </html>
