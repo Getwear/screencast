@@ -215,7 +215,7 @@
                             ['moveTo', 'gender-switch'],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 500],
-                            ['click'],
+                            ['click']
                         ]
                      }, {
                         'gender-switch': [
@@ -292,8 +292,102 @@
                 </div>
 
                 <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast"
-                     onclick="return [
-                     ];">
+                     onclick="return [{
+                        'cursor': [
+                            ['wait', 800],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [620, 248]]
+                        ]
+                     }, {
+                        'craft-tool-hover': [
+                            ['removeClass', 'g-display-none'],
+                            ['wait', 200]
+                        ]
+                     }, {
+                        'cursor': [
+                            'click',
+                            ['addClass', 'cursor-tool']
+                        ],
+                        'craft-tool-hover': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'craft-tool-active': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 100],
+                            ['fadeTo', 0.7, 1],
+                            ['moveTo', [531, 179]],
+                            ['fadeTo', 1, 1],
+                            ['wait', 100],
+                            ['moveTo', [552, 325]],
+                            ['fadeTo', 0.7, 1]
+                        ]
+                     }, {
+                        'craft-result-1': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
+                        ]
+                     },  {
+                        'cursor': [
+                            ['wait', 200],
+                            ['fadeTo', 0.7, 1],
+                            ['moveTo', [552, 389]],
+                            ['fadeTo', 1, 1],
+                            ['wait', 100],
+                            ['moveTo', [553, 450]],
+                            ['fadeTo', 0.7, 1]
+                        ]
+                     }, {
+                        'craft-result-2': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
+                        ]
+                     },  {
+                        'cursor': [
+                            ['wait', 100],
+                            ['fadeTo', 0.7, 1],
+                            ['moveTo', [451, 187]],
+                            ['fadeTo', 1, 1],
+                            ['wait', 100],
+                            ['moveTo', [445, 287]],
+                            ['fadeTo', 0.7, 1]
+                        ]
+                     }, {
+                        'craft-result-3': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
+                        ]
+                     },  {
+                        'cursor': [
+                            ['wait', 300],
+                            ['fadeTo', 0.7, 1],
+                            ['moveTo', [440, 361]],
+                            ['fadeTo', 1, 1],
+                            ['wait', 100],
+                            ['moveTo', [448, 452]],
+                            ['fadeTo', 0.7, 1]
+                        ]
+                     }, {
+                        'craft-result-4': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 300],
+                            ['moveTo', [191, 169]],
+                            ['removeClass', 'cursor-tool'],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 200],
+                            'click'
+                        ]
+                     }];">
                     <div class="craft-buttons g-display-none"></div>
                     <div class="craft-tool craft-tool-hover g-display-none"></div>
                     <div class="craft-tool craft-tool-active g-display-none"></div>
@@ -301,7 +395,7 @@
                     <div class="craft-result-2 g-display-none"></div>
                     <div class="craft-result-3 g-display-none"></div>
                     <div class="craft-result-4 g-display-none"></div>
-                    <div class="cursor"></div>
+                    <div class="cursor cursor-pointer" style="left: 195px; top: 205px;"></div>
                 </div>
 
                 <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast"
@@ -312,8 +406,9 @@
                 </div>
 
                 <div id="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
-                     onclick="return [
-                     ];">
+                     onclick="return [{
+
+                     }];">
                     <div class="size-help size-help-2 g-display-none"></div>
                     <div class="size-help size-help-3 g-display-none"></div>
                     <div class="size-help size-help-4 g-display-none"></div>

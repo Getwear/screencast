@@ -162,3 +162,9 @@
     left: 0;
     top: 0;
 }
+
+.cursor-tool {
+    width: 38px !important;
+    height: 27px !important;
+    background: url(../i/how-to-buy/elements/03-tool.png) !important;
+}
