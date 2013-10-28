@@ -24,6 +24,7 @@
         this._bottom = parseInt($elem.css('bottom')) || 0;
         this._opacity = $elem.css('opacity');
         this._text = $elem.text();
+        this.params = params;
 
         this.pause = function() {
             if (!this._paused) {
@@ -53,7 +54,6 @@
                 targetX,
                 targetY,
                 $target,
-                selector,
                 duration,
                 easing;
 
@@ -64,12 +64,11 @@
                 targetY = coords[1];
             } else {
                 if (coords[0] !== '.' && coords[0] !== "#") {
-                    selector = '.' + coords;
+                    $target = this.params.root.find('.' + coords);
                 } else {
-                    selector = coords;
+                    $target = $(coords);
                 }
 
-                $target = $(selector);
                 targetX = $target.position().left + ($target.width() / 2);
                 targetY = $target.position().top + ($target.height() / 2);
             }
@@ -283,9 +282,9 @@
                     elem = that.elems[layerName];
                 } else {
                     if (layerName.indexOf(".") === 0 || layerName.indexOf("#") === 0) {
-                        elem = new Layer($(layerName), {});
+                        elem = new Layer($(layerName), {root: $root});
                     } else {
-                        elem = new Layer($root.find('.' + layerName), {});
+                        elem = new Layer($root.find('.' + layerName), {root: $root});
                     }
                     that.elems[layerName] = elem;
                 }
