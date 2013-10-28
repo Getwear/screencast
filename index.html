@@ -38,7 +38,7 @@
 <div class="screencast" onclick="return [
     {
         'cursor': [
-//            ['wait', 1000],
+            ['wait', 1000],
             ['moveTo', [133, 275], {'duration': 400}],
             'click'
         ],
@@ -65,8 +65,12 @@
     },  {
         'password': [
             ['addClass', 'focused'],
-            ['typeText', 'passwordpasswordpassword', {'mask': true}],
+            ['typeText', 'password', {'mask': true}],
             ['removeClass', 'focused']
+        ]
+    }, {
+        'cursor': [
+            ['circleAround', [200, 200]]
         ]
     }
 ];">

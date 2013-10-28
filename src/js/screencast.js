@@ -44,7 +44,7 @@
         this.play = function() {
             this._stopped = false;
             this._paused = false;
-        }
+        };
 
         this.moveTo = function(coords, params) {
             var that = this,
@@ -88,6 +88,55 @@
             });
 
             $elem.on('layer.stop', function() {
+                $elem.stop();
+                $elem.css({
+                    left: that._left,
+                    top: that._top
+                });
+
+                dfd.reject();
+            });
+
+            return dfd.promise();
+        };
+
+        this.circleAround = function(coords, params) {
+            params = params || {};
+
+            var dfd = new $.Deferred(),
+                that = this,
+                r = params.radius || 20,
+                angle = 0,
+                easing = params.easing || "easeInOutCubic",
+                duration = params.duration || 500;
+
+            this.moveTo([coords[0], coords[1] + r]).then(function() {
+                $elem.animate({
+                    angle: 360
+                }, {
+                    duration: duration,
+                    easing: easing,
+                    step: function(val, tween) {
+
+                        angle = val / 180 * Math.PI;
+
+                        // считаем новые координаты
+                        $elem.css('left', coords[0] + Math.sin(angle) * r);
+                        $elem.css('top', coords[1] + Math.cos(angle) * r);
+                    },
+                    complete: function() {
+                        $elem[0].angle = 0;
+                        dfd.resolve();
+                    }
+                });
+            });
+
+            $elem.on('layer.pause', function() {
+                $elem.stop();
+            });
+
+            $elem.on('layer.stop', function() {
+                $elem[0].angle = 0;
                 $elem.stop();
                 $elem.css({
                     left: that._left,
