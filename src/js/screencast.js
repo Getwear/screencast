@@ -227,7 +227,6 @@
             });
 
             $elem.on('layer.pause', function() {
-                immediatelyStop = true;
                 $dummy.remove();
                 clearInterval(interval);
             });
@@ -236,8 +235,7 @@
         };
 
         this.popup = function(action, params) {
-            var that = this,
-                dfd = new $.Deferred(),
+            var dfd = new $.Deferred(),
                 x,
                 y,
                 $popover;
@@ -363,7 +361,7 @@
                 dfd.resolve();
             }, 500);
 
-            $elem.on('stopAction', function() {
+            $elem.on('layer.stop', function() {
                 clearTimeout(timeout);
                 $elem.removeClass('cursor-click');
                 dfd.reject();
@@ -374,6 +372,10 @@
 
         this.addClass = this.setClass = function(className) {
             $elem.addClass(className);
+
+            $elem.on('layer.stop', function() {
+                $elem.removeClass(className);
+            });
         };
 
         this.removeClass = this.deleteClass = function(className) {
