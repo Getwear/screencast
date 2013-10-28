@@ -173,7 +173,6 @@
                 defaults = {
                     'mask': false
                 },
-                immediatelyStop = false,
                 $dummy = $("<div />").appendTo($BODY),
                 $textField = $elem.find(".type-text").length && $elem.find(".type-text") || $elem,
                 currentText = "",
@@ -191,7 +190,7 @@
 
                 $elem.addClass('typed');
 
-                if (text.length && !immediatelyStop) {
+                if (text.length) {
                     $textField.text(function(index, content) {
                         if (!params.mask) {
                             currentText = content + text[0];
@@ -217,9 +216,7 @@
             }, 100);
 
             $elem.on('layer.stop', function() {
-                immediatelyStop = true;
                 $dummy.remove();
-                // Нужен ли нам immediatelyStop, если мы чистим интервал?
                 clearInterval(interval);
                 $elem.removeClass('typed');
                 $textField.text(that._text);
