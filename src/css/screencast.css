@@ -79,7 +79,8 @@
     left: 125px;
     height: 35px;
     width: 100px;
-    background: rgba(255, 91, 15, 0.80);
+    background: rgb(255, 91, 15);
+    opacity: 0;
 }
 
 .target {

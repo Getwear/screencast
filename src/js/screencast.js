@@ -6,8 +6,7 @@
         actionDelay: 300,
         prefix: 'screencast-',
         autostart: false,
-        stopAfterFrame: false,
-        moveSpeed: 100
+        stopAfterFrame: false
     };
 
     function calculateDistance(x, y) {
@@ -15,7 +14,13 @@
     }
 
     function Layer($elem, params) {
-        var $BODY = $('body');
+        var $BODY = $('body'),
+            defaults = {
+                offsetx: 0,
+                offsety: 0,
+                moveSpeed: 100
+            };
+
         this._stopped = false;
         this._paused = false;
         this._left = parseInt($elem.css('left')) || 0;
@@ -24,7 +29,7 @@
         this._bottom = parseInt($elem.css('bottom')) || 0;
         this._opacity = $elem.css('opacity');
         this._text = $elem.text();
-        this.params = params;
+        this.params = $.extend({}, defaults, params);
 
         this.pause = function() {
             if (!this._paused) {
@@ -60,8 +65,8 @@
                     $target = $(coords);
                 }
 
-                x = $target.position().left + ($target.outerWidth(true) / 2);
-                y = $target.position().top + ($target.outerHeight(true) / 2);
+                x = $target.position().left + ($target.outerWidth(true) / 2) - this.params.offsetx;
+                y = $target.position().top + ($target.outerHeight(true) / 2) - this.params.offsety;
 
                 return [x, y];
             }
@@ -410,7 +415,9 @@
 
         this._parseStep = function(step) {
             var that = this,
+                $layer,
                 elem,
+                params,
                 result = [];
 
             _.forEach(step, function(actions, layerName) {
@@ -418,10 +425,12 @@
                     elem = that.elems[layerName];
                 } else {
                     if (layerName.indexOf(".") === 0 || layerName.indexOf("#") === 0) {
-                        elem = new Layer($(layerName), {root: $root});
+                        $layer = $(layerName);
                     } else {
-                        elem = new Layer($root.find('.' + layerName), {root: $root});
+                        $layer = $root.find('.' + layerName);
                     }
+                    params = $.extend({}, $layer.data(), {root: $root});
+                    elem = new Layer($layer, params);
                     that.elems[layerName] = elem;
                 }
 
