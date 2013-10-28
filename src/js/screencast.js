@@ -282,7 +282,11 @@
                 if (layerName in that.elems) {
                     elem = that.elems[layerName];
                 } else {
-                    elem = new Layer($root.find('.' + layerName), {});
+                    if (layerName.indexOf(".") === 0 || layerName.indexOf("#") === 0) {
+                        elem = new Layer($(layerName), {});
+                    } else {
+                        elem = new Layer($root.find('.' + layerName), {});
+                    }
                     that.elems[layerName] = elem;
                 }
 
