@@ -1,7 +1,19 @@
 .screencast {
     position: relative;
-    width: 363px;
-    height: 502px;
+    width: 100%;
+    height: 100%;
+}
+
+.model {
+    position: absolute;
+    width: 545px;
+    height: 547px;
+    left: 365px;
+    top: 120px;
+}
+
+.model-man-base {
+
 }
 
 .login {
