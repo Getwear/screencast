@@ -36,6 +36,57 @@
             $replay = $('#screencast-replay'),
             $navLinks = $('.switch', '#screencast-nav');
 
+        $fotorama
+                .on('fotorama:showend', function (e, fotorama, extra) {
+                    var activeFrame = fotorama.activeFrame,
+                            $frame = activeFrame.$stageFrame;
+
+                    if (!$frame.data('state')) {
+                        $frame.on('f:load f:error', function () {
+                            fotorama.activeFrame.$stageFrame === $frame && catchFrame(activeFrame, $frame);
+                        });
+                    } else {
+                        catchFrame(activeFrame, $frame);
+                    }
+                })
+                .on('click', function () {
+                    if (currentScreencast) {
+                        // Пауза
+                        currentScreencast[screencastIsPlaying ? 'stop' : 'start']();
+                        screencastIsPlaying = !screencastIsPlaying;
+                    }
+                });
+
+        function catchFrame (activeFrame, $frame) {
+            if (lastActiveFrame === activeFrame) {
+                return;
+            }
+
+            if (currentScreencast) {
+                // Останавливаем текущий кусочек скринкаста
+                currentScreencast.stop();
+            }
+
+            var screencast = $('.screencast', $frame)
+                    .screencast()
+                    .data('screencast');
+
+            if (screencast) {
+                // Запускаем новый кусочек
+                // Глобальны window.currentScreencast временно, для управления из консоли (currentScreencast.start())
+                window.currentScreencast = currentScreencast = screencast;
+                screencast.start();
+            }
+
+            // Выделяем активную ссылоку под скринкастом
+            $navLinks
+                    .filter('[data-section="' + activeFrame.section + '"]')
+                    .addClass('switch_selected')
+                    .siblings()
+                    .removeClass('switch_selected');
+
+            lastActiveFrame = activeFrame;
+        }
 
         function fotoramaTurnOn () {
             fotorama = $fotorama
@@ -81,6 +132,21 @@
             // Переход к началу секции
             fotoramaGoTo($(this).data('section'));
         });
+
+        $(document).on('complete', '.screencast', function () {
+            // Слушаем события о завершении анимации скринкаста
+            if (fotorama) {
+                if (fotorama.activeIndex < fotorama.size - 1) {
+                    // Включаем следующий кадр
+                    fotorama.show('>');
+                } else {
+                    // Останавливаем всё
+                    $replay.fadeIn('fast');
+                    screencastIsPlaying = false;
+                    screencastIsEnded = true;
+                }
+            }
+        });
     });
     </script>
 </head>
@@ -106,38 +172,39 @@
             </div>
 
             <div class="fotorama" data-auto="false" id="screencast-fotorama">
-                <div id="home" data-img="i/how-to-buy/01-home.png" class="screencast" onclick="return [
-                  {
-                    'subtitles': [
-                      ['fadeTo', 1, 0],
-                      ['wait', 500],
-                      ['fadeTo', 1, 200],
-                      ['wait', 2000]
-                    ],
-                    'cursor': [
-                      ['wait', 1000],
-                      ['moveTo', [700, 280], {'duration': 2000}]
-                    ]
-                  },
-                  {
-                    'subtitles': [
-                      ['fadeTo', 0, 1000]
-                    ],
-                    'cursor': [
-                      ['wait', 1500],
-                      ['moveTo', [490, 20], {'duration': 1000}],
-                      ['wait', 200],
-                      'click'
-                    ]
-                  }
-              ];">
+                <div id="home" data-img="i/how-to-buy/01-home.png" class="screencast"
+                     onclick="return [
+                    {
+                        'subtitles': [
+                            ['fadeTo', 1, 0],
+                            ['wait', 500],
+                            ['fadeTo', 1, 200],
+                            ['wait', 2000]
+                        ],
+                        'cursor': [
+                            ['wait', 1000],
+                            ['moveTo', [700, 280], {'duration': 2000}]
+                        ]
+                    }, {
+                        'subtitles': [
+                            ['fadeTo', 0, 1000]
+                        ],
+                        'cursor': [
+                            ['wait', 1500],
+                            ['moveTo', [490, 20], {'duration': 1000}],
+                            ['wait', 200],
+                            'click'
+                        ]
+                    }];">
                     <div class="subtitles" style="top: 40%; opacity: 200; display: block;">
                         <div class="subtitles__wrap">Качественные джинсы по вашему дизайну и мерке</div>
                     </div>
                     <div class="cursor" style="left: 250px; top: 290px;"></div>
                 </div>
 
-                <div id="design" data-img="i/how-to-buy/02-design.png" class="screencast">
+                <div id="design" data-img="i/how-to-buy/02-design.png" class="screencast"
+                     onclick="return [
+                     ];">
                     <div class="gender-switch g-display-none"></div>
                     <div class="model model-man-base g-display-none"></div>
                     <div class="model model-man-low g-display-none"></div>
@@ -146,7 +213,9 @@
                     <div class="cursor" style="top: 20px; left: 490px;"></div>
                 </div>
 
-                <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast">
+                <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast"
+                     onclick="return [
+                     ];">
                     <div class="craft-buttons g-display-none"></div>
                     <div class="craft-tool craft-tool-hover g-display-none"></div>
                     <div class="craft-tool craft-tool-active g-display-none"></div>
@@ -157,12 +226,16 @@
                     <div class="cursor"></div>
                 </div>
 
-                <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast">
+                <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast"
+                     onclick="return [
+                     ];">
                     <div class="model model-result-back g-display-none"></div>
                     <div class="cursor"></div>
                 </div>
 
-                <div id="measures" data-img="i/how-to-buy/05-measures.png" class="screencast">
+                <div id="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
+                     onclick="return [
+                     ];">
                     <div class="size-help size-help-2 g-display-none"></div>
                     <div class="size-help size-help-3 g-display-none"></div>
                     <div class="size-help size-help-4 g-display-none"></div>
@@ -172,7 +245,9 @@
                     <div class="cursor"></div>
                 </div>
 
-                <div id="cart" data-img="i/how-to-buy/06-cart.png" class="screencast">
+                <div id="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
+                     onclick="return [
+                     ];">
                     <div class="cart-frame">
                         <img class="cart-bg" src="i/how-to-buy/06-cart.png" alt=""/>
                     </div>
@@ -180,7 +255,9 @@
                     <div class="cursor"></div>
                 </div>
 
-                <div id="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast">
+                <div id="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast"
+                     onclick="return [
+                     ];">
                     <div class="checkout-frame">
                         <img class="checkout-bg" src="i/how-to-buy/07-checkout.png" alt=""/>
                     </div>
