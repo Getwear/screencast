@@ -707,7 +707,7 @@
                     <div class="cursor" style="left: 771px; top: 219px;"></div>
                 </div>
 
-                <div id="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
+                <div id="cart" data-img="i/how-to-buy/06-cart.png" data-skip="true" class="screencast"
                      onclick="return [{
                         'cart-bg': [
 //                            ['fadeTo', 0, 1],
@@ -895,12 +895,144 @@
                 </div>
 
                 <div id="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast"
-                     onclick="return [
-                     ];">
+                     onclick="return [{
+                        'cursor': [
+                            ['moveTo', [214, 120]],
+                            ['wait', 800]
+                        ]
+                    }, {
+                        'checkout-bg': [
+                            ['moveTo', [0, -320]]
+                        ],
+                        'checkout-disabled': [
+                            ['moveTo', [22, 411]]
+                        ],
+                        'checkout-form': [
+                            ['moveTo', [208, 82]]
+                        ]
+                    }, {
+                        'cursor': [
+                            ['wait', 500],
+                            ['moveTo', [272, 23]],
+                            ['wait', 200],
+                            ['circleAround', [272, 23]],
+                            ['wait', 200],
+                            ['moveTo', [405, 23]],
+                            ['wait', 200],
+                            ['circleAround', [405, 23]],
+                            ['wait', 200],
+                            ['moveTo', [552, 23]],
+                            ['wait', 200],
+                            ['circleAround', [552, 23]],
+                            ['wait', 200],
+                            ['moveTo', [214, 85]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400]
+                        ]
+                    }, {
+                        'cursor': [
+                            ['addClass', 'g-display-none'],
+                        ]
+                    }, {
+                        'checkout-number': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', '4276550044560435'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [214, 115]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400],
+                            ['addClass', 'g-display-none']
+                        ]
+                    }, {
+                        'checkout-name': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', 'Sergey Korol'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [214, 146]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400],
+                            ['addClass', 'g-display-none']
+                        ]
+                    }, {
+                        'checkout-month': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', '10'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [240, 146]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400],
+                            ['addClass', 'g-display-none']
+                        ]
+                    }, {
+                        'checkout-year': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', '18'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [214, 187]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400],
+                            ['addClass', 'g-display-none']
+                        ]
+                    }, {
+                        'checkout-cvv': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', '911'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [283, 434]],
+                            ['wait', 800],
+                            'click'
+                        ],
+                        'checkout-disabled': [
+                            ['fadeTo', 0, '200']
+                        ]
+                    }];">
                     <div class="checkout-frame">
                         <img class="checkout-bg" src="i/how-to-buy/07-checkout.png" alt=""/>
                     </div>
+                    <div class="checkout-form">
+                        <div class="checkout-input checkout-number"></div>
+                        <div class="checkout-input checkout-name"></div>
+                        <div class="checkout-input checkout-month"></div>
+                        <div class="checkout-input checkout-year"></div>
+                        <div class="checkout-input checkout-cvv"></div>
+                    </div>
                     <div class="checkout-disabled"></div>
+                    <div class="cursor" style="left: 100px; top: 100px;"></div>
                 </div>
             </div>
 

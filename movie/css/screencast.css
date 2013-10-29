@@ -251,3 +251,50 @@
 .delivery-phone {
     width: 137px;
 }
+
+.checkout-form {
+    position: absolute;
+    left: 208px;
+    top: 402px;
+    width: 133px;
+}
+
+.checkout-input {
+    font-size: 12px;
+    line-height: 17px;
+    min-height: 17px;
+    margin-bottom: 10px;
+    padding: 0 2px;
+    background: #fbf6e4;
+    border-radius: 2px;
+    border: inset 2px #EEE;
+}
+
+.checkout-input.focused {
+    padding: 1px 2px;
+}
+
+.checkout-month {
+    float: left;
+    width: 12px;
+}
+
+.checkout-year {
+    width: 12px;
+    margin-left: 29px;
+    margin-bottom: 20px;
+}
+
+.checkout-cvv {
+    width: 17px;
+}
+
+.checkout-disabled {
+    position: absolute;
+    background: #fff;
+    opacity: 0.7;
+    top: 731px;
+    left: 22px;
+    width: 729px;
+    height: 106px;
+}
