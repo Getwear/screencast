@@ -393,6 +393,9 @@
         screencastData.screencast = this;
 
         this._createScenario = function() {
+            if (screencastData.skip) {
+                return;
+            }
             if (this.$frames.length) {
                 this.$frames.each(function(index, elem) {
                     that.scenario.push(that._getFrameActions(elem));
