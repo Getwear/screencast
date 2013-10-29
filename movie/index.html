@@ -710,9 +710,6 @@
                 <div id="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
                      onclick="return [{
                         'cart-bg': [
-//                            ['fadeTo', 0, 1],
-//                            ['removeClass', 'g-display-none'],
-//                            ['fadeTo', 1, 200],
                             ['wait', 400],
                             ['moveTo', [0, -470], {'duration': 600}]
                         ]
@@ -885,7 +882,7 @@
                         <div class="delivery-input delivery-address"></div>
                         <div class="delivery-input delivery-city"></div>
                         <div class="delivery-input delivery-country"></div>
-                        <div class="delivery-input delivery-index"></div>
+                        <div class="delivery-input delivery-index" data-noindent="true"></div>
                         <div class="delivery-input delivery-email"></div>
                         <div class="delivery-input delivery-phone"></div>
                     </div>
@@ -1005,7 +1002,7 @@
                         'checkout-cvv': [
                             ['addClass', 'focused'],
                             ['wait', 300],
-                            ['typeText', '911'],
+                            ['typeText', '111'],
                             ['wait', 200],
                             ['removeClass', 'focused']
                         ]
@@ -1014,6 +1011,7 @@
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
                             ['moveTo', [283, 434]],
+                            ['addClass', 'cursor-pointer'],
                             ['wait', 800],
                             'click'
                         ],
@@ -1027,9 +1025,9 @@
                     <div class="checkout-form">
                         <div class="checkout-input checkout-number"></div>
                         <div class="checkout-input checkout-name"></div>
-                        <div class="checkout-input checkout-month"></div>
-                        <div class="checkout-input checkout-year"></div>
-                        <div class="checkout-input checkout-cvv"></div>
+                        <div class="checkout-input checkout-month" data-noindent="true"></div>
+                        <div class="checkout-input checkout-year" data-noindent="true"></div>
+                        <div class="checkout-input checkout-cvv" data-noindent="true"></div>
                     </div>
                     <div class="checkout-disabled"></div>
                     <div class="cursor" style="left: 100px; top: 100px;"></div>
