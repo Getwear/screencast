@@ -188,6 +188,7 @@
             $dummy.css({
                 'position': 'absolute',
                 'left': '-2000px',
+                'top': '-2000px',
                 'visibility': 'hidden',
                 'font-size': $elem.css('font-size')
             });
