@@ -168,3 +168,41 @@
     height: 27px !important;
     background: url(../i/how-to-buy/elements/03-tool.png) !important;
 }
+
+.b-movie .size {
+    position: absolute;
+    top: 215px;
+    left: 621px;
+    width: 81px;
+    height: 132px;
+}
+
+.b-movie .size-input {
+    height: 12.5%;
+    padding: 1px;
+    text-align: right;
+}
+
+.b-movie .size-input .type-text {
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.b-movie .size-input.focused {
+    border: 1px solid #4473bf;
+    -webkit-box-shadow: #3376e3 0 0 10px,
+        rgba(0,0,0,.5) 0 3px 4px -1px inset;
+    -moz-box-shadow: #3376e3 0 0 10px,
+        rgba(0,0,0,.5) 0 3px 4px -1px inset;
+    box-shadow: #3376e3 0 0 10px,
+        rgba(0,0,0,.5) 0 3px 4px -1px inset;
+    outline: 0;
+}
+
+.b-movie .size-input:first-child {
+    border-top-right-radius: 3px;
+}
+
+.b-movie .size-input:last-child {
+    border-bottom-right-radius: 3px;
+}
