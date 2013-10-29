@@ -98,7 +98,7 @@
                     nav: false,
                     transition: 'dissolve',
                     trackpad: false,
-                    arrows: true,
+                    arrows: false,
                     click: false,
                     swipe: false,
                     fit: 'none'
@@ -297,7 +297,7 @@
                             ['wait', 800],
                             ['removeClass', 'cursor-pointer'],
                             ['moveTo', [620, 248]],
-                            ['addClass', 'cursor-pointer'],
+                            ['addClass', 'cursor-pointer']
                         ]
                      }, {
                         'craft-tool-hover': [
@@ -333,7 +333,7 @@
                             ['fadeTo', 1, 200]
                         ],
                         'craft-buttons': [
-                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'g-display-none']
                         ]
                      },  {
                         'cursor': [
@@ -457,7 +457,219 @@
 
                 <div id="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
                      onclick="return [{
-
+                        'popup-wrapper': [
+                            ['wait', 800],
+                            ['popup', 'show', {
+                                'coords': [660, 198],
+                                'position': 'top',
+                                'text': 'Мы гарантируем, что джинсы сядут, так что ничего не бойтесь'
+                            }],
+                            ['wait', 1500],
+                            ['popup', 'hide']
+                        ],
+                        'cursor': [
+                            ['moveTo', [627, 215]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 200]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size__waist': [
+                            ['addClass', 'focused'],
+                            ['typeText', '112'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [627, 235]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size__hip': [
+                            ['addClass', 'focused']
+                        ],
+                        'size-help-2': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'size__hip': [
+                            ['wait', 200],
+                            ['typeText', '121'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [627, 255]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size__thigh': [
+                            ['addClass', 'focused']
+                        ],
+                        'size-help-2': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size-help-3': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'size__thigh': [
+                            ['wait', 200],
+                            ['typeText', '79'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [627, 275]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size__knee': [
+                            ['addClass', 'focused']
+                        ],
+                        'size-help-3': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size-help-4': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'size__knee': [
+                            ['wait', 200],
+                            ['typeText', '46'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [627, 295]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size__calf': [
+                            ['addClass', 'focused']
+                        ],
+                        'size-help-4': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size-help-5': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'size__calf': [
+                            ['wait', 200],
+                            ['typeText', '44'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [627, 315]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size__inseam': [
+                            ['addClass', 'focused']
+                        ],
+                        'size-help-5': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size-help-6': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'size__inseam': [
+                            ['wait', 200],
+                            ['typeText', '95'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [627, 335]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size__length': [
+                            ['addClass', 'focused']
+                        ],
+                        'size-help-6': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'size-help-7': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'size__length': [
+                            ['wait', 200],
+                            ['typeText', '117'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [852, 574]],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'popup-wrapper': [
+                            ['popup', 'show', {
+                                'position': 'top',
+                                'coords': [870, 544],
+                                'text': 'Если что — обращайтесь за помощью'
+                            }],
+                            ['wait', 2000],
+                            ['popup', 'hide']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['moveTo', [402, 525]],
+                            'click'
+                        ]
                      }];">
                     <div class="size-help size-help-2 g-display-none"></div>
                     <div class="size-help size-help-3 g-display-none"></div>
@@ -465,26 +677,362 @@
                     <div class="size-help size-help-5 g-display-none"></div>
                     <div class="size-help size-help-6 g-display-none"></div>
                     <div class="size-help size-help-7 g-display-none"></div>
-                    <div class="cursor"></div>
+                    <div class="popup-wrapper"></div>
+                    <div class="size">
+                        <div class="size-input size__waist">
+                            <div class="type-text"></div>
+                        </div>
+                        <div class="size-input size__hip">
+                            <div class="type-text"></div>
+                        </div>
+                        <div class="size-input size__thigh">
+                            <div class="type-text"></div>
+                        </div>
+                        <div class="size-input size__knee">
+                            <div class="type-text"></div>
+                        </div>
+                        <div class="size-input size__calf">
+                            <div class="type-text"></div>
+                        </div>
+                        <div class="size-input size__inseam">
+                            <div class="type-text"></div>
+                        </div>
+                        <div class="size-input size__length">
+                            <div class="type-text"></div>
+                        </div>
+                        <div class="size-input size__standard">
+                            <div class="type-text"></div>
+                        </div>
+                    </div>
+                    <div class="cursor" style="left: 771px; top: 219px;"></div>
                 </div>
 
                 <div id="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
-                     onclick="return [
-                     ];">
+                     onclick="return [{
+                        'cart-bg': [
+//                            ['fadeTo', 0, 1],
+//                            ['removeClass', 'g-display-none'],
+//                            ['fadeTo', 1, 200],
+                            ['wait', 400],
+                            ['moveTo', [0, -470], {'duration': 600}]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['moveTo', [400, 50], {'duration': 800}],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 200]
+                        ],
+                        'delivery-form': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 100]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 3000],
+                            'click'
+                        ],
+                        'popup-wrapper': [
+                            ['popup', 'show', {
+                                'position': 'bottom',
+                                'coords': [380, 78],
+                                'text': 'Есть два типа доставки — быстрая с курьером и обычная, но бесплатная'
+                            }],
+                            ['wait', 3000],
+                            ['popup', 'hide']
+                        ]
+                     }, {
+                        'cart-selector': [
+                            ['fadeTo', 0, 1],
+                            ['fadeTo', 1, 100],
+                            ['removeClass', 'g-display-none'],
+                            ['wait', 200]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [215, 105]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-name': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'Sergey Korol'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [215, 153]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-address': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'Tverskaya st., 13-45'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursorText'],
+                            ['moveTo', [215, 200]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-city': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'Moscow'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [230, 263]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-country': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'Тут имитируем селект'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [215, 298]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-index': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', '12345'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [215, 335]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-email': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'kotosergey@gmail.com'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [215, 366]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-phone': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', '892184834546'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [820, 550]],
+                            ['wait', 300],
+                            'click'
+                        ]
+                     }];">
                     <div class="cart-frame">
                         <img class="cart-bg" src="i/how-to-buy/06-cart.png" alt=""/>
                     </div>
                     <div class="cart-selector g-display-none"></div>
-                    <div class="cursor"></div>
+                    <div class="popup-wrapper"></div>
+                    <div class="delivery-form g-display-none">
+                        <div class="delivery-input delivery-name"></div>
+                        <div class="delivery-input delivery-address"></div>
+                        <div class="delivery-input delivery-city"></div>
+                        <div class="delivery-input delivery-country"></div>
+                        <div class="delivery-input delivery-index"></div>
+                        <div class="delivery-input delivery-email"></div>
+                        <div class="delivery-input delivery-phone"></div>
+                    </div>
+
+
+                    <div class="cursor" style="left: 402px; top: 525px;"></div>
                 </div>
 
                 <div id="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast"
-                     onclick="return [
-                     ];">
+                     onclick="return [{
+                        'cursor': [
+                            ['moveTo', [214, 120]],
+                            ['wait', 800]
+                        ]
+                    }, {
+                        'checkout-bg': [
+                            ['moveTo', [0, -320]]
+                        ],
+                        'checkout-disabled': [
+                            ['moveTo', [22, 411]]
+                        ],
+                        'checkout-form': [
+                            ['moveTo', [208, 82]]
+                        ]
+                    }, {
+                        'cursor': [
+                            ['wait', 500],
+                            ['moveTo', [272, 23]],
+                            ['wait', 200],
+                            ['circleAround', [272, 23]],
+                            ['wait', 200],
+                            ['moveTo', [405, 23]],
+                            ['wait', 200],
+                            ['circleAround', [405, 23]],
+                            ['wait', 200],
+                            ['moveTo', [552, 23]],
+                            ['wait', 200],
+                            ['circleAround', [552, 23]],
+                            ['wait', 200],
+                            ['moveTo', [214, 85]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400]
+                        ]
+                    }, {
+                        'cursor': [
+                            ['addClass', 'g-display-none'],
+                        ]
+                    }, {
+                        'checkout-number': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', '4276550044560435'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [214, 115]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400],
+                            ['addClass', 'g-display-none']
+                        ]
+                    }, {
+                        'checkout-name': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', 'Sergey Korol'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [214, 146]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400],
+                            ['addClass', 'g-display-none']
+                        ]
+                    }, {
+                        'checkout-month': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', '10'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [240, 146]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400],
+                            ['addClass', 'g-display-none']
+                        ]
+                    }, {
+                        'checkout-year': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', '18'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [214, 187]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 400],
+                            ['addClass', 'g-display-none']
+                        ]
+                    }, {
+                        'checkout-cvv': [
+                            ['addClass', 'focused'],
+                            ['wait', 300],
+                            ['typeText', '911'],
+                            ['wait', 200],
+                            ['removeClass', 'focused']
+                        ]
+                    }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [283, 434]],
+                            ['wait', 800],
+                            'click'
+                        ],
+                        'checkout-disabled': [
+                            ['fadeTo', 0, '200']
+                        ]
+                    }];">
                     <div class="checkout-frame">
                         <img class="checkout-bg" src="i/how-to-buy/07-checkout.png" alt=""/>
                     </div>
+                    <div class="checkout-form">
+                        <div class="checkout-input checkout-number"></div>
+                        <div class="checkout-input checkout-name"></div>
+                        <div class="checkout-input checkout-month"></div>
+                        <div class="checkout-input checkout-year"></div>
+                        <div class="checkout-input checkout-cvv"></div>
+                    </div>
                     <div class="checkout-disabled"></div>
+                    <div class="cursor" style="left: 100px; top: 100px;"></div>
                 </div>
             </div>
 
