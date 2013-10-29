@@ -18,8 +18,8 @@
             defaults = {
                 offsetx: 0,
                 offsety: 0,
-                moveSpeed: 100,
-                easing: 'easeInOutCubic'
+                moveSpeed: 400,
+                easing: 'easeInCubic'
             };
 
         this._stopped = false;
