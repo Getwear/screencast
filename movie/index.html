@@ -193,7 +193,7 @@
                             ['wait', 1500],
                             ['moveTo', [490, 25], {'duration': 1000}],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 200],
+                            ['wait', 700],
                             'click'
                         ]
                     }];">
@@ -216,7 +216,7 @@
                             ['removeClass', 'cursor-pointer'],
                             ['moveTo', [162, 108]],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 300],
+                            ['wait', 700],
                             ['click']
                         ]
                      }, {
@@ -232,7 +232,7 @@
                             ['removeClass', 'cursor-pointer'],
                             ['moveTo', [330, 116]],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 100],
+                            ['wait', 700],
                             'click'
                         ]
                      }, {
@@ -245,8 +245,9 @@
                             ['removeClass', 'cursor-pointer'],
                             ['moveTo', [357, 367]],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 100],
-                            'click'
+                            ['wait', 700],
+                            'click',
+                            ['wait', 200]
                         ]
                      }, {
                         'model-man-base': [
@@ -266,7 +267,7 @@
                             ['wait', 500],
                             ['moveTo', [612, 290]],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 200],
+                            ['wait', 700],
                             'click'
                         ]
                      }, {
@@ -282,9 +283,9 @@
                             ['removeClass', 'cursor-pointer'],
                             ['moveTo', [185, 205]],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 100],
+                            ['wait', 700],
                             'click',
-                            ['wait', 300]
+                            ['wait', 200]
                         ]
                      }];">
                     <div class="gender-switch g-display-none"></div>
@@ -312,9 +313,10 @@
                         'cursor': [
                             'click',
                             ['wait', 200],
-                            ['removeClass', 'cursor-pointer'],
-                            ['addClass', 'cursor-tool']
-                        ],
+                            ['addClass', 'cursor-tool'],
+                            ['removeClass', 'cursor-pointer']
+                        ]
+                     }, {
                         'craft-tool-hover': [
                             ['addClass', 'g-display-none']
                         ],
@@ -399,8 +401,9 @@
                         'cursor': [
                             ['addClass', 'cursor-pointer'],
                             ['moveTo', [194, 168], {'easing': 'easeOutCubic', 'speed': '40'}],
-                            ['wait', 200],
-                            'click'
+                            ['wait', 700],
+                            'click',
+                            ['wait', 200]
                         ]
                      }];">
                     <div class="craft-buttons g-display-none"></div>
@@ -410,7 +413,7 @@
                     <div class="craft-result-2 g-display-none"></div>
                     <div class="craft-result-3 g-display-none"></div>
                     <div class="craft-result-4 g-display-none"></div>
-                    <div class="cursor cursor-pointer" style="left: 195px; top: 205px;"></div>
+                    <div class="cursor cursor-pointer" style="left: 185px; top: 205px;"></div>
                 </div>
 
                 <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast"
@@ -435,6 +438,7 @@
                             ['wait', 100],
                             ['moveTo', [500, 476]],
                             ['addClass', 'cursor-pointer'],
+                            ['wait', 700],
                             'click'
                         ]
                      }, {
@@ -444,7 +448,7 @@
                      }, {
                         'cursor': [
                             ['wait', 2500],
-                            ['click']
+                            'click'
                         ]
                      }, {
                         'model-result-back': [
@@ -458,8 +462,9 @@
                             ['wait', 300],
                             ['moveTo', [772, 220]],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 200],
-                            'click'
+                            ['wait', 700],
+                            'click',
+                            ['wait', 200]
                         ]
                      }];">
                     <div class="model model-result-back g-display-none"></div>
@@ -687,8 +692,9 @@
                         'cursor': [
                             ['moveTo', [397, 520]],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 500],
-                            'click'
+                            ['wait', 700],
+                            'click',
+                            ['wait', 200]
                         ]
                      }];">
                     <div class="size-help size-help-2 g-display-none"></div>
@@ -1044,7 +1050,8 @@
                             ['moveTo', [283, 438]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 800],
-                            'click'
+                            'click',
+                            ['wait', 200]
                         ],
                         'checkout-disabled': [
                             ['fadeTo', 0, '200']
