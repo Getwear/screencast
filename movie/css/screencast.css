@@ -189,7 +189,7 @@
 
 .b-movie .size-input {
     height: 12.5%;
-    padding: 1px;
+    padding: 0px 1px 2px;
     text-align: right;
 }
 
