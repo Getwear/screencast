@@ -329,7 +329,7 @@
                             ['moveTo', [538, 182]],
                             ['fadeTo', .7, 100],
                             ['wait', 100],
-                            ['moveTo', [552, 316]],
+                            ['moveTo', [552, 316], {'moveSpeed': 100}],
                             ['fadeTo', 1, 100]
                         ]
                      }, {
@@ -346,10 +346,10 @@
                      },  {
                         'cursor': [
                             ['wait', 200],
-                            ['moveTo', [555, 394]],
+                            ['moveTo', [555, 394], {'moveSpeed': 100}],
                             ['fadeTo', .7, 100],
                             ['wait', 100],
-                            ['moveTo', [553, 468]],
+                            ['moveTo', [553, 468], {'moveSpeed': 100}],
                             ['fadeTo', 1, 100]
                         ]
                      }, {
@@ -361,10 +361,10 @@
                      },  {
                         'cursor': [
                             ['wait', 100],
-                            ['moveTo', [461, 190]],
+                            ['moveTo', [461, 190], {'moveSpeed': 300}],
                             ['fadeTo', .7, 100],
                             ['wait', 100],
-                            ['moveTo', [453, 288]],
+                            ['moveTo', [453, 288], {'moveSpeed': 100}],
                             ['fadeTo', 1, 100]
                         ]
                      }, {
@@ -376,10 +376,10 @@
                      },  {
                         'cursor': [
                             ['wait', 300],
-                            ['moveTo', [444, 362]],
+                            ['moveTo', [444, 362], {'moveSpeed': 100}],
                             ['fadeTo', .7, 100],
                             ['wait', 100],
-                            ['moveTo', [449, 460]],
+                            ['moveTo', [449, 460], {'moveSpeed': 100}],
                             ['fadeTo', 1, 100]
                         ]
                      }, {
@@ -391,7 +391,7 @@
                      }, {
                         'cursor': [
                             ['wait', 300],
-                            ['moveTo', [248, 228]],
+                            ['moveTo', [258, 248]],
                             ['removeClass', 'cursor-tool']
                         ]
                      }, {
@@ -400,7 +400,7 @@
                         ],
                         'cursor': [
                             ['addClass', 'cursor-pointer'],
-                            ['moveTo', [194, 168], {'easing': 'easeOutCubic', 'speed': '40'}],
+                            ['moveTo', [194, 168], {'easing': 'swing', 'speed': '40'}],
                             ['wait', 700],
                             'click',
                             ['wait', 200]
@@ -485,7 +485,7 @@
                         ]
                      }, {
                         'cursor': [
-                            ['moveTo', [647, 219]],
+                            ['moveTo', [647, 219], {'duration': 400}],
                             ['addClass', 'cursor-text']
                         ]
                      }, {
@@ -777,7 +777,7 @@
                      }, {
                         'cursor': [
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [215, 105]],
+                            ['moveTo', [215, 105], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 300],
                             ['addClass', 'g-display-none']
@@ -794,7 +794,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [215, 153]],
+                            ['moveTo', [215, 153], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 300],
                             ['addClass', 'g-display-none']
@@ -811,7 +811,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursorText'],
-                            ['moveTo', [215, 200]],
+                            ['moveTo', [215, 200], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 300],
                             ['addClass', 'g-display-none']
@@ -828,7 +828,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [230, 263]],
+                            ['moveTo', [230, 263], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 300],
                             ['addClass', 'g-display-none']
@@ -845,7 +845,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [215, 298]],
+                            ['moveTo', [215, 298], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 300],
                             ['addClass', 'g-display-none']
@@ -862,7 +862,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [215, 335]],
+                            ['moveTo', [215, 335], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 300],
                             ['addClass', 'g-display-none']
@@ -879,7 +879,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [215, 366]],
+                            ['moveTo', [215, 366], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 300],
                             ['addClass', 'g-display-none']
@@ -897,8 +897,10 @@
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
                             ['moveTo', [820, 550]],
-                            ['wait', 300],
-                            'click'
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 700],
+                            'click',
+                            ['wait', 200]
                         ]
                      }];">
                     <div class="cart-frame">
@@ -979,7 +981,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [214, 117]],
+                            ['moveTo', [214, 117], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 400],
                             ['addClass', 'g-display-none']
@@ -996,7 +998,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [214, 148]],
+                            ['moveTo', [214, 148], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 400],
                             ['addClass', 'g-display-none']
@@ -1013,7 +1015,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [240, 148]],
+                            ['moveTo', [240, 148], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 400],
                             ['addClass', 'g-display-none']
@@ -1030,7 +1032,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [214, 190]],
+                            ['moveTo', [214, 190], {'duration': 600}],
                             ['addClass', 'cursor-text'],
                             ['wait', 400],
                             ['addClass', 'g-display-none']
