@@ -298,22 +298,20 @@
                 <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast"
                      onclick="return [{
                         'cursor': [
-                            ['wait', 500],
-                            ['moveTo', [248, 211], {'easing': 'easeInCubic', 'speed': '40'}],
+                            ['wait', 700],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [620, 247]],
-                            ['addClass', 'cursor-pointer'],
-                            ['moveTo', [637, 249], {'easing': 'easeOutCubic', 'speed': '40'}]
+                            ['moveTo', [637, 249]],
+                            ['addClass', 'cursor-pointer']
                         ]
                      }, {
                         'craft-tool-hover': [
                             ['removeClass', 'g-display-none'],
-                            ['wait', 200]
+                            ['wait', 600]
                         ]
                      }, {
                         'cursor': [
                             'click',
-                            ['wait', 100],
+                            ['wait', 200],
                             ['removeClass', 'cursor-pointer'],
                             ['addClass', 'cursor-tool']
                         ],
@@ -392,7 +390,13 @@
                         'cursor': [
                             ['wait', 300],
                             ['moveTo', [248, 228]],
-                            ['removeClass', 'cursor-tool'],
+                            ['removeClass', 'cursor-tool']
+                        ]
+                     }, {
+                        'craft-tool-active': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'cursor': [
                             ['addClass', 'cursor-pointer'],
                             ['moveTo', [194, 168], {'easing': 'easeOutCubic', 'speed': '40'}],
                             ['wait', 200],
