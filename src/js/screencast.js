@@ -18,7 +18,8 @@
             defaults = {
                 offsetx: 0,
                 offsety: 0,
-                moveSpeed: 100
+                moveSpeed: 100,
+                easing: 'easeInOutCubic'
             };
 
         this._stopped = false;
@@ -79,13 +80,16 @@
                 x = $elem.position().left,
                 y = $elem.position().top,
                 duration,
+                speed,
                 easing;
 
             coords = this._getCoords(coords);
             params = params || {};
 
-            duration = params.duration || calculateDistance(coords[0] - x, coords[1] - y) / defaults.moveSpeed * 1000;
-            easing = params.easing || "easeInOutCubic";
+            speed = params.moveSpeed || defaults.moveSpeed;
+
+            duration = params.duration || calculateDistance(coords[0] - x, coords[1] - y) / speed * 1000;
+            easing = params.easing || defaults.easing;
 
             $elem.animate({
                 top: coords[1] + 'px',
@@ -122,7 +126,7 @@
             coords = this._getCoords(coords);
             params = params || {};
 
-            easing = params.easing || "easeInOutCubic",
+            easing = params.easing || defaults.easing;
             duration = params.duration || 500;
             r = params.radius || 20;
 
@@ -184,6 +188,7 @@
             $dummy.css({
                 'position': 'absolute',
                 'left': '-2000px',
+                'top': '-2000px',
                 'visibility': 'hidden',
                 'font-size': $elem.css('font-size')
             });
