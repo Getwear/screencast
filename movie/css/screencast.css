@@ -140,6 +140,15 @@
     background: url(../i/how-to-buy/elements/05-size-7.png);
 }
 
+.save-button {
+    position: absolute;
+    top: 504px;
+    left: 269px;
+    width: 275px;
+    height: 31px;
+    background: url(../i/how-to-buy/elements/05-save.png);
+}
+
 .cart-selector {
     position: absolute;
     width: 341px;
@@ -166,6 +175,7 @@
 .cursor-tool {
     width: 38px !important;
     height: 27px !important;
+    margin: -14px 0 0 -19px !important;
     background: url(../i/how-to-buy/elements/03-tool.png) !important;
 }
 
@@ -186,6 +196,35 @@
 .b-movie .size-input .type-text {
     font-weight: bold;
     margin-right: 20px;
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.b-movie .size-input.focused .type-text::after {
+    content: '';
+    position: relative;
+    bottom: 1px;
+    display: inline-block;
+    width: 0;
+    height: 17px;
+    vertical-align: middle;
+    border-right: solid 1px #333;
+    -webkit-animation: blink 1s infinite;
+    -o-animation: blink 1s infinite;
+    animation: blink 1s infinite;
 }
 
 .b-movie .focused {
@@ -210,7 +249,7 @@
 .delivery-form {
     position: absolute;
     left: 208px;
-    top: 103px;
+    top: 573px;
     width: 347px;
 }
 
@@ -226,15 +265,32 @@
 }
 
 .delivery-input.focused {
-    padding: 1px 2px;
+    padding: 1px 3px;
+}
+
+.delivery-input.focused::after {
+    content: '';
+    position: relative;
+    bottom: 1px;
+    display: inline-block;
+    width: 0;
+    height: 14px;
+    vertical-align: middle;
+    border-right: solid 1px #333;
+    -webkit-animation: blink 1s infinite;
+    -o-animation: blink 1s infinite;
+    animation: blink 1s infinite;
 }
 
 .delivery-city {
-    margin-bottom: 41px;
+    margin-bottom: 11px;
+}
+
+.delivery-state {
+    margin-bottom: 10px;
 }
 
 .delivery-country {
-    width: 260px;
     margin-bottom: 15px;
 }
 
@@ -265,13 +321,28 @@
     min-height: 17px;
     margin-bottom: 10px;
     padding: 0 2px;
+    white-space: nowrap;
     background: #fbf6e4;
     border-radius: 2px;
     border: inset 2px #EEE;
 }
 
 .checkout-input.focused {
-    padding: 1px 2px;
+    padding: 1px 3px;
+}
+
+.checkout-input.focused::after {
+    content: '';
+    position: relative;
+    bottom: 1px;
+    display: inline-block;
+    width: 0;
+    height: 14px;
+    vertical-align: middle;
+    border-right: solid 1px #333;
+    -webkit-animation: blink 1s infinite;
+    -o-animation: blink 1s infinite;
+    animation: blink 1s infinite;
 }
 
 .checkout-month {
@@ -287,6 +358,20 @@
 
 .checkout-cvv {
     width: 17px;
+}
+
+.subscribe {
+    position: absolute;
+    top: 607px;
+    left: 208px;
+    font-size: 12px;
+    line-height: 16px;
+    width: 340px;
+    min-height: 16px;
+    padding: 0 2px;
+    background: #FFF;
+    border-radius: 2px;
+    border: inset 2px #EEE;
 }
 
 .checkout-disabled {

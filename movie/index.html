@@ -172,6 +172,7 @@
             </div>
 
             <div class="fotorama" data-auto="false" id="screencast-fotorama">
+
                 <div id="home" data-img="i/how-to-buy/01-home.png" class="screencast"
                      onclick="return [
                     {
@@ -183,7 +184,7 @@
                         ],
                         'cursor': [
                             ['wait', 1000],
-                            ['moveTo', [700, 280], {'duration': 2000}]
+                            ['moveTo', [700, 285], {'duration': 2000}]
                         ]
                     }, {
                         'subtitles': [
@@ -191,7 +192,7 @@
                         ],
                         'cursor': [
                             ['wait', 1500],
-                            ['moveTo', [490, 20], {'duration': 1000}],
+                            ['moveTo', [490, 25], {'duration': 1000}],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 200],
                             'click'
@@ -200,7 +201,7 @@
                     <div class="subtitles" style="top: 40%; opacity: 200; display: block;">
                         <div class="subtitles__wrap">Качественные джинсы по вашему дизайну и мерке</div>
                     </div>
-                    <div class="cursor" style="left: 250px; top: 290px;"></div>
+                    <div class="cursor" style="left: 250px; top: 295px;"></div>
                 </div>
 
                 <div id="design" data-img="i/how-to-buy/02-design.png" class="screencast"
@@ -212,9 +213,11 @@
                         ]
                      }, {
                         'cursor': [
-                            ['moveTo', 'gender-switch'],
+                            ['wait', 300],
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [162, 108]],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 500],
+                            ['wait', 300],
                             ['click']
                         ]
                      }, {
@@ -228,7 +231,7 @@
                         'cursor': [
                             ['wait', 300],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [330, 115]],
+                            ['moveTo', [330, 116]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 100],
                             'click'
@@ -241,7 +244,7 @@
                         'cursor': [
                             ['wait', 200],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [361, 368]],
+                            ['moveTo', [357, 367]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 100],
                             'click'
@@ -255,14 +258,16 @@
                         ],
                         'model-man-straight': [
                             ['removeClass', 'g-display-none']
+                        ],
+                        'cursor': [
+                            ['removeClass', 'cursor-pointer']
                         ]
                      }, {
                         'cursor': [
                             ['wait', 500],
-                            ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [610, 285]],
+                            ['moveTo', [612, 290]],
                             ['addClass', 'cursor-pointer'],
-                            ['wait', 100],
+                            ['wait', 200],
                             'click'
                         ]
                      }, {
@@ -276,11 +281,11 @@
                         'cursor': [
                             ['wait', 300],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [195, 205]],
+                            ['moveTo', [185, 205]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 100],
                             'click',
-                            ['wait', 500]
+                            ['wait', 300]
                         ]
                      }];">
                     <div class="gender-switch g-display-none"></div>
@@ -288,16 +293,18 @@
                     <div class="model model-man-straight g-display-none"></div>
                     <div class="model model-man-low g-display-none"></div>
                     <div class="type g-display-none"></div>
-                    <div class="cursor" style="top: 20px; left: 490px;"></div>
+                    <div class="cursor cursor-pointer" style="top: 25px; left: 490px;"></div>
                 </div>
 
                 <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast"
                      onclick="return [{
                         'cursor': [
-                            ['wait', 800],
+                            ['wait', 500],
+                            ['moveTo', [248, 211], {'easing': 'easeInCubic', 'speed': '40'}],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [620, 248]],
-                            ['addClass', 'cursor-pointer']
+                            ['moveTo', [620, 247]],
+                            ['addClass', 'cursor-pointer'],
+                            ['moveTo', [637, 249], {'easing': 'easeOutCubic', 'speed': '40'}]
                         ]
                      }, {
                         'craft-tool-hover': [
@@ -307,6 +314,7 @@
                      }, {
                         'cursor': [
                             'click',
+                            ['wait', 100],
                             ['removeClass', 'cursor-pointer'],
                             ['addClass', 'cursor-tool']
                         ],
@@ -319,12 +327,11 @@
                      }, {
                         'cursor': [
                             ['wait', 100],
-                            ['fadeTo', 0.7, 1],
-                            ['moveTo', [531, 179]],
-                            ['fadeTo', 1, 1],
+                            ['moveTo', [538, 182]],
+                            ['fadeTo', .7, 100],
                             ['wait', 100],
-                            ['moveTo', [552, 325]],
-                            ['fadeTo', 0.7, 1]
+                            ['moveTo', [552, 316]],
+                            ['fadeTo', 1, 100]
                         ]
                      }, {
                         'craft-result-1': [
@@ -333,17 +340,18 @@
                             ['fadeTo', 1, 200]
                         ],
                         'craft-buttons': [
-                            ['removeClass', 'g-display-none']
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
                         ]
                      },  {
                         'cursor': [
                             ['wait', 200],
-                            ['fadeTo', 0.7, 1],
-                            ['moveTo', [552, 389]],
-                            ['fadeTo', 1, 1],
+                            ['moveTo', [555, 394]],
+                            ['fadeTo', .7, 100],
                             ['wait', 100],
-                            ['moveTo', [553, 450]],
-                            ['fadeTo', 0.7, 1]
+                            ['moveTo', [553, 468]],
+                            ['fadeTo', 1, 100]
                         ]
                      }, {
                         'craft-result-2': [
@@ -354,12 +362,11 @@
                      },  {
                         'cursor': [
                             ['wait', 100],
-                            ['fadeTo', 0.7, 1],
-                            ['moveTo', [451, 187]],
-                            ['fadeTo', 1, 1],
+                            ['moveTo', [461, 190]],
+                            ['fadeTo', .7, 100],
                             ['wait', 100],
-                            ['moveTo', [445, 287]],
-                            ['fadeTo', 0.7, 1]
+                            ['moveTo', [453, 288]],
+                            ['fadeTo', 1, 100]
                         ]
                      }, {
                         'craft-result-3': [
@@ -370,12 +377,11 @@
                      },  {
                         'cursor': [
                             ['wait', 300],
-                            ['fadeTo', 0.7, 1],
-                            ['moveTo', [440, 361]],
-                            ['fadeTo', 1, 1],
+                            ['moveTo', [444, 362]],
+                            ['fadeTo', .7, 100],
                             ['wait', 100],
-                            ['moveTo', [448, 452]],
-                            ['fadeTo', 0.7, 1]
+                            ['moveTo', [449, 460]],
+                            ['fadeTo', 1, 100]
                         ]
                      }, {
                         'craft-result-4': [
@@ -386,9 +392,10 @@
                      }, {
                         'cursor': [
                             ['wait', 300],
-                            ['moveTo', [191, 169]],
+                            ['moveTo', [248, 228]],
                             ['removeClass', 'cursor-tool'],
                             ['addClass', 'cursor-pointer'],
+                            ['moveTo', [194, 168], {'easing': 'easeOutCubic', 'speed': '40'}],
                             ['wait', 200],
                             'click'
                         ]
@@ -408,21 +415,22 @@
                         'cursor': [
                             ['wait', 300],
                             ['removeClass', 'cursor-pointer'],
-                            ['circleAround', [328, 280], {
+                            ['moveTo', [332, 302]],
+                            ['circleAround', [332, 277], {
                                 'radius': 25
                             }],
                             ['wait', 200],
-                            ['moveTo', [620, 166]],
-                            ['circleAround', [624, 165], {
+                            ['moveTo', [625, 200]],
+                            ['circleAround', [625, 160], {
                                 'radius': 40
                             }],
                             ['wait', 300],
-                            ['moveTo', [630, 394]],
-                            ['circleAround', [628, 390], {
+                            ['moveTo', [634, 412]],
+                            ['circleAround', [634, 374], {
                                 'radius': 38
                             }],
                             ['wait', 100],
-                            ['moveTo', [500, 475]],
+                            ['moveTo', [500, 476]],
                             ['addClass', 'cursor-pointer'],
                             'click'
                         ]
@@ -432,7 +440,7 @@
                         ]
                      }, {
                         'cursor': [
-                            ['wait', 2000],
+                            ['wait', 2500],
                             ['click']
                         ]
                      }, {
@@ -442,10 +450,10 @@
                         'cursor': [
                             ['wait', 500],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [788, 145]],
-                            ['circleAround', [790, 143]],
+                            ['moveTo', [788, 164]],
+                            ['circleAround', [790, 144]],
                             ['wait', 300],
-                            ['moveTo', [771, 219]],
+                            ['moveTo', [772, 220]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 200],
                             'click'
@@ -464,35 +472,36 @@
                                 'position': 'top',
                                 'text': 'Мы гарантируем, что джинсы сядут, так что ничего не бойтесь'
                             }],
-                            ['wait', 1500],
+                            ['wait', 2000],
                             ['popup', 'hide']
-                        ],
-                        'cursor': [
-                            ['moveTo', [627, 215]],
-                            ['addClass', 'cursor-text'],
-                            ['wait', 200]
                         ]
                      }, {
                         'cursor': [
-                            ['addClass', 'g-display-none']
+                            ['moveTo', [647, 219]],
+                            ['addClass', 'cursor-text']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['fadeTo', 0, 100]
                         ],
                         'size__waist': [
                             ['addClass', 'focused'],
+                            ['wait', 1500],
                             ['typeText', '112'],
-                            ['wait', 200],
-                            ['removeClass', 'focused']
-                        ]
-                     }, {
-                        'cursor': [
-                            ['removeClass', 'g-display-none'],
-                            ['removeClass', 'cursor-text'],
-                            ['moveTo', [627, 235]],
-                            ['addClass', 'cursor-text'],
                             ['wait', 300]
                         ]
                      }, {
                         'cursor': [
-                            ['addClass', 'g-display-none']
+                            ['fadeTo', 1, 100],
+                            ['moveTo', [647, 235], {'duration': 600}],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['fadeTo', 0, 100]
+                        ],
+                        'size__waist': [
+                            ['removeClass', 'focused']
                         ],
                         'size__hip': [
                             ['addClass', 'focused']
@@ -502,22 +511,22 @@
                         ]
                      }, {
                         'size__hip': [
-                            ['wait', 200],
+                            ['wait', 1500],
                             ['typeText', '121'],
-                            ['wait', 300],
-                            ['removeClass', 'focused']
-                        ]
-                     }, {
-                        'cursor': [
-                            ['removeClass', 'g-display-none'],
-                            ['removeClass', 'cursor-text'],
-                            ['moveTo', [627, 255]],
-                            ['addClass', 'cursor-text'],
                             ['wait', 300]
                         ]
                      }, {
                         'cursor': [
-                            ['addClass', 'g-display-none']
+                            ['fadeTo', 1, 100],
+                            ['moveTo', [648, 255], {'duration': 600}],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['fadeTo', 0, 100]
+                        ],
+                        'size__hip': [
+                            ['removeClass', 'focused']
                         ],
                         'size__thigh': [
                             ['addClass', 'focused']
@@ -530,22 +539,22 @@
                         ]
                      }, {
                         'size__thigh': [
-                            ['wait', 200],
+                            ['wait', 1500],
                             ['typeText', '79'],
-                            ['wait', 300],
-                            ['removeClass', 'focused']
+                            ['wait', 200]
                         ]
                      }, {
                         'cursor': [
-                            ['removeClass', 'g-display-none'],
-                            ['removeClass', 'cursor-text'],
-                            ['moveTo', [627, 275]],
-                            ['addClass', 'cursor-text'],
+                            ['fadeTo', 1, 100],
+                            ['moveTo', [645, 275], {'duration': 600}],
                             ['wait', 300]
                         ]
                      }, {
                         'cursor': [
-                            ['addClass', 'g-display-none']
+                            ['fadeTo', 0, 100]
+                        ],
+                        'size__thigh': [
+                            ['removeClass', 'focused']
                         ],
                         'size__knee': [
                             ['addClass', 'focused']
@@ -558,22 +567,22 @@
                         ]
                      }, {
                         'size__knee': [
-                            ['wait', 200],
+                            ['wait', 1500],
                             ['typeText', '46'],
-                            ['wait', 300],
-                            ['removeClass', 'focused']
-                        ]
-                     }, {
-                        'cursor': [
-                            ['removeClass', 'g-display-none'],
-                            ['removeClass', 'cursor-text'],
-                            ['moveTo', [627, 295]],
-                            ['addClass', 'cursor-text'],
                             ['wait', 300]
                         ]
                      }, {
                         'cursor': [
-                            ['addClass', 'g-display-none']
+                            ['fadeTo', 1, 100],
+                            ['moveTo', [647, 295], {'duration': 600}],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['fadeTo', 0, 100]
+                        ],
+                        'size__knee': [
+                            ['removeClass', 'focused']
                         ],
                         'size__calf': [
                             ['addClass', 'focused']
@@ -586,22 +595,22 @@
                         ]
                      }, {
                         'size__calf': [
-                            ['wait', 200],
+                            ['wait', 1500],
                             ['typeText', '44'],
-                            ['wait', 300],
-                            ['removeClass', 'focused']
+                            ['wait', 200]
                         ]
                      }, {
                         'cursor': [
-                            ['removeClass', 'g-display-none'],
-                            ['removeClass', 'cursor-text'],
-                            ['moveTo', [627, 315]],
-                            ['addClass', 'cursor-text'],
+                            ['fadeTo', 1, 100],
+                            ['moveTo', [649, 315], {'duration': 600}],
                             ['wait', 300]
                         ]
                      }, {
                         'cursor': [
-                            ['addClass', 'g-display-none']
+                            ['fadeTo', 0, 100]
+                        ],
+                        'size__calf': [
+                            ['removeClass', 'focused']
                         ],
                         'size__inseam': [
                             ['addClass', 'focused']
@@ -614,22 +623,22 @@
                         ]
                      }, {
                         'size__inseam': [
-                            ['wait', 200],
+                            ['wait', 1500],
                             ['typeText', '95'],
-                            ['wait', 300],
-                            ['removeClass', 'focused']
+                            ['wait', 200]
                         ]
                      }, {
                         'cursor': [
-                            ['removeClass', 'g-display-none'],
-                            ['removeClass', 'cursor-text'],
-                            ['moveTo', [627, 335]],
-                            ['addClass', 'cursor-text'],
+                            ['fadeTo', 1, 100],
+                            ['moveTo', [647, 335], {'duration': 600}],
                             ['wait', 300]
                         ]
                      }, {
                         'cursor': [
-                            ['addClass', 'g-display-none']
+                            ['fadeTo', 0, 100]
+                        ],
+                        'size__inseam': [
+                            ['removeClass', 'focused']
                         ],
                         'size__length': [
                             ['addClass', 'focused']
@@ -642,19 +651,26 @@
                         ]
                      }, {
                         'size__length': [
-                            ['wait', 200],
+                            ['wait', 1500],
                             ['typeText', '117'],
-                            ['wait', 300],
-                            ['removeClass', 'focused']
+                            ['wait', 200]
                         ]
                      }, {
-                        'cursor': [
+                        'save-button': [
+                            ['fadeTo', 0, 1],
                             ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 100]
+                        ],
+                        'cursor': [
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [852, 574]],
-                            ['wait', 300]
+                            ['fadeTo', 1, 0],
+                            ['moveTo', [858, 586]],
+                            ['wait', 100]
                         ]
                      }, {
+                        'size__length': [
+                            ['removeClass', 'focused']
+                        ],
                         'popup-wrapper': [
                             ['popup', 'show', {
                                 'position': 'top',
@@ -666,8 +682,9 @@
                         ]
                      }, {
                         'cursor': [
-                            ['removeClass', 'g-display-none'],
-                            ['moveTo', [402, 525]],
+                            ['moveTo', [397, 520]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 500],
                             'click'
                         ]
                      }];">
@@ -677,6 +694,7 @@
                     <div class="size-help size-help-5 g-display-none"></div>
                     <div class="size-help size-help-6 g-display-none"></div>
                     <div class="size-help size-help-7 g-display-none"></div>
+                    <div class="save-button g-display-none"></div>
                     <div class="popup-wrapper"></div>
                     <div class="size">
                         <div class="size-input size__waist">
@@ -709,26 +727,23 @@
 
                 <div id="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
                      onclick="return [{
+                        'cursor': [
+                            ['wait', 1200]
+                        ]
+                     }, {
                         'cart-bg': [
-                            ['wait', 400],
-                            ['moveTo', [0, -470], {'duration': 600}]
+                            ['moveTo', [0, -470], {'duration': 1000}]
+                        ],
+                        'delivery-form': [
+                            ['moveTo', [208, 103], {'duration': 1000}]
                         ]
                      }, {
                         'cursor': [
                             ['moveTo', [400, 50], {'duration': 800}],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 200]
-                        ],
-                        'delivery-form': [
-                            ['fadeTo', 0, 1],
-                            ['removeClass', 'g-display-none'],
-                            ['fadeTo', 1, 100]
                         ]
                      }, {
-                        'cursor': [
-                            ['wait', 3000],
-                            'click'
-                        ],
                         'popup-wrapper': [
                             ['popup', 'show', {
                                 'position': 'bottom',
@@ -737,6 +752,11 @@
                             }],
                             ['wait', 3000],
                             ['popup', 'hide']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 200],
+                            'click'
                         ]
                      }, {
                         'cart-selector': [
@@ -756,7 +776,7 @@
                      }, {
                         'delivery-name': [
                             ['addClass', 'focused'],
-                            ['wait', 200],
+                            ['wait', 600],
                             ['typeText', 'Sergey Korol'],
                             ['wait', 300],
                             ['removeClass', 'focused']
@@ -773,7 +793,7 @@
                      }, {
                         'delivery-address': [
                             ['addClass', 'focused'],
-                            ['wait', 200],
+                            ['wait', 600],
                             ['typeText', 'Tverskaya st., 13-10'],
                             ['wait', 300],
                             ['removeClass', 'focused']
@@ -790,7 +810,7 @@
                      }, {
                         'delivery-city': [
                             ['addClass', 'focused'],
-                            ['wait', 200],
+                            ['wait', 600],
                             ['typeText', 'Moscow'],
                             ['wait', 300],
                             ['removeClass', 'focused']
@@ -807,8 +827,8 @@
                      }, {
                         'delivery-country': [
                             ['addClass', 'focused'],
-                            ['wait', 200],
-                            ['typeText', 'Тут имитируем селект'],
+                            ['wait', 600],
+                            ['typeText', 'Russia'],
                             ['wait', 300],
                             ['removeClass', 'focused']
                         ]
@@ -824,7 +844,7 @@
                      }, {
                         'delivery-index': [
                             ['addClass', 'focused'],
-                            ['wait', 200],
+                            ['wait', 600],
                             ['typeText', '192171'],
                             ['wait', 300],
                             ['removeClass', 'focused']
@@ -841,7 +861,7 @@
                      }, {
                         'delivery-email': [
                             ['addClass', 'focused'],
-                            ['wait', 200],
+                            ['wait', 600],
                             ['typeText', 'kotosergey@gmail.com'],
                             ['wait', 300],
                             ['removeClass', 'focused']
@@ -858,7 +878,7 @@
                      }, {
                         'delivery-phone': [
                             ['addClass', 'focused'],
-                            ['wait', 200],
+                            ['wait', 600],
                             ['typeText', '89215426260'],
                             ['wait', 300],
                             ['removeClass', 'focused']
@@ -877,10 +897,11 @@
                     </div>
                     <div class="cart-selector g-display-none"></div>
                     <div class="popup-wrapper"></div>
-                    <div class="delivery-form g-display-none">
+                    <div class="delivery-form">
                         <div class="delivery-input delivery-name"></div>
                         <div class="delivery-input delivery-address"></div>
                         <div class="delivery-input delivery-city"></div>
+                        <div class="delivery-input delivery-state"></div>
                         <div class="delivery-input delivery-country"></div>
                         <div class="delivery-input delivery-index" data-noindent="true"></div>
                         <div class="delivery-input delivery-email"></div>
@@ -894,7 +915,7 @@
                 <div id="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast"
                      onclick="return [{
                         'cursor': [
-                            ['moveTo', [214, 120]],
+                            ['moveTo', [205, 120]],
                             ['wait', 800]
                         ]
                     }, {
@@ -906,21 +927,28 @@
                         ],
                         'checkout-form': [
                             ['moveTo', [208, 82]]
+                        ],
+                        'subscribe': [
+                            ['moveTo', [208, 287]]
+                        ],
+                        'cursor': [
+                            ['wait', 900],
+                            ['moveTo', [205, 50]]
                         ]
                     }, {
                         'cursor': [
-                            ['wait', 500],
-                            ['moveTo', [272, 23]],
                             ['wait', 200],
-                            ['circleAround', [272, 23]],
+                            ['moveTo', [272, 53]],
                             ['wait', 200],
-                            ['moveTo', [405, 23]],
+                            ['circleAround', [272, 34]],
                             ['wait', 200],
-                            ['circleAround', [405, 23]],
+                            ['moveTo', [405, 53]],
                             ['wait', 200],
-                            ['moveTo', [552, 23]],
+                            ['circleAround', [405, 34]],
                             ['wait', 200],
-                            ['circleAround', [552, 23]],
+                            ['moveTo', [552, 53]],
+                            ['wait', 200],
+                            ['circleAround', [552, 34]],
                             ['wait', 200],
                             ['moveTo', [214, 85]],
                             ['addClass', 'cursor-text'],
@@ -933,7 +961,7 @@
                     }, {
                         'checkout-number': [
                             ['addClass', 'focused'],
-                            ['wait', 300],
+                            ['wait', 600],
                             ['typeText', '4276550044560435'],
                             ['wait', 200],
                             ['removeClass', 'focused']
@@ -942,7 +970,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [214, 115]],
+                            ['moveTo', [214, 117]],
                             ['addClass', 'cursor-text'],
                             ['wait', 400],
                             ['addClass', 'g-display-none']
@@ -950,7 +978,7 @@
                     }, {
                         'checkout-name': [
                             ['addClass', 'focused'],
-                            ['wait', 300],
+                            ['wait', 600],
                             ['typeText', 'Sergey Korol'],
                             ['wait', 200],
                             ['removeClass', 'focused']
@@ -959,7 +987,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [214, 146]],
+                            ['moveTo', [214, 148]],
                             ['addClass', 'cursor-text'],
                             ['wait', 400],
                             ['addClass', 'g-display-none']
@@ -967,7 +995,7 @@
                     }, {
                         'checkout-month': [
                             ['addClass', 'focused'],
-                            ['wait', 300],
+                            ['wait', 600],
                             ['typeText', '10'],
                             ['wait', 200],
                             ['removeClass', 'focused']
@@ -976,7 +1004,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [240, 146]],
+                            ['moveTo', [240, 148]],
                             ['addClass', 'cursor-text'],
                             ['wait', 400],
                             ['addClass', 'g-display-none']
@@ -984,7 +1012,7 @@
                     }, {
                         'checkout-year': [
                             ['addClass', 'focused'],
-                            ['wait', 300],
+                            ['wait', 600],
                             ['typeText', '18'],
                             ['wait', 200],
                             ['removeClass', 'focused']
@@ -993,7 +1021,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [214, 187]],
+                            ['moveTo', [214, 190]],
                             ['addClass', 'cursor-text'],
                             ['wait', 400],
                             ['addClass', 'g-display-none']
@@ -1001,7 +1029,7 @@
                     }, {
                         'checkout-cvv': [
                             ['addClass', 'focused'],
-                            ['wait', 300],
+                            ['wait', 600],
                             ['typeText', '111'],
                             ['wait', 200],
                             ['removeClass', 'focused']
@@ -1010,7 +1038,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [283, 434]],
+                            ['moveTo', [283, 438]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 800],
                             'click'
@@ -1029,6 +1057,7 @@
                         <div class="checkout-input checkout-year" data-noindent="true"></div>
                         <div class="checkout-input checkout-cvv" data-noindent="true"></div>
                     </div>
+                    <div class="subscribe">kotosergey@gmail.com</div>
                     <div class="checkout-disabled"></div>
                     <div class="cursor" style="left: 100px; top: 100px;"></div>
                 </div>
