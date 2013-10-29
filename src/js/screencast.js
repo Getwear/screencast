@@ -30,6 +30,7 @@
         this._opacity = $elem.css('opacity');
         this._text = $elem.text();
         this.params = $.extend({}, defaults, params);
+        this.elemData = $elem.data();
 
         this.pause = function() {
             if (!this._paused) {
@@ -173,20 +174,24 @@
                 defaults = {
                     'mask': false
                 },
-                $dummy = $("<div />").appendTo($BODY),
+                $dummy = $("<div />"),
                 $textField = $elem.find(".type-text").length && $elem.find(".type-text") || $elem,
                 currentText = "",
                 fieldWidth = $textField.width();
 
             params = $.extend({}, defaults, params);
 
+            $dummy.css({
+                'position': 'absolute',
+                'left': '-2000px',
+                'visibility': 'hidden',
+                'font-size': $elem.css('font-size')
+            });
+
+            $dummy.appendTo($BODY);
+
             interval = setInterval(function() {
 
-                $dummy.css({
-                    'position': 'absolute',
-                    'left': '-2000px',
-                    'visibility': 'hidden'
-                });
 
                 $elem.addClass('typed');
 
@@ -203,7 +208,7 @@
                     $dummy.text(currentText);
                     overflow = $dummy.width() - fieldWidth;
 
-                    if (overflow > 0) {
+                    if (overflow > 0 && !that.elemData.noindent) {
                         $textField.css('text-indent', '-' + (overflow + 2) + 'px');
                     }
                 } else {
