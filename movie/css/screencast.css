@@ -144,8 +144,8 @@
     position: absolute;
     width: 341px;
     height: 57px;
-    top: 200px;
-    left: 200px;
+    top: 16px;
+    left: 212px;
     background: url(../i/how-to-buy/elements/06-cart-delivery-selector.png);
 }
 
@@ -188,7 +188,7 @@
     margin-right: 20px;
 }
 
-.b-movie .size-input.focused {
+.b-movie .focused {
     border: 1px solid #4473bf;
     -webkit-box-shadow: #3376e3 0 0 10px,
         rgba(0,0,0,.5) 0 3px 4px -1px inset;
@@ -205,4 +205,49 @@
 
 .b-movie .size-input:last-child {
     border-bottom-right-radius: 3px;
+}
+
+.delivery-form {
+    position: absolute;
+    left: 208px;
+    top: 103px;
+    width: 347px;
+}
+
+.delivery-input {
+    font-size: 12px;
+    line-height: 16px;
+    min-height: 16px;
+    margin-bottom: 28px;
+    padding: 0 2px;
+    background: #FFF;
+    border-radius: 2px;
+    border: inset 2px #EEE;
+}
+
+.delivery-input.focused {
+    padding: 1px 2px;
+}
+
+.delivery-city {
+    margin-bottom: 41px;
+}
+
+.delivery-country {
+    width: 260px;
+    margin-bottom: 15px;
+}
+
+.delivery-index {
+    width: 41px;
+    min-height: 17px;
+    margin-bottom: 16px;
+}
+
+.delivery-email {
+    margin-bottom: 10px;
+}
+
+.delivery-phone {
+    width: 137px;
 }

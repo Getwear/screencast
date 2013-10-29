@@ -455,7 +455,7 @@
                     <div class="cursor cursor-pointer" style="left: 191px; top: 169px;"></div>
                 </div>
 
-                <div id="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
+                <div id="measures" data-img="i/how-to-buy/05-measures.png" data-skip="true" class="screencast"
                      onclick="return [{
                         'popup-wrapper': [
                             ['wait', 800],
@@ -667,7 +667,7 @@
                      }, {
                         'cursor': [
                             ['removeClass', 'g-display-none'],
-                            ['moveTo', [402, 185]],
+                            ['moveTo', [402, 525]],
                             'click'
                         ]
                      }];">
@@ -709,13 +709,189 @@
 
                 <div id="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
                      onclick="return [{
-
+                        'cart-bg': [
+//                            ['fadeTo', 0, 1],
+//                            ['removeClass', 'g-display-none'],
+//                            ['fadeTo', 1, 200],
+                            ['wait', 400],
+                            ['moveTo', [0, -470], {'duration': 600}]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['moveTo', [400, 50], {'duration': 800}],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 200]
+                        ],
+                        'delivery-form': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 100]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 3000],
+                            'click'
+                        ],
+                        'popup-wrapper': [
+                            ['popup', 'show', {
+                                'position': 'bottom',
+                                'coords': [380, 78],
+                                'text': 'Есть два типа доставки — быстрая с курьером и обычная, но бесплатная'
+                            }],
+                            ['wait', 3000],
+                            ['popup', 'hide']
+                        ]
+                     }, {
+                        'cart-selector': [
+                            ['fadeTo', 0, 1],
+                            ['fadeTo', 1, 100],
+                            ['removeClass', 'g-display-none'],
+                            ['wait', 200]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'cursor-pointer'],
+                            ['moveTo', [215, 105]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-name': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'Sergey Korol'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [215, 153]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-address': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'Tverskaya st., 13-45'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursorText'],
+                            ['moveTo', [215, 200]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-city': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'Moscow'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [230, 263]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-country': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'Тут имитируем селект'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [215, 298]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-index': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', '12345'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [215, 335]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-email': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', 'kotosergey@gmail.com'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [215, 366]],
+                            ['addClass', 'cursor-text'],
+                            ['wait', 300],
+                            ['addClass', 'g-display-none']
+                        ]
+                     }, {
+                        'delivery-phone': [
+                            ['addClass', 'focused'],
+                            ['wait', 200],
+                            ['typeText', '892184834546'],
+                            ['wait', 300],
+                            ['removeClass', 'focused']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['removeClass', 'g-display-none'],
+                            ['removeClass', 'cursor-text'],
+                            ['moveTo', [820, 550]],
+                            ['wait', 300],
+                            'click'
+                        ]
                      }];">
                     <div class="cart-frame">
                         <img class="cart-bg" src="i/how-to-buy/06-cart.png" alt=""/>
                     </div>
                     <div class="cart-selector g-display-none"></div>
-                    <div class="cursor" style="left: 402px; top: 185px;"></div>
+                    <div class="popup-wrapper"></div>
+                    <div class="delivery-form g-display-none">
+                        <div class="delivery-input delivery-name"></div>
+                        <div class="delivery-input delivery-address"></div>
+                        <div class="delivery-input delivery-city"></div>
+                        <div class="delivery-input delivery-country"></div>
+                        <div class="delivery-input delivery-index"></div>
+                        <div class="delivery-input delivery-email"></div>
+                        <div class="delivery-input delivery-phone"></div>
+                    </div>
+
+
+                    <div class="cursor" style="left: 402px; top: 525px;"></div>
                 </div>
 
                 <div id="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast"
