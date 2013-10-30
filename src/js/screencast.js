@@ -18,7 +18,7 @@
             defaults = {
                 offsetx: 0,
                 offsety: 0,
-                moveSpeed: 400,
+                moveSpeed: 200,
                 easing: 'easeInCubicOutSine'
             };
 
@@ -127,7 +127,7 @@
             params = params || {};
 
             easing = params.easing || defaults.easing;
-            duration = params.duration || 900;
+            duration = params.duration || 1500;
             r = params.radius || 20;
 
             this.moveTo([coords[0], coords[1] + r])
