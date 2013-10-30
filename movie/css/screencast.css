@@ -179,6 +179,15 @@
     background: url(../i/how-to-buy/elements/03-tool.png) !important;
 }
 
+.b-movie .fotorama {
+    width: 960px;
+    height: 600px;
+    position: relative;
+    background: #eee;
+    cursor: pointer;
+    display: none;
+}
+
 .b-movie .size {
     position: absolute;
     top: 215px;
