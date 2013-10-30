@@ -474,9 +474,51 @@
                         'subtitles': [
                             ['fadeTo', 1, 0],
                             ['wait', 500],
-                            ['fadeTo', 1, 200],
-                            ['wait', 1500],
+                            ['fadeTo', 1, 200]
+                        ]
+                     }, {
+                        'popup-threads': [
+                            ['wait', 800],
+                            ['popup', 'show', {
+                                'coords': [322, 446],
+                                'position': 'bottom',
+                                'text': 'Цвет ниток'
+                            }]
+                        ]
+                     }, {
+                        'popup-pockets': [
+                            ['wait', 300],
+                            ['popup', 'show', {
+                                'coords': [631, 413],
+                                'position': 'bottom',
+                                'text': 'Карманы'
+                            }]
+                        ]
+                     }, {
+                        'popup-belt': [
+                            ['wait', 500],
+                            ['popup', 'show', {
+                                'coords': [637, 137],
+                                'position': 'bottom',
+                                'text': 'Пуговицы'
+                            }]
+                        ]
+                     }, {
+                        'subtitles': [
+                            ['wait', 1500]
+                        ]
+                     }, {
+                        'subtitles': [
                             ['fadeTo', 0, 1000]
+                        ],
+                        'popup-threads': [
+                            ['popup', 'hide']
+                        ],
+                        'popup-pockets': [
+                            ['popup', 'hide']
+                        ],
+                        'popup-belt': [
+                            ['popup', 'hide']
                         ]
                      }, {
                         'cursor': [
@@ -529,9 +571,14 @@
                         ]
                      }];">
 
-                    <div class="subtitles" style="top: 47%; opacity: 200; display: block;">
-                        <div class="subtitles__wrap">Выбирем мелочи. Цвет ниток. Карманы. Посадка.</div>
+                    <div class="subtitles" style="top: 6%; opacity: 200; display: block;">
+                        <div class="subtitles__wrap">Выбирем мелочи</div>
                     </div>
+
+                    <div class="popup-threads"></div>
+                    <div class="popup-belt"></div>
+                    <div class="popup-pockets"></div>
+
                     <div class="model model-result-back g-display-none"></div>
                     <div class="cursor cursor-pointer" style="left: 191px; top: 169px;"></div>
                 </div>
