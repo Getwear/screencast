@@ -286,6 +286,36 @@
                         ]
                      }, {
                         'cursor': [
+                            ['wait', 500],
+                            ['moveTo', [320, 368]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 700],
+                            'click'
+                        ]
+                     }, {
+                        'color': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 500],
+                            ['moveTo', [433, 287]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 700],
+                            'click'
+                        ]
+                     }, {
+                        'color': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'model-man-low': [
+                            ['addClass', 'g-display-none']
+                        ],
+                        'model-man-color': [
+                            ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'cursor': [
                             ['wait', 300],
                             ['removeClass', 'cursor-pointer'],
                             ['moveTo', [185, 205]],
@@ -302,7 +332,9 @@
                     <div class="model model-man-base g-display-none"></div>
                     <div class="model model-man-straight g-display-none"></div>
                     <div class="model model-man-low g-display-none"></div>
+                    <div class="model model-man-color g-display-none"></div>
                     <div class="type g-display-none"></div>
+                    <div class="color g-display-none"></div>
                     <div class="cursor cursor-pointer" style="top: 25px; left: 490px;"></div>
                 </div>
 

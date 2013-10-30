@@ -24,6 +24,10 @@
     background: url(../i/how-to-buy/elements/02-man-straight.png);
 }
 
+.model-man-color {
+    background: url(../i/how-to-buy/elements/02-man-color.png);
+}
+
 .model-result-back {
     width: 430px;
     background: url(../i/how-to-buy/elements/04-show-back.png);
@@ -38,6 +42,15 @@
     background: url(../i/how-to-buy/elements/02-type.png);
 }
 
+.color {
+    position: absolute;
+    top: 167px;
+    left: 227px;
+    width: 531px;
+    height: 187px;
+    background: url(../i/how-to-buy/elements/02-color.png);
+}
+
 .gender-switch {
     position: absolute;
     top: 88px;
@@ -50,7 +63,7 @@
 .craft-tool {
     position: absolute;
     left: 614px;
-    top: 233px;
+    top: 234px;
     width: 48px;
     height: 55px;
 }
@@ -74,10 +87,10 @@
 
 .craft-result-2 {
     position: absolute;
-    top: 378px;
+    top: 353px;
     left: 528px;
     width: 51px;
-    height: 90px;
+    height: 115px;
     background: url(../i/how-to-buy/elements/03-result-2.png);
 }
 
@@ -86,7 +99,7 @@
     top: 174px;
     left: 426px;
     width: 54px;
-    height: 126px;
+    height: 168px;
     background: url(../i/how-to-buy/elements/03-result-3.png);
 }
 
