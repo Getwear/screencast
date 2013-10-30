@@ -326,10 +326,10 @@
 
 .checkout-input {
     font-size: 12px;
-    line-height: 17px;
-    min-height: 17px;
+    line-height: 16px;
+    min-height: 16px;
     margin-bottom: 10px;
-    padding: 0 2px;
+    padding: 1px 2px 0;
     white-space: nowrap;
     background: #fbf6e4;
     border-radius: 2px;
@@ -337,7 +337,7 @@
 }
 
 .checkout-input.focused {
-    padding: 1px 3px;
+    padding: 2px 3px 1px;
 }
 
 .checkout-input.focused::after {
