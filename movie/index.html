@@ -748,6 +748,9 @@
                         ]
                      }, {
                         'cursor': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200],
                             ['moveTo', [400, 50], {'duration': 800}],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 200]
@@ -770,8 +773,8 @@
                      }, {
                         'cart-selector': [
                             ['fadeTo', 0, 1],
-                            ['fadeTo', 1, 100],
                             ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 100],
                             ['wait', 200]
                         ]
                      }, {
@@ -920,16 +923,11 @@
                     </div>
 
 
-                    <div class="cursor" style="left: 402px; top: 525px;"></div>
+                    <div class="cursor g-display-none" style="left: 50px; top: 50px;"></div>
                 </div>
 
                 <div id="checkout" data-section="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast"
                      onclick="return [{
-                        'cursor': [
-                            ['moveTo', [205, 120]],
-                            ['wait', 800]
-                        ]
-                    }, {
                         'checkout-bg': [
                             ['moveTo', [0, -320]]
                         ],
@@ -941,13 +939,12 @@
                         ],
                         'subscribe': [
                             ['moveTo', [208, 287]]
-                        ],
-                        'cursor': [
-                            ['wait', 900],
-                            ['moveTo', [205, 50]]
                         ]
                     }, {
                         'cursor': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200],
                             ['wait', 200],
                             ['moveTo', [272, 53]],
                             ['wait', 200],
@@ -1071,7 +1068,7 @@
                     </div>
                     <div class="subscribe">kotosergey@gmail.com</div>
                     <div class="checkout-disabled"></div>
-                    <div class="cursor" style="left: 100px; top: 100px;"></div>
+                    <div class="cursor g-display-none" style="left: 50px; top: 50px;"></div>
                 </div>
 
                 <div id="profile" data-img="i/how-to-buy/08-profile.png" class="screencast" onclick="return [{
@@ -1079,7 +1076,7 @@
                         ['wait', 3000]
                     ]
                 }];">
-                    <div class="cursor"></div>
+                    <div class="cursor g-display-none"></div>
                 </div>
             </div>
 
