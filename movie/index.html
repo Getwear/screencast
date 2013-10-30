@@ -183,7 +183,7 @@
                         ],
                         'cursor': [
                             ['wait', 1000],
-                            ['moveTo', [700, 285], {'duration': 2000}]
+                            ['moveTo', [650, 285], {'duration': 2000}]
                         ]
                     }, {
                         'subtitles': [
@@ -198,14 +198,21 @@
                         ]
                     }];">
                     <div class="subtitles" style="top: 40%; opacity: 200; display: block;">
-                        <div class="subtitles__wrap">Качественные джинсы по вашему дизайну и мерке</div>
+                        <div class="subtitles__wrap">Сейчас мы расскажем, как купить джинсы</div>
                     </div>
-                    <div class="cursor" style="left: 250px; top: 295px;"></div>
+                    <div class="cursor" style="left: 300px; top: 295px;"></div>
                 </div>
 
-                <div id="design" data-section="designt" data-img="i/how-to-buy/02-design.png" class="screencast"
-                     onclick="return [
-                     {
+                <div id="design" data-section="design" data-img="i/how-to-buy/02-design.png" class="screencast"
+                     onclick="return [{
+                        'subtitles': [
+                            ['fadeTo', 1, 0],
+                            ['wait', 500],
+                            ['fadeTo', 1, 200],
+                            ['wait', 1500],
+                            ['fadeTo', 0, 1000]
+                        ]
+                     }, {
                         'gender-switch': [
                             ['fadeTo', 0, 1],
                             ['removeClass', 'g-display-none']
@@ -288,6 +295,9 @@
                             ['wait', 200]
                         ]
                      }];">
+                    <div class="subtitles" style="top: 47%; opacity: 200; display: block;">
+                        <div class="subtitles__wrap">Создадим джинсы своей мечты?</div>
+                    </div>
                     <div class="gender-switch g-display-none"></div>
                     <div class="model model-man-base g-display-none"></div>
                     <div class="model model-man-straight g-display-none"></div>
@@ -298,6 +308,14 @@
 
                 <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast"
                      onclick="return [{
+                        'subtitles': [
+                            ['fadeTo', 1, 0],
+                            ['wait', 500],
+                            ['fadeTo', 1, 200],
+                            ['wait', 1500],
+                            ['fadeTo', 0, 1000]
+                        ]
+                     }, {
                         'cursor': [
                             ['wait', 700],
                             ['removeClass', 'cursor-pointer'],
@@ -406,6 +424,9 @@
                             ['wait', 200]
                         ]
                      }];">
+                    <div class="subtitles" style="top: 46%; opacity: 200; display: block;">
+                        <div class="subtitles__wrap">Нанесём потёртости пемзой</div>
+                    </div>
                     <div class="craft-buttons g-display-none"></div>
                     <div class="craft-tool craft-tool-hover g-display-none"></div>
                     <div class="craft-tool craft-tool-active g-display-none"></div>
@@ -418,6 +439,14 @@
 
                 <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast"
                      onclick="return [{
+                        'subtitles': [
+                            ['fadeTo', 1, 0],
+                            ['wait', 500],
+                            ['fadeTo', 1, 200],
+                            ['wait', 1500],
+                            ['fadeTo', 0, 1000]
+                        ]
+                     }, {
                         'cursor': [
                             ['wait', 300],
                             ['removeClass', 'cursor-pointer'],
@@ -467,21 +496,22 @@
                             ['wait', 200]
                         ]
                      }];">
+
+                    <div class="subtitles" style="top: 47%; opacity: 200; display: block;">
+                        <div class="subtitles__wrap">Выбирем мелочи. Цвет ниток. Карманы. Посадка.</div>
+                    </div>
                     <div class="model model-result-back g-display-none"></div>
                     <div class="cursor cursor-pointer" style="left: 191px; top: 169px;"></div>
                 </div>
 
                 <div id="measures" data-section="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
                      onclick="return [{
-                        'popup-wrapper': [
-                            ['wait', 800],
-                            ['popup', 'show', {
-                                'coords': [660, 198],
-                                'position': 'top',
-                                'text': 'Мы гарантируем, что джинсы сядут, так что ничего не бойтесь'
-                            }],
-                            ['wait', 2000],
-                            ['popup', 'hide']
+                        'subtitles': [
+                            ['fadeTo', 1, 0],
+                            ['wait', 500],
+                            ['fadeTo', 1, 200],
+                            ['wait', 1500],
+                            ['fadeTo', 0, 1000]
                         ]
                      }, {
                         'cursor': [
@@ -697,6 +727,11 @@
                             ['wait', 200]
                         ]
                      }];">
+
+                    <div class="subtitles" style="top: 14%; opacity: 200; display: block;">
+                        <div class="subtitles__wrap">Не бойтесь! Мы гарантируем, что джинсы сядут.
+                            Если что — спрашивайте у нас.</div>
+                    </div>
                     <div class="size-help size-help-2 g-display-none"></div>
                     <div class="size-help size-help-3 g-display-none"></div>
                     <div class="size-help size-help-4 g-display-none"></div>
@@ -736,6 +771,14 @@
 
                 <div id="cart" data-section="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
                      onclick="return [{
+                        'subtitles': [
+                            ['fadeTo', 1, 0],
+                            ['wait', 500],
+                            ['fadeTo', 1, 200],
+                            ['wait', 1500],
+                            ['fadeTo', 0, 1000]
+                        ]
+                     }, {
                         'cursor': [
                             ['wait', 1200]
                         ]
@@ -899,7 +942,7 @@
                         'cursor': [
                             ['removeClass', 'g-display-none'],
                             ['removeClass', 'cursor-text'],
-                            ['moveTo', [820, 550]],
+                            ['moveTo', [820, 560]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 700],
                             'click',
@@ -921,13 +964,22 @@
                         <div class="delivery-input delivery-email"></div>
                         <div class="delivery-input delivery-phone"></div>
                     </div>
-
-
+                    <div class="subtitles" style="top: 37%; opacity: 200; display: block;">
+                        <div class="subtitles__wrap">Выбираем тип доставки</div>
+                    </div>
                     <div class="cursor g-display-none" style="left: 50px; top: 50px;"></div>
                 </div>
 
                 <div id="checkout" data-section="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast"
                      onclick="return [{
+                        'subtitles': [
+                            ['fadeTo', 1, 0],
+                            ['wait', 500],
+                            ['fadeTo', 1, 200],
+                            ['wait', 1500],
+                            ['fadeTo', 0, 1000]
+                        ]
+                     }, {
                         'checkout-bg': [
                             ['moveTo', [0, -320]]
                         ],
@@ -1068,6 +1120,10 @@
                     </div>
                     <div class="subscribe">kotosergey@gmail.com</div>
                     <div class="checkout-disabled"></div>
+
+                    <div class="subtitles" style="top: 34%; opacity: 200; display: block;">
+                        <div class="subtitles__wrap">Выбираем способ оплаты</div>
+                    </div>
                     <div class="cursor g-display-none" style="left: 50px; top: 50px;"></div>
                 </div>
 
@@ -1076,6 +1132,9 @@
                         ['wait', 3000]
                     ]
                 }];">
+                    <div class="subtitles" style="top: 40%; opacity: 200; display: block;">
+                        <div class="subtitles__wrap">Следим за статусом заказа</div>
+                    </div>
                     <div class="cursor g-display-none"></div>
                 </div>
             </div>
