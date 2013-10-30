@@ -19,7 +19,7 @@
                 offsetx: 0,
                 offsety: 0,
                 moveSpeed: 400,
-                easing: 'easeInCubic'
+                easing: 'easeInCubicOutSine'
             };
 
         this._stopped = false;
