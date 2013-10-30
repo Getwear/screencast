@@ -177,12 +177,12 @@
                      onclick="return [
                     {
                         'subtitles': [
-                            ['fadeTo', 1, 0],
+                            ['fadeTo', 0, 1],
                             ['wait', 500],
                             ['fadeTo', 1, 200]
                         ],
                         'cursor': [
-                            ['wait', 1000],
+                            ['wait', 1500],
                             ['moveTo', [650, 285], {'duration': 2000}]
                         ]
                     }, {
@@ -197,7 +197,7 @@
                             'click'
                         ]
                     }];">
-                    <div class="subtitles" style="top: 40%; opacity: 200; display: block;">
+                    <div class="subtitles" style="top: 40%;opacity: 0; display: block;">
                         <div class="subtitles__wrap">Сейчас мы расскажем, как купить джинсы</div>
                     </div>
                     <div class="cursor" style="left: 300px; top: 295px;"></div>
@@ -206,10 +206,10 @@
                 <div id="design" data-section="design" data-img="i/how-to-buy/02-design.png" class="screencast"
                      onclick="return [{
                         'subtitles': [
-                            ['fadeTo', 1, 0],
+                            ['fadeTo', 0, 1],
                             ['wait', 500],
                             ['fadeTo', 1, 200],
-                            ['wait', 1500],
+                            ['wait', 2000],
                             ['fadeTo', 0, 1000]
                         ]
                      }, {
@@ -325,7 +325,7 @@
                             ['wait', 200]
                         ]
                      }];">
-                    <div class="subtitles" style="top: 47%; opacity: 200; display: block;">
+                    <div class="subtitles" style="top: 47%;opacity: 0; display: block;">
                         <div class="subtitles__wrap">Создадим джинсы своей мечты?</div>
                     </div>
                     <div class="gender-switch g-display-none"></div>
@@ -341,10 +341,10 @@
                 <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast"
                      onclick="return [{
                         'subtitles': [
-                            ['fadeTo', 1, 0],
+                            ['fadeTo', 0, 1],
                             ['wait', 500],
                             ['fadeTo', 1, 200],
-                            ['wait', 1500],
+                            ['wait', 2000],
                             ['fadeTo', 0, 1000]
                         ]
                      }, {
@@ -456,7 +456,7 @@
                             ['wait', 200]
                         ]
                      }];">
-                    <div class="subtitles" style="top: 46%; opacity: 200; display: block;">
+                    <div class="subtitles" style="top: 46%;opacity: 0; display: block;">
                         <div class="subtitles__wrap">Нанесём потёртости пемзой</div>
                     </div>
                     <div class="craft-buttons g-display-none"></div>
@@ -472,7 +472,7 @@
                 <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast"
                      onclick="return [{
                         'subtitles': [
-                            ['fadeTo', 1, 0],
+                            ['fadeTo', 0, 1],
                             ['wait', 500],
                             ['fadeTo', 1, 200]
                         ]
@@ -505,7 +505,7 @@
                         ]
                      }, {
                         'subtitles': [
-                            ['wait', 1500]
+                            ['wait', 2500]
                         ]
                      }, {
                         'subtitles': [
@@ -524,21 +524,6 @@
                         'cursor': [
                             ['wait', 300],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [332, 302]],
-                            ['circleAround', [332, 277], {
-                                'radius': 25
-                            }],
-                            ['wait', 200],
-                            ['moveTo', [625, 200]],
-                            ['circleAround', [625, 160], {
-                                'radius': 40
-                            }],
-                            ['wait', 300],
-                            ['moveTo', [634, 412]],
-                            ['circleAround', [634, 374], {
-                                'radius': 38
-                            }],
-                            ['wait', 100],
                             ['moveTo', [500, 476]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 700],
@@ -571,7 +556,7 @@
                         ]
                      }];">
 
-                    <div class="subtitles" style="top: 6%; opacity: 200; display: block;">
+                    <div class="subtitles" style="top: 6%;opacity: 0; display: block;">
                         <div class="subtitles__wrap">Выбирем мелочи</div>
                     </div>
 
@@ -586,10 +571,10 @@
                 <div id="measures" data-section="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
                      onclick="return [{
                         'subtitles': [
-                            ['fadeTo', 1, 0],
+                            ['fadeTo', 0, 1],
                             ['wait', 500],
                             ['fadeTo', 1, 200],
-                            ['wait', 1500],
+                            ['wait', 2000],
                             ['fadeTo', 0, 1000]
                         ]
                      }, {
@@ -807,9 +792,8 @@
                         ]
                      }];">
 
-                    <div class="subtitles" style="top: 14%; opacity: 200; display: block;">
-                        <div class="subtitles__wrap">Не бойтесь! Мы гарантируем, что джинсы сядут.
-                            Если что — спрашивайте у нас.</div>
+                    <div class="subtitles" style="top: 14%;opacity: 0; display: block;">
+                        <div class="subtitles__wrap">Не бойтесь! Мы гарантируем, что джинсы сядут</div>
                     </div>
                     <div class="size-help size-help-2 g-display-none"></div>
                     <div class="size-help size-help-3 g-display-none"></div>
@@ -851,10 +835,10 @@
                 <div id="cart" data-section="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
                      onclick="return [{
                         'subtitles': [
-                            ['fadeTo', 1, 0],
+                            ['fadeTo', 0, 1],
                             ['wait', 500],
                             ['fadeTo', 1, 200],
-                            ['wait', 1500],
+                            ['wait', 2000],
                             ['fadeTo', 0, 1000]
                         ]
                      }, {
@@ -1043,7 +1027,7 @@
                         <div class="delivery-input delivery-email"></div>
                         <div class="delivery-input delivery-phone"></div>
                     </div>
-                    <div class="subtitles" style="top: 37%; opacity: 200; display: block;">
+                    <div class="subtitles" style="top: 37%;opacity: 0; display: block;">
                         <div class="subtitles__wrap">Выбираем тип доставки</div>
                     </div>
                     <div class="cursor g-display-none" style="left: 50px; top: 50px;"></div>
@@ -1052,10 +1036,10 @@
                 <div id="checkout" data-section="checkout" data-img="i/how-to-buy/07-checkout.png" class="screencast"
                      onclick="return [{
                         'subtitles': [
-                            ['fadeTo', 1, 0],
+                            ['fadeTo', 0, 1],
                             ['wait', 500],
                             ['fadeTo', 1, 200],
-                            ['wait', 1500],
+                            ['wait', 2000],
                             ['fadeTo', 0, 1000]
                         ]
                      }, {
@@ -1200,7 +1184,7 @@
                     <div class="subscribe">kotosergey@gmail.com</div>
                     <div class="checkout-disabled"></div>
 
-                    <div class="subtitles" style="top: 34%; opacity: 200; display: block;">
+                    <div class="subtitles" style="top: 34%;opacity: 0; display: block;">
                         <div class="subtitles__wrap">Выбираем способ оплаты</div>
                     </div>
                     <div class="cursor g-display-none" style="left: 50px; top: 50px;"></div>
@@ -1208,10 +1192,10 @@
 
                 <div id="profile" data-img="i/how-to-buy/08-profile.png" class="screencast" onclick="return [{
                     'subtitles': [
-                        ['fadeTo', 1, 0],
+                        ['fadeTo', 0, 1],
                         ['wait', 500],
                         ['fadeTo', 1, 200],
-                        ['wait', 1500],
+                        ['wait', 2000],
                         ['fadeTo', 0, 1000]
                     ]
                 }, {
@@ -1221,7 +1205,7 @@
                         ['wait', 2000]
                     ]
                 }];">
-                    <div class="subtitles" style="top: 40%; opacity: 200; display: block;">
+                    <div class="subtitles" style="top: 40%;opacity: 0; display: block;">
                         <div class="subtitles__wrap">Следим за статусом заказа</div>
                     </div>
                     <div class="cursor" style="left: 480px; top: 230px;"></div>
