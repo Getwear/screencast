@@ -1207,14 +1207,24 @@
                 </div>
 
                 <div id="profile" data-img="i/how-to-buy/08-profile.png" class="screencast" onclick="return [{
+                    'subtitles': [
+                        ['fadeTo', 1, 0],
+                        ['wait', 500],
+                        ['fadeTo', 1, 200],
+                        ['wait', 1500],
+                        ['fadeTo', 0, 1000]
+                    ]
+                }, {
                     'cursor': [
-                        ['wait', 3000]
+                        ['moveTo', [855, 38]],
+                        ['circleAround', [855, 18]],
+                        ['wait', 2000]
                     ]
                 }];">
                     <div class="subtitles" style="top: 40%; opacity: 200; display: block;">
                         <div class="subtitles__wrap">Следим за статусом заказа</div>
                     </div>
-                    <div class="cursor g-display-none"></div>
+                    <div class="cursor" style="left: 480px; top: 230px;"></div>
                 </div>
             </div>
 
