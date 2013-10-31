@@ -4,6 +4,10 @@
     height: 100%;
 }
 
+.cursor {
+    z-index: 9999;
+}
+
 .model {
     position: absolute;
     width: 410px;
