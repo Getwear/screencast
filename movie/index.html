@@ -569,10 +569,31 @@
                         ],
                         'cursor': [
                             ['wait', 500],
+                        ]
+                     }, {
+                        'popup-wrapper': [
+                            ['wait', 800],
+                            ['popup', 'show', {
+                                'position': 'top',
+                                'coords': [788, 122],
+                                'text': 'Нажмите, чтобы заказать джинсы по мерке'
+                            }],
+                            ['wait', 3000],
+                            ['popup', 'hide'],
+                            ['wait', 800],
+                            ['popup', 'show', {
+                                'position': 'bottom',
+                                'coords': [741, 155],
+                                'text': 'Нажмите, чтобы заказать джинсы стандартного размера'
+                            }],
+                            ['wait', 3000],
+                            ['popup', 'hide'],
+                            ['wait', 800]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 500],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [788, 164]],
-                            ['circleAround', [790, 144]],
-                            ['wait', 300],
                             ['moveTo', [772, 220]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 700],
@@ -588,6 +609,7 @@
                     <div class="popup-threads"></div>
                     <div class="popup-belt"></div>
                     <div class="popup-pockets"></div>
+                    <div class="popup-wrapper"></div>
 
                     <div class="model model-result-back g-display-none"></div>
                     <div class="cursor cursor-pointer" style="left: 191px; top: 169px;"></div>
