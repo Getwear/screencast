@@ -52,7 +52,7 @@
                 .on('click', function () {
                     if (currentScreencast) {
                         // Пауза
-                        currentScreencast[screencastIsPlaying ? 'stop' : 'start']();
+                        currentScreencast[screencastIsPlaying ? 'pause' : 'resume']();
                         screencastIsPlaying = !screencastIsPlaying;
                     }
                 });
