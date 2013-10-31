@@ -234,6 +234,18 @@
                             ['removeClass', 'g-display-none']
                         ]
                      }, {
+                        'popup-wrapper': [
+                            ['wait', 1200],
+                            ['popup', 'show', {
+                                'position': 'right',
+                                'coords': [380, 117],
+                                'text': 'Выбираем фасон'
+                            }],
+                            ['wait', 3000],
+                            ['popup', 'hide'],
+                            ['wait', 800]
+                        ]
+                     }, {
                         'cursor': [
                             ['wait', 300],
                             ['removeClass', 'cursor-pointer'],
@@ -283,6 +295,18 @@
                         ],
                         'model-man-low': [
                             ['removeClass', 'g-display-none']
+                        ]
+                     }, {
+                        'popup-wrapper': [
+                            ['wait', 800],
+                            ['popup', 'show', {
+                                'position': 'top',
+                                'coords': [320, 342],
+                                'text': 'Выбираем цвет ткани'
+                            }],
+                            ['wait', 3000],
+                            ['popup', 'hide'],
+                            ['wait', 800]
                         ]
                      }, {
                         'cursor': [
@@ -335,6 +359,7 @@
                     <div class="model model-man-color g-display-none"></div>
                     <div class="type g-display-none"></div>
                     <div class="color g-display-none"></div>
+                    <div class="popup-wrapper"></div>
                     <div class="cursor cursor-pointer" style="top: 25px; left: 490px;"></div>
                 </div>
 
