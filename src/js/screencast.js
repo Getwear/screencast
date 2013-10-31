@@ -409,6 +409,7 @@
         this.elems = {};
         this.scenario = [];
         this._played = false;
+        this._bump = $root.html();
 
         screencastData.screencast = this;
 
@@ -569,6 +570,7 @@
         this.stop = function() {
             $root.trigger('stop');
             this._played = false;
+            $root.html(this._bump);
         };
 
         this.goTo = function(frameNumber) {
