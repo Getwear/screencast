@@ -310,17 +310,17 @@
 
 .delivery-input {
     font-size: 12px;
-    line-height: 16px;
-    min-height: 16px;
+    line-height: 15px;
+    min-height: 15px;
     margin-bottom: 28px;
-    padding: 0 2px;
+    padding: 1px 2px 0;
     background: #FFF;
     border-radius: 2px;
     border: inset 2px #EEE;
 }
 
 .delivery-input.focused {
-    padding: 1px 3px;
+    padding: 2px 3px 1px;
 }
 
 .delivery-input.focused::after {
