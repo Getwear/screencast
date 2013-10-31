@@ -17,6 +17,10 @@
     background-clip: padding-box;
 }
 
+.popup-w180 {
+    max-width: 180px;
+}
+
 .popup-left {
     margin-right: 10px;
 }

@@ -1202,14 +1202,32 @@
                     ]
                 }, {
                     'cursor': [
-                        ['moveTo', [855, 38]],
-                        ['circleAround', [855, 18]],
-                        ['wait', 2000]
+                        ['moveTo', [855, 28]],
+                        ['addClass', 'cursor-pointer'],
+                        ['wait', 200]
+                    ]
+                }, {
+                    'popup-handler': [
+                        ['popup', 'show', {
+                            'position': 'bottom',
+                            'coords': [858, 38],
+                            'extraClasses': ['popup-dark', 'popup-w180'],
+                            'text': 'Мы выслали вам на почту подтверждение заказа'
+                        }],
+                        ['wait', 3000],
+                        ['popup', 'hide']
+                    ]
+                }, {
+                    'cursor': [
+                        ['wait', 800],
+                        'click',
+                        ['wait', 3000]
                     ]
                 }];">
                     <div class="subtitles" style="top: 40%;opacity: 0; display: block;">
                         <div class="subtitles__wrap">Следим за статусом заказа</div>
                     </div>
+                    <div class="popup-handler"></div>
                     <div class="cursor" style="left: 480px; top: 230px;"></div>
                 </div>
             </div>
