@@ -236,13 +236,21 @@
 
 .b-movie .size-input {
     height: 12.5%;
-    padding: 0px 1px 2px;
+    padding: 1px;
     text-align: right;
 }
 
 .b-movie .size-input .type-text {
     font-weight: bold;
     margin-right: 20px;
+}
+
+.b-movie .size-input.focused {
+    padding-top: 0;
+}
+
+.b-movie .size-input.focused .type-text {
+    margin-right: 18px;
 }
 
 @-webkit-keyframes blink {
@@ -266,7 +274,7 @@
     bottom: 1px;
     display: inline-block;
     width: 0;
-    height: 17px;
+    height: 16px;
     vertical-align: middle;
     border-right: solid 1px #333;
     -webkit-animation: blink 1s infinite;
