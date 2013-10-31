@@ -417,6 +417,9 @@
                             ['fadeTo', 0, 1],
                             ['removeClass', 'g-display-none'],
                             ['fadeTo', 1, 200]
+                        ],
+                        'price': [
+                            ['removeClass', 'g-display-none']
                         ]
                      },  {
                         'cursor': [
@@ -464,6 +467,18 @@
                             ['fadeTo', 1, 200]
                         ]
                      }, {
+                        'popup-wrapper': [
+                            ['wait', 500],
+                            ['popup', 'show', {
+                                'position': 'bottom',
+                                'coords': [357, 270],
+                                'text': 'А вот и Антипемза'
+                            }],
+                            ['wait', 3000],
+                            ['popup', 'hide'],
+                            ['wait', 500]
+                        ]
+                     }, {
                         'cursor': [
                             ['wait', 300],
                             ['moveTo', [258, 248]],
@@ -491,6 +506,8 @@
                     <div class="craft-result-2 g-display-none"></div>
                     <div class="craft-result-3 g-display-none"></div>
                     <div class="craft-result-4 g-display-none"></div>
+                    <div class="price g-display-none"></div>
+                    <div class="popup-wrapper"></div>
                     <div class="cursor cursor-pointer" style="left: 185px; top: 205px;"></div>
                 </div>
 

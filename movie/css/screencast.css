@@ -125,6 +125,16 @@
     background: url(../i/how-to-buy/elements/03-buttons-active.png);
 }
 
+.price {
+    position: absolute;
+    top: 93px;
+    left: 698px;
+    width: 138px;
+    height: 38px;
+    opacity: 1;
+    background: url(../i/how-to-buy/elements/03-price.png);
+}
+
 .size-help {
     position: absolute;
     top: 175px;
