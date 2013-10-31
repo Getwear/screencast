@@ -946,6 +946,18 @@
                             ['fadeTo', 0, 1000]
                         ]
                      }, {
+                        'popup-wrapper': [
+                            ['wait', 1000],
+                            ['popup', 'show', {
+                                'position': 'bottom',
+                                'coords': [773, 305],
+                                'extraClasses': ['popup-dark', 'popup-w200'],
+                                'text': 'Можно заказать сразу несколько пар'
+                            }],
+                            ['wait', 3500],
+                            ['popup', 'hide']
+                        ]
+                     }, {
                         'cursor': [
                             ['wait', 1200]
                         ]
