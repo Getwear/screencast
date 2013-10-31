@@ -259,7 +259,7 @@
                 $popover = $('<div class="popup"><div class="popup-arrow"></div><div class="popup-content">' + params.text  + '</div></div>');
 
                 $popover.addClass(classNames.join(" ")).appendTo($elem);
-                $popover.css({'opacity': 0}).show(duration);
+                $popover.css({'opacity': 0, display: 'block'});
 
                 switch(params.position) {
                     case 'top':
