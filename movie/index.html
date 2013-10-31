@@ -205,21 +205,13 @@
 
                 <div id="design" data-section="design" data-img="i/how-to-buy/02-design.png" class="screencast"
                      onclick="return [{
-                        'subtitles': [
-                            ['fadeTo', 0, 1],
-                            ['wait', 500],
-                            ['fadeTo', 1, 200],
-                            ['wait', 2000],
-                            ['fadeTo', 0, 1000]
-                        ]
-                     }, {
                         'gender-switch': [
                             ['fadeTo', 0, 1],
                             ['removeClass', 'g-display-none']
                         ]
                      }, {
                         'cursor': [
-                            ['wait', 300],
+                            ['wait', 700],
                             ['removeClass', 'cursor-pointer'],
                             ['moveTo', [162, 108]],
                             ['addClass', 'cursor-pointer'],
@@ -349,9 +341,6 @@
                             ['wait', 200]
                         ]
                      }];">
-                    <div class="subtitles" style="top: 47%;opacity: 0; display: block;">
-                        <div class="subtitles__wrap">Создадим джинсы своей мечты</div>
-                    </div>
                     <div class="gender-switch g-display-none"></div>
                     <div class="model model-man-base g-display-none"></div>
                     <div class="model model-man-straight g-display-none"></div>
