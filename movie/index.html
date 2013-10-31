@@ -643,20 +643,38 @@
                             ['fadeTo', 0, 1000]
                         ]
                      }, {
-                        'cursor': [
-                            ['moveTo', [647, 219], {'duration': 400}],
-                            ['addClass', 'cursor-text']
-                        ]
-                     }, {
                         'popup-wrapper': [
                             ['popup', 'show', {
-                                'position': 'top',
-                                'coords': [822, 366],
+                                'position': 'left',
+                                'coords': [767, 482],
                                 'extraClasses': ['popup-dark'],
-                                'text': 'Следуйте нашим подсказкам'
+                                'text': 'Посмотрите видео про мерки'
                             }],
-                            ['wait', 2000],
+                            ['wait', 3000],
                             ['popup', 'hide']
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 300],
+                            ['moveTo', [828, 486]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 900],
+                            ['click'],
+                            ['wait', 900]
+                        ]
+                     }, {
+                        'video': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['wait', 500],
+                            ['fadeTo', 1, 500],
+                            ['wait', 3000],
+                            ['fadeTo', 0, 500]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['moveTo', [647, 219]],
+                            ['addClass', 'cursor-text']
                         ]
                      }, {
                         'cursor': [
@@ -848,34 +866,6 @@
                         'size__length': [
                             ['wait', 600],
                             ['removeClass', 'focused']
-                        ],
-                        'popup-wrapper': [
-                            ['popup', 'show', {
-                                'position': 'left',
-                                'coords': [827, 418],
-                                'extraClasses': ['popup-dark'],
-                                'text': 'Посмотрите видео про мерки'
-                            }],
-                            ['wait', 3000],
-                            ['popup', 'hide']
-                        ]
-                     }, {
-                        'cursor': [
-                            ['wait', 300],
-                            ['moveTo', [888, 423]],
-                            ['addClass', 'cursor-pointer'],
-                            ['wait', 900],
-                            ['click'],
-                            ['wait', 900]
-                        ]
-                     }, {
-                        'video': [
-                            ['fadeTo', 0, 1],
-                            ['removeClass', 'g-display-none'],
-                            ['wait', 500],
-                            ['fadeTo', 1, 500],
-                            ['wait', 3000],
-                            ['fadeTo', 0, 500]
                         ]
                      }, {
                         'cursor': [
