@@ -157,6 +157,17 @@
     background: url(../i/how-to-buy/elements/05-size-7.png);
 }
 
+.video {
+    position: absolute;
+    left: 255px;
+    top: 132px;
+    width: 456px;
+    height: 258px;
+    background: url(../i/how-to-buy/elements/05-video.png);
+    box-shadow: 0 1px 25px rgba(0,0,0,.75),
+                0 0 5px rgba(0,0,0,.5);
+}
+
 .save-button {
     position: absolute;
     top: 504px;

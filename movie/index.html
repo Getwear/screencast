@@ -617,7 +617,7 @@
 
                 <div id="measures" data-section="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
                      onclick="return [{
-                        'subtitles': [
+                        'subtitles-intro': [
                             ['fadeTo', 0, 1],
                             ['wait', 500],
                             ['fadeTo', 1, 200],
@@ -809,17 +809,51 @@
                             ['fadeTo', 0, 1],
                             ['removeClass', 'g-display-none'],
                             ['fadeTo', 1, 100]
-                        ],
+                        ]
+                     }, {
                         'cursor': [
+                            ['wait', 800],
                             ['removeClass', 'cursor-text'],
-                            ['fadeTo', 1, 0],
+                            ['fadeTo', 1, 500]
+                        ],
+                        'size__length': [
+                            ['wait', 600],
+                            ['removeClass', 'focused']
+                        ],
+                        'subtitles-video': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['wait', 500],
+                            ['fadeTo', 1, 200],
+                            ['wait', 2000],
+                            ['fadeTo', 0, 1000]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 300],
+                            ['moveTo', [888, 423]],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 800],
+                            ['click'],
+                            ['wait', 300]
+                        ]
+                     }, {
+                        'video': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['wait', 500],
+                            ['fadeTo', 1, 500],
+                            ['wait', 3000],
+                            ['fadeTo', 0, 500]
+                        ]
+                     }, {
+                        'cursor': [
+                            ['wait', 300],
+                            ['removeClass', 'cursor-pointer'],
                             ['moveTo', [848, 586]],
                             ['wait', 100]
                         ]
                      }, {
-                        'size__length': [
-                            ['removeClass', 'focused']
-                        ],
                         'popup-wrapper': [
                             ['popup', 'show', {
                                 'position': 'top',
@@ -840,7 +874,7 @@
                         ]
                      }];">
 
-                    <div class="subtitles" style="top: 14%;opacity: 0; display: block;">
+                    <div class="subtitles subtitles-intro" style="top: 14%;opacity: 0; display: block;">
                         <div class="subtitles__wrap">Не бойтесь! Мы гарантируем, что джинсы сядут по фигуре</div>
                     </div>
                     <div class="size-help size-help-2 g-display-none"></div>
@@ -877,6 +911,10 @@
                             <div class="type-text"></div>
                         </div>
                     </div>
+                    <div class="subtitles subtitles-video g-display-none" style="top: 40%;opacity: 0; display: block;">
+                        <div class="subtitles__wrap">Посмотрите видео про мерки</div>
+                    </div>
+                    <div class="video g-display-none"></div>
                     <div class="cursor" style="left: 771px; top: 219px;"></div>
                 </div>
 
