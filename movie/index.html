@@ -169,6 +169,10 @@
                     <i class="play">&#9654;</i>
                     Смотреть ролик
                 </div>
+
+                <div class="subtitles" style="top: 60%; opacity: 200; display: block;">
+                    <div class="subtitles__wrap">Сейчас мы расскажем, как купить джинсы</div>
+                </div>
             </div>
 
             <div class="fotorama" data-auto="false" id="screencast-fotorama">
@@ -176,14 +180,9 @@
                 <div id="home" data-section="home" data-img="i/how-to-buy/01-home.png" class="screencast"
                      onclick="return [
                     {
-                        'subtitles': [
-                            ['fadeTo', 0, 1],
-                            ['wait', 500],
-                            ['fadeTo', 1, 200]
-                        ],
                         'cursor': [
                             ['wait', 1500],
-                            ['moveTo', [650, 285], {'duration': 2000}]
+                            ['moveTo', [650, 404], {'duration': 2000}]
                         ]
                     }, {
                         'subtitles': [
@@ -197,10 +196,10 @@
                             'click'
                         ]
                     }];">
-                    <div class="subtitles" style="top: 40%;opacity: 0; display: block;">
+                    <div class="subtitles" style="top: 60%; opacity: 200; display: block;">
                         <div class="subtitles__wrap">Сейчас мы расскажем, как купить джинсы</div>
                     </div>
-                    <div class="cursor" style="left: 300px; top: 295px;"></div>
+                    <div class="cursor" style="left: 300px; top: 414px;"></div>
                 </div>
 
                 <div id="design" data-section="design" data-img="i/how-to-buy/02-design.png" class="screencast"
@@ -272,6 +271,18 @@
                         ],
                         'cursor': [
                             ['removeClass', 'cursor-pointer']
+                        ]
+                     }, {
+                        'popup-wrapper': [
+                            ['wait', 1200],
+                            ['popup', 'show', {
+                                'position': 'left',
+                                'coords': [577, 275],
+                                'text': 'Выбираем высоту талии'
+                            }],
+                            ['wait', 3000],
+                            ['popup', 'hide'],
+                            ['wait', 800]
                         ]
                      }, {
                         'cursor': [
