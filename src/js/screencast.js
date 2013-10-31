@@ -245,15 +245,21 @@
             var dfd = new $.Deferred(),
                 x,
                 y,
-                $popover;
+                $popover,
+                classNames,
+                duration;
 
             params = params || {};
 
-            if (action === 'show') {
-                $popover = $('<div class="popup popup-' + params.position + '"><div class="popup-arrow"></div><div class="popup-content">' + params.text  + '</div></div>');
+            duration = params.duration || 400;
+            classNames = params.extraClasses || [];
+            classNames.push('popup-' + params.position);
 
-                $popover.appendTo($elem);
-                $popover.css({'opacity': 0}).show();
+            if (action === 'show') {
+                $popover = $('<div class="popup"><div class="popup-arrow"></div><div class="popup-content">' + params.text  + '</div></div>');
+
+                $popover.addClass(classNames.join(" ")).appendTo($elem);
+                $popover.css({'opacity': 0}).show(duration);
 
                 switch(params.position) {
                     case 'top':
@@ -287,19 +293,23 @@
                         top: y
                     })
                     .animate({
-                        opacity: 1
-                    }, function () {
-                        dfd.resolve()
-                    });
+                            opacity: 1
+                        },
+                        duration,
+                        function () {
+                            dfd.resolve()
+                        });
             } else {
                 $popover = $elem
                     .find('.popup')
                     .animate({
-                        'opacity': 0
-                    }, function() {
-                        $(this).remove();
-                        dfd.resolve();
-                    });
+                            'opacity': 0
+                        },
+                        duration,
+                        function() {
+                            $(this).remove();
+                            dfd.resolve();
+                        });
             }
 
             $elem.on('layer.stop', function() {
