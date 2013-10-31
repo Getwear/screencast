@@ -40,6 +40,13 @@
             }
         };
 
+        this.resume = function() {
+            if (this._paused) {
+                $elem.trigger('layer.resume');
+                this._paused = false;
+            }
+        };
+
         this.stopAction = function() {
             if (!this._stopped) {
                 $elem.trigger('layer.stop');
@@ -81,7 +88,8 @@
                 y = $elem.position().top,
                 duration,
                 speed,
-                easing;
+                easing,
+                action;
 
             coords = this._getCoords(coords);
             params = params || {};
@@ -91,16 +99,24 @@
             duration = params.duration || calculateDistance(coords[0] - x, coords[1] - y) / speed * 1000;
             easing = params.easing || defaults.easing;
 
-            $elem.animate({
-                top: coords[1] + 'px',
-                left: coords[0] + 'px'
-            }, duration, easing, function() {
-                dfd.resolve();
-            });
+            action = function() {
+                $elem.animate({
+                        top: coords[1] + 'px',
+                        left: coords[0] + 'px'
+                    },
+                    duration,
+                    easing,
+                    function() {
+                        $elem.off('layer.resume', action);
+                        dfd.resolve();
+                    });
+                };
 
             $elem.on('layer.pause', function() {
                 $elem.stop();
             });
+
+            $elem.on('layer.resume', action);
 
             $elem.on('layer.stop', function() {
                 $elem.stop();
@@ -109,8 +125,11 @@
                     top: that._top
                 });
 
+                $elem.off('layer.resume', action);
                 dfd.reject();
             });
+
+            action();
 
             return dfd.promise();
         };
@@ -121,7 +140,8 @@
                 r,
                 angle = 0,
                 easing,
-                duration;
+                duration,
+                action;
 
             coords = this._getCoords(coords);
             params = params || {};
@@ -130,27 +150,33 @@
             duration = params.duration || 1500;
             r = params.radius || 20;
 
-            this.moveTo([coords[0], coords[1] + r])
-                .then(function () {
-                    $elem.animate({
-                        angle: 360
-                    }, {
-                        duration: duration,
-                        easing: easing,
-                        step: function (val, tween) {
+            action = function() {
+                that.moveTo([coords[0], coords[1] + r])
+                    .then(function () {
+                        $elem.animate({
+                            angle: 360
+                        }, {
+                            duration: duration,
+                            easing: easing,
+                            step: function (val) {
 
-                            angle = val / 180 * Math.PI;
+                                angle = val / 180 * Math.PI;
 
-                            // считаем новые координаты
-                            $elem.css('left', coords[0] + Math.sin(angle) * r);
-                            $elem.css('top', coords[1] + Math.cos(angle) * r);
-                        },
-                        complete: function () {
-                            $elem[0].angle = 0;
-                            dfd.resolve();
-                        }
+                                // считаем новые координаты
+                                $elem.css('left', coords[0] + Math.sin(angle) * r);
+                                $elem.css('top', coords[1] + Math.cos(angle) * r);
+                            },
+                            complete: function () {
+                                $elem[0].angle = 0;
+
+                                $elem.off('layer.resume', action);
+                                dfd.resolve();
+                            }
+                        });
                     });
-                });
+            };
+
+            $elem.on('layer.resume', action);
 
             $elem.on('layer.pause', function() {
                 $elem.stop();
@@ -164,8 +190,11 @@
                     top: that._top
                 });
 
+                $elem.off('layer.resume', action);
                 dfd.reject();
             });
+
+            action();
 
             return dfd.promise();
         };
@@ -194,11 +223,13 @@
             });
 
             $dummy.appendTo($BODY);
+            $elem.addClass('typed');
 
             interval = setInterval(function() {
 
-
-                $elem.addClass('typed');
+                if (that._paused) {
+                    return;
+                }
 
                 if (text.length) {
                     $textField.text(function(index, content) {
@@ -233,21 +264,17 @@
                 dfd.reject();
             });
 
-            $elem.on('layer.pause', function() {
-                $dummy.remove();
-                clearInterval(interval);
-            });
-
             return dfd.promise();
         };
 
-        this.popup = function(action, params) {
+        this.popup = function(method, params) {
             var dfd = new $.Deferred(),
                 x,
                 y,
-                $popover,
+                $popup,
                 classNames,
-                duration;
+                duration,
+                action;
 
             params = params || {};
 
@@ -255,89 +282,101 @@
             classNames = params.extraClasses || [];
             classNames.push('popup-' + params.position);
 
-            if (action === 'show') {
-                $popover = $('<div class="popup"><div class="popup-arrow"></div><div class="popup-content">' + params.text  + '</div></div>');
+            action = function() {
+                if (method === 'show') {
+                    $popup = $('<div class="popup"><div class="popup-arrow"></div><div class="popup-content">' + params.text  + '</div></div>');
 
-                $popover.addClass(classNames.join(" ")).appendTo($elem);
-                $popover.css({'opacity': 0, display: 'block'});
+                    $popup.addClass(classNames.join(" ")).appendTo($elem);
+                    $popup.css({'opacity': 0, display: 'block'});
 
-                switch(params.position) {
-                    case 'top':
-                        x = params.coords[0] - $popover.width() / 2;
-                        y = params.coords[1] - $popover.height();
+                    switch(params.position) {
+                        case 'top':
+                            x = params.coords[0] - $popup.width() / 2;
+                            y = params.coords[1] - $popup.height();
 
-                        break;
+                            break;
 
-                    case 'bottom':
-                        x = params.coords[0] - $popover.width() / 2;
-                        y = params.coords[1];
+                        case 'bottom':
+                            x = params.coords[0] - $popup.width() / 2;
+                            y = params.coords[1];
 
-                        break;
+                            break;
 
-                    case 'left':
-                        x = params.coords[0] - $popover.width();
-                        y = params.coords[1] - $popover.height() / 2;
+                        case 'left':
+                            x = params.coords[0] - $popup.width();
+                            y = params.coords[1] - $popup.height() / 2;
 
-                        break;
+                            break;
 
-                    case 'right':
-                        x = params.coords[0];
-                        y = params.coords[1] - $popover.height() / 2;
+                        case 'right':
+                            x = params.coords[0];
+                            y = params.coords[1] - $popup.height() / 2;
 
-                        break;
+                            break;
+                    }
+
+                    $popup
+                        .css({
+                            left: x,
+                            top: y
+                        })
+                        .animate({
+                                opacity: 1
+                            },
+                            duration,
+                            function () {
+                                $elem.off('layer.resume', action);
+                                dfd.resolve()
+                            });
+                } else {
+                    $elem
+                        .find('.popup')
+                        .animate({
+                                'opacity': 0
+                            },
+                            duration,
+                            function() {
+                                $(this).remove();
+                                $elem.off('layer.resume', action);
+                                dfd.resolve();
+                            });
                 }
-
-                $popover
-                    .css({
-                        left: x,
-                        top: y
-                    })
-                    .animate({
-                            opacity: 1
-                        },
-                        duration,
-                        function () {
-                            dfd.resolve()
-                        });
-            } else {
-                $popover = $elem
-                    .find('.popup')
-                    .animate({
-                            'opacity': 0
-                        },
-                        duration,
-                        function() {
-                            $(this).remove();
-                            dfd.resolve();
-                        });
-            }
+            };
 
             $elem.on('layer.stop', function() {
-                $popover = $elem
-                    .find('.popover')
-                    .remove();
+                 $elem.find('.popup').remove();
+                $elem.off('layer.resume', action);
                 dfd.reject();
             });
 
             $elem.on('layer.pause', function() {
                 $elem.stop();
             });
+
+            $elem.on('layer.resume', action);
+
+            action();
 
             return dfd.promise();
         };
 
         this.fadeTo = function(opacity, duration, easing) {
             var dfd = $.Deferred(),
-                that = this;
+                that = this,
+                action;
 
             duration = duration || 400;
 
-            $elem.fadeTo(duration, opacity, function() {
-                dfd.resolve();
-            });
+            action = function() {
+                $elem.fadeTo(duration, opacity, function() {
+                    $elem.off('layer.resume', action);
+                    dfd.resolve();
+                });
+            };
 
             $elem.on('layer.stop', function() {
                 $elem.css('opacity', that._opacity);
+                $elem.off('layer.resume', action);
                 dfd.reject();
             });
 
@@ -345,25 +384,38 @@
                 $elem.stop();
             });
 
+             $elem.on('layer.resume', action);
+
+            action();
+
             return dfd.promise();
         };
 
         this.wait = function(delay) {
             var dfd = $.Deferred(),
-                timeout;
+                timeout,
+                action;
 
-            timeout = setTimeout(function() {
-                dfd.resolve();
-            }, delay);
+            action = function() {
+                timeout = setTimeout(function() {
+                    $elem.off('layer.resume', action);
+                    dfd.resolve();
+                }, delay);
+            };
 
             $elem.on('layer.stop', function() {
                 clearTimeout(timeout);
+                $elem.off('layer.resume', action);
                 dfd.reject();
             });
 
             $elem.on('layer.pause', function() {
                 clearTimeout(timeout);
             });
+
+            $elem.on('layer.resume', action);
+
+            action();
 
             return dfd.promise();
         };
@@ -482,6 +534,10 @@
                             object.pause();
                         });
 
+                        $root.on('resume', function() {
+                            object.resume();
+                        });
+
                         $root.on('play', function() {
                             object.play();
                         });
@@ -565,6 +621,11 @@
         this.pause = function() {
             $root.trigger('pause');
             this._played = false;
+        };
+
+        this.resume = function() {
+            this._played = true;
+            $root.trigger('resume');
         };
 
         this.stop = function() {
