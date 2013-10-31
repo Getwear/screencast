@@ -126,6 +126,7 @@
         $play.add($replay).on('click', function () {
             // Заводим фотораму
             fotoramaGoTo('home');
+            $stage.addClass('stage__played');
         });
 
         $navLinks.on('click', function () {
@@ -144,6 +145,7 @@
                     $replay.fadeIn('fast');
                     screencastIsPlaying = false;
                     screencastIsEnded = true;
+                    $stage.removeClass('stage__played');
                 }
             }
         });
