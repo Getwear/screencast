@@ -1306,39 +1306,20 @@
                 </div>
 
                 <div id="profile" data-img="i/how-to-buy/08-profile.png" class="screencast" onclick="return [{
-                    'subtitles': [
-                        ['fadeTo', 0, 1],
-                        ['wait', 500],
-                        ['fadeTo', 1, 200],
-                        ['wait', 3500],
-                        ['fadeTo', 0, 1000]
-                    ]
-                }, {
-                    'cursor': [
-                        ['moveTo', [855, 28]],
-                        ['addClass', 'cursor-pointer'],
-                        ['wait', 600]
-                    ]
-                }, {
                     'popup-handler': [
+                        ['wait', 900],
                         ['popup', 'show', {
                             'position': 'bottom',
                             'coords': [858, 38],
                             'extraClasses': ['popup-dark', 'popup-w180'],
-                            'text': 'Мы выслали вам на почту подтверждение заказа'
+                            'text': 'Отслеживайте статус заказов'
                         }],
                         ['wait', 3500],
-                        ['popup', 'hide']
-                    ]
-                }, {
-                    'cursor': [
-                        ['wait', 900],
-                        'click',
-                        ['wait', 3000]
+                        ['popup', 'hide'],
+                        ['wait', 2000]
                     ]
                 }];">
                     <div class="popup-handler"></div>
-                    <div class="cursor" style="left: 480px; top: 230px;"></div>
                 </div>
             </div>
 
