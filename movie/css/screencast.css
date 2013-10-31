@@ -80,6 +80,15 @@
     background: url(../i/how-to-buy/elements/03-tool-active.png);
 }
 
+.anti-tool {
+    position: absolute;
+    left: 338px;
+    top: 227px;
+    width: 43px;
+    height: 41px;
+    background: url(../i/how-to-buy/elements/03-anti-tool.png);
+}
+
 .craft-result-1 {
     position: absolute;
     top: 162px;

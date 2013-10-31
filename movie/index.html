@@ -417,6 +417,11 @@
                         ],
                         'price': [
                             ['removeClass', 'g-display-none']
+                        ],
+                        'anti-tool': [
+                            ['fadeTo', 0, 1],
+                            ['removeClass', 'g-display-none'],
+                            ['fadeTo', 1, 200]
                         ]
                      },  {
                         'cursor': [
@@ -497,6 +502,7 @@
                         <div class="subtitles__wrap">Нанесём потёртости пемзой</div>
                     </div>
                     <div class="craft-buttons g-display-none"></div>
+                    <div class="anti-tool g-display-none"></div>
                     <div class="craft-tool craft-tool-hover g-display-none"></div>
                     <div class="craft-tool craft-tool-active g-display-none"></div>
                     <div class="craft-result-1 g-display-none"></div>
