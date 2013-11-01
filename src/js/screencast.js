@@ -18,7 +18,7 @@
             defaults = {
                 offsetx: 0,
                 offsety: 0,
-                moveSpeed: 400,
+                moveSpeed: 200,
                 easing: 'easeInCubicOutSine'
             };
 
@@ -110,7 +110,7 @@
                         $elem.off('layer.resume', action);
                         dfd.resolve();
                     });
-                };
+            };
 
             $elem.on('layer.pause', function() {
                 $elem.stop();
@@ -147,7 +147,7 @@
             params = params || {};
 
             easing = params.easing || defaults.easing;
-            duration = params.duration || 900;
+            duration = params.duration || 1500;
             r = params.radius || 20;
 
             action = function() {
@@ -321,30 +321,30 @@
                             top: y
                         })
                         .animate({
-                                opacity: 1
-                            },
-                            duration,
-                            function () {
-                                $elem.off('layer.resume', action);
-                                dfd.resolve()
-                            });
+                            opacity: 1
+                        },
+                        duration,
+                        function () {
+                            $elem.off('layer.resume', action);
+                            dfd.resolve()
+                        });
                 } else {
                     $elem
                         .find('.popup')
                         .animate({
-                                'opacity': 0
-                            },
-                            duration,
-                            function() {
-                                $(this).remove();
-                                $elem.off('layer.resume', action);
-                                dfd.resolve();
-                            });
+                            'opacity': 0
+                        },
+                        duration,
+                        function() {
+                            $(this).remove();
+                            $elem.off('layer.resume', action);
+                            dfd.resolve();
+                        });
                 }
             };
 
             $elem.on('layer.stop', function() {
-                 $elem.find('.popup').remove();
+                $elem.find('.popup').remove();
                 $elem.off('layer.resume', action);
                 dfd.reject();
             });
@@ -384,7 +384,7 @@
                 $elem.stop();
             });
 
-             $elem.on('layer.resume', action);
+            $elem.on('layer.resume', action);
 
             action();
 
@@ -619,13 +619,17 @@
         };
 
         this.pause = function() {
-            $root.trigger('pause');
+            $root
+                .trigger('pause')
+                .addClass('screencast-paused');
             this._played = false;
         };
 
         this.resume = function() {
             this._played = true;
-            $root.trigger('resume');
+            $root
+                .trigger('resume')
+                .removeClass('screencast-paused');
         };
 
         this.stop = function() {
