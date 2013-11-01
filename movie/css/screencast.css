@@ -4,6 +4,16 @@
     height: 100%;
 }
 
+.screencast-paused::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .25) url(../../src/i/play_white.png) center no-repeat;
+}
+
 .cursor {
     z-index: 9999;
 }

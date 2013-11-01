@@ -619,13 +619,17 @@
         };
 
         this.pause = function() {
-            $root.trigger('pause');
+            $root
+                .trigger('pause')
+                .addClass('screencast-paused');
             this._played = false;
         };
 
         this.resume = function() {
             this._played = true;
-            $root.trigger('resume');
+            $root
+                .trigger('resume')
+                .removeClass('screencast-paused');
         };
 
         this.stop = function() {

@@ -39,7 +39,7 @@
         $fotorama
                 .on('fotorama:showend', function (e, fotorama, extra) {
                     var activeFrame = fotorama.activeFrame,
-                            $frame = activeFrame.$stageFrame;
+                        $frame = activeFrame.$stageFrame;
 
                     if (!$frame.data('state')) {
                         $frame.on('f:load f:error', function () {
