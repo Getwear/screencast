@@ -110,7 +110,7 @@
                         $elem.off('layer.resume', action);
                         dfd.resolve();
                     });
-                };
+            };
 
             $elem.on('layer.pause', function() {
                 $elem.stop();
@@ -321,30 +321,30 @@
                             top: y
                         })
                         .animate({
-                                opacity: 1
-                            },
-                            duration,
-                            function () {
-                                $elem.off('layer.resume', action);
-                                dfd.resolve()
-                            });
+                            opacity: 1
+                        },
+                        duration,
+                        function () {
+                            $elem.off('layer.resume', action);
+                            dfd.resolve()
+                        });
                 } else {
                     $elem
                         .find('.popup')
                         .animate({
-                                'opacity': 0
-                            },
-                            duration,
-                            function() {
-                                $(this).remove();
-                                $elem.off('layer.resume', action);
-                                dfd.resolve();
-                            });
+                            'opacity': 0
+                        },
+                        duration,
+                        function() {
+                            $(this).remove();
+                            $elem.off('layer.resume', action);
+                            dfd.resolve();
+                        });
                 }
             };
 
             $elem.on('layer.stop', function() {
-                 $elem.find('.popup').remove();
+                $elem.find('.popup').remove();
                 $elem.off('layer.resume', action);
                 dfd.reject();
             });
@@ -384,7 +384,7 @@
                 $elem.stop();
             });
 
-             $elem.on('layer.resume', action);
+            $elem.on('layer.resume', action);
 
             action();
 
