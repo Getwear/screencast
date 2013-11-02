@@ -521,9 +521,10 @@
 
                     if (_.isArray(action)) {
                         fn = action[0];
-                        args = action.slice(1);
+                        args = action.slice(1) || [];
                     } else {
                         fn = action;
+                        args = [];
                     }
 
                     return function () {
