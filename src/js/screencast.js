@@ -422,17 +422,18 @@
 
         this.click = function() {
             var dfd = $.Deferred(),
-                timeout;
+                timeout,
+                $clicker = $('<div class="cursor-click"></div>');
 
-            $elem.addClass('cursor-click');
+            $elem.append($clicker);
             timeout = setTimeout(function() {
-                $elem.removeClass('cursor-click');
+                $clicker.remove();
                 dfd.resolve();
             }, 500);
 
             $elem.on('layer.stop', function() {
                 clearTimeout(timeout);
-                $elem.removeClass('cursor-click');
+                $clicker.remove();
                 dfd.reject();
             });
 

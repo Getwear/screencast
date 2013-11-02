@@ -13,6 +13,36 @@
     }
 }
 
+@-o-keyframes dissolve {
+    0% {
+        -o-transform: scale(0.5);
+        opacity: 0;
+    }
+    40% {
+        -o-transform: scale(0.75);
+        opacity: 1;
+    }
+    100% {
+        -o-transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes dissolve {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    40% {
+        transform: scale(0.75);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
 .cursor {
     position: absolute;
     width: 19px;
@@ -21,8 +51,7 @@
     background: url(../i/cursor/default.png);
 }
 
-.cursor-click::before {
-    content: "";
+.cursor-click {
     position: absolute;
     left: -19px;
     top: -17px;
@@ -30,6 +59,8 @@
     width: 49px;
     background: url(../i/cursor/click.png);
     -webkit-animation: dissolve .5s;
+    -o-animation: dissolve .5s;
+    animation: dissolve .5s;
 }
 
 .cursor-hidden {
