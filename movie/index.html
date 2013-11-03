@@ -76,6 +76,7 @@
                 // Глобальны window.currentScreencast временно, для управления из консоли (currentScreencast.start())
                 window.currentScreencast = currentScreencast = screencast;
                 screencast.start();
+                screencastIsPlaying = true;
             }
 
             // Выделяем активную ссылоку под скринкастом
