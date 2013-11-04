@@ -11,8 +11,14 @@ $(function () {
       $navLinks = $('.switch', '#screencast-nav');
 
   $fotorama
-      .on('fotorama:show', function () {
+      .on('fotorama:show', function (e, fotorama) {
         $('.screencast-paused', $fotorama).removeClass('screencast-paused');
+
+        // Выделяем активную ссылоку под скринкастом
+        $navLinks
+            .removeClass('switch_selected')
+            .filter('[data-section="' + fotorama.activeFrame.section + '"]')
+            .addClass('switch_selected');
       })
       .on('fotorama:showend', function (e, fotorama, extra) {
         var activeFrame = fotorama.activeFrame,
@@ -55,13 +61,6 @@ $(function () {
       screencast.start();
       screencastIsPlaying = true;
     }
-
-    // Выделяем активную ссылоку под скринкастом
-    $navLinks
-        .filter('[data-section="' + activeFrame.section + '"]')
-        .addClass('switch_selected')
-        .siblings()
-        .removeClass('switch_selected');
 
     lastActiveFrame = activeFrame;
   }
