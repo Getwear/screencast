@@ -616,7 +616,9 @@
             if (!this._played) {
                 this._played = true;
                 this._runFrame(actions);
-                $root.trigger('play');
+                $root
+                    .trigger('play')
+                    .removeClass('screencast-paused');
             }
         };
 
