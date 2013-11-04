@@ -554,7 +554,7 @@
                                 'position': 'left',
                                 'coords': [767, 482],
                                 'extraClasses': ['popup-dark'],
-                                'text': 'Посмотрите видео про&nbsp;мерки'
+                                'text': 'Посмотрите видео-инструкции'
                             }],
                             ['wait', 3000],
                             ['popup', 'hide']
@@ -853,28 +853,24 @@
 
                 <div id="cart" data-section="cart" data-img="i/how-to-buy/06-cart.png" class="screencast"
                      onclick="return [{
+                        'popup-wrapper': [
+                            ['wait', 1000],
+                            ['popup', 'show', {
+                                'position': 'bottom',
+                                'coords': [490, 33],
+                                'extraClasses': ['popup-dark', 'popup-w200'],
+                                'text': 'Можно вернуться, чтобы заказать сразу&nbsp;несколько&nbsp;пар'
+                            }],
+                            ['wait', 4000],
+                            ['popup', 'hide']
+                        ]
+                     }, {
                         'subtitles': [
                             ['fadeTo', 0, 1],
                             ['wait', 500],
                             ['fadeTo', 1, 200],
                             ['wait', 3500],
                             ['fadeTo', 0, 1000]
-                        ]
-                     }, {
-                        'popup-wrapper': [
-                            ['wait', 1000],
-                            ['popup', 'show', {
-                                'position': 'bottom',
-                                'coords': [773, 305],
-                                'extraClasses': ['popup-dark', 'popup-w200'],
-                                'text': 'Можно заказать сразу&nbsp;несколько&nbsp;пар'
-                            }],
-                            ['wait', 3500],
-                            ['popup', 'hide']
-                        ]
-                     }, {
-                        'cursor': [
-                            ['wait', 1200]
                         ]
                      }, {
                         'cart-bg': [
@@ -898,7 +894,7 @@
                                 'position': 'bottom',
                                 'coords': [380, 78],
                                 'extraClasses': ['popup-dark'],
-                                'text': 'Есть два&nbsp;типа доставки&nbsp;&mdash; быстрая курьерской&nbsp;почтой и&nbsp;обычная, но&nbsp;бесплатная.'
+                                'text': 'Есть два&nbsp;типа доставки&nbsp;&mdash; бесплатная, обычной почтой, и&nbsp;быстрая, курьерской службой.'
                             }],
                             ['wait', 3500],
                             ['popup', 'hide']
@@ -1061,8 +1057,8 @@
                         <div class="delivery-input delivery-email"></div>
                         <div class="delivery-input delivery-phone"></div>
                     </div>
-                    <div class="subtitles" style="top: 37%;opacity: 0; display: block;">
-                        <div class="subtitles__wrap">Выбираем тип доставки</div>
+                    <div class="subtitles" style="top: 37%; opacity: 0; display: block;">
+                        <div class="subtitles__wrap">Выбираем скорость доставки</div>
                     </div>
                     <div class="cursor g-display-none" style="left: 50px; top: 50px;"></div>
                 </div>
