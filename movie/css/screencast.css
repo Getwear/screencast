@@ -23,12 +23,14 @@
     position: absolute;
     width: 410px;
     height: 411px;
-    left: 273px;
-    top: 90px;
+    left: 274px;
+    top: 89px;
 }
 
 .model-result-back {
     width: 430px;
+    margin-left: -1px;
+    margin-top: 1px;
 }
 
 .type {
@@ -58,7 +60,7 @@
 .craft-tool {
     position: absolute;
     left: 614px;
-    top: 234px;
+    top: 233px;
     width: 48px;
     height: 55px;
 }
@@ -73,7 +75,7 @@
 
 .craft-result-1 {
     position: absolute;
-    top: 162px;
+    top: 161px;
     left: 510px;
     width: 69px;
     height: 181px;
@@ -81,7 +83,7 @@
 
 .craft-result-2 {
     position: absolute;
-    top: 353px;
+    top: 352px;
     left: 528px;
     width: 51px;
     height: 115px;
@@ -97,7 +99,7 @@
 
 .craft-result-4 {
     position: absolute;
-    top: 342px;
+    top: 341px;
     left: 418px;
     width: 57px;
     height: 126px;

@@ -63,8 +63,7 @@
                             ['moveTo', [490, 25], {'duration': 1000}],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 700],
-                            'click',
-                            ['removeClass', 'cursor-pointer']
+                            'click'
                         ]
                     }];">
                     <div class="subtitles" style="top: 60%; opacity: 200; display: block;">
@@ -81,6 +80,7 @@
                         ]
                      }, {
                         'cursor': [
+                            ['removeClass', 'cursor-pointer'],
                             ['wait', 700],
                             ['moveTo', [162, 108]],
                             ['addClass', 'cursor-pointer'],
@@ -209,7 +209,7 @@
                         ]
                      }, {
                         'cursor': [
-                            ['wait', 900],
+                            ['wait', 1500],
                             ['moveTo', [185, 205]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
@@ -243,6 +243,11 @@
 
                 <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast"
                      onclick="return [{
+                        'cursor': [
+                            ['removeClass', 'cursor-pointer']
+                        ]
+                     },
+                     {
                         'subtitles': [
                             ['fadeTo', 0, 1],
                             ['wait', 900],
@@ -252,8 +257,7 @@
                         ]
                      }, {
                         'cursor': [
-                            ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [637, 248]],
+                            ['moveTo', [637, 247]],
                             ['addClass', 'cursor-pointer']
                         ]
                      }, {
@@ -374,8 +378,7 @@
                             ['addClass', 'cursor-pointer'],
                             ['moveTo', [194, 168], {'easing': 'swing', 'speed': '40'}],
                             ['wait', 900],
-                            'click',
-                            ['removeClass', 'cursor-pointer']
+                            'click'
                         ]
                      }];">
                     <div class="subtitles" style="top: 46%;opacity: 0; display: block;">
@@ -411,6 +414,10 @@
 
                 <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast"
                      onclick="return [{
+                        'cursor': [
+                            ['removeClass', 'cursor-pointer']
+                        ]
+                     }, {
                         'subtitles': [
                             ['fadeTo', 0, 1],
                             ['wait', 1500],
@@ -463,7 +470,6 @@
                      }, {
                         'cursor': [
                             ['wait', 900],
-                            ['removeClass', 'cursor-pointer'],
                             ['moveTo', [500, 476]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
