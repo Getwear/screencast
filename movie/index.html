@@ -235,7 +235,7 @@
                     <div class="cursor cursor-pointer" style="top: 25px; left: 490px;"></div>
                 </div>
 
-                <div id="craft" data-img="i/how-to-buy/03-craft.png" class="screencast"
+                <div id="craft" data-section="design" data-img="i/how-to-buy/03-craft.png" class="screencast"
                      onclick="return [{
                         'cursor': [
                             ['removeClass', 'cursor-pointer']
@@ -251,7 +251,7 @@
                         ]
                      }, {
                         'cursor': [
-                            ['moveTo', [637, 247]],
+                            ['moveTo', [637, 248]],
                             ['addClass', 'cursor-pointer']
                         ]
                      }, {
@@ -406,7 +406,7 @@
                     <div class="cursor cursor-pointer" style="left: 185px; top: 205px;"></div>
                 </div>
 
-                <div id="result" data-img="i/how-to-buy/04-result.png" class="screencast"
+                <div id="result" data-section="design" data-img="i/how-to-buy/04-result.png" class="screencast"
                      onclick="return [{
                         'cursor': [
                             ['removeClass', 'cursor-pointer']
@@ -499,7 +499,7 @@
                     <div class="cursor cursor-pointer" style="left: 191px; top: 169px;"></div>
                 </div>
 
-                <div id="measures-intro" data-section="measures-intro" data-img="i/how-to-buy/04-result.png"
+                <div id="measures" data-section="measures" data-img="i/how-to-buy/04-result.png"
                      class="screencast" onclick="return [{
                         'cursor': [
                             ['wait', 900]
@@ -539,7 +539,7 @@
                     <div class="cursor cursor-pointer" style="left: 500px; top: 476px;"></div>
                 </div>
 
-                <div id="measures" data-section="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
+                <div data-section="measures" data-img="i/how-to-buy/05-measures.png" class="screencast"
                      onclick="return [{
                         'subtitles-intro': [
                             ['fadeTo', 0, 1],
@@ -859,7 +859,7 @@
                                 'position': 'bottom',
                                 'coords': [490, 33],
                                 'extraClasses': ['popup-dark', 'popup-w200'],
-                                'text': 'Можно вернуться, чтобы заказать сразу&nbsp;несколько&nbsp;пар'
+                                'text': 'Можно вернуться в&nbsp;конфигуратор, чтобы заказать сразу несколько пар'
                             }],
                             ['wait', 4000],
                             ['popup', 'hide']
@@ -883,10 +883,7 @@
                         'cursor': [
                             ['fadeTo', 0, 1],
                             ['removeClass', 'g-display-none'],
-                            ['fadeTo', 1, 200],
-                            ['moveTo', [400, 50], {'duration': 800}],
-                            ['addClass', 'cursor-pointer'],
-                            ['wait', 800]
+                            ['fadeTo', 1, 200]
                         ]
                      }, {
                         'popup-wrapper': [
@@ -894,15 +891,19 @@
                                 'position': 'bottom',
                                 'coords': [380, 78],
                                 'extraClasses': ['popup-dark'],
-                                'text': 'Есть два&nbsp;типа доставки&nbsp;&mdash; бесплатная, обычной почтой, и&nbsp;быстрая, курьерской службой.'
+                                'text': 'Есть два варианта'
                             }],
                             ['wait', 3500],
                             ['popup', 'hide']
                         ]
                      }, {
                         'cursor': [
-                            ['wait', 200],
-                            'click'
+                            ['wait', 500],
+                            ['moveTo', [400, 50], {'duration': 800}],
+                            ['addClass', 'cursor-pointer'],
+                            ['wait', 800],
+                            'click',
+                            ['removeClass', 'cursor-pointer']
                         ]
                      }, {
                         'cart-selector': [
@@ -1242,7 +1243,7 @@
         </div>
         <div class="nav" id="screencast-nav">
             <span class="switch" data-section="design">Дизайн</span>
-            <span class="switch" data-section="measures-intro">По мерке</span>
+            <span class="switch" data-section="measures">По мерке</span>
             <span class="switch" data-section="cart">Корзина</span>
             <span class="switch" data-section="checkout">Оплата</span>
         </div>
