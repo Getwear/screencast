@@ -200,6 +200,8 @@
         };
 
         this.typeText = function(text, params) {
+            text = text.split(''); // For IE 7
+
             var dfd = new $.Deferred(),
                 that = this,
                 interval,
@@ -238,7 +240,7 @@
                         } else {
                             currentText = content + "•";
                         }
-                        text = text.substr(1);
+                        text = text.slice(1);
                         return currentText;
                     });
                     $dummy.text(currentText);
