@@ -423,19 +423,31 @@
         this.click = function() {
             var dfd = $.Deferred(),
                 timeout,
+                action,
                 $clicker = $('<div class="cursor-click"></div>');
 
-            $elem.append($clicker);
-            timeout = setTimeout(function() {
-                $clicker.remove();
-                dfd.resolve();
-            }, 500);
+            action = function() {
+                $elem.append($clicker);
+                timeout = setTimeout(function() {
+                    $clicker.remove();
+                    dfd.resolve();
+                }, 500);
+            };
 
             $elem.on('layer.stop', function() {
                 clearTimeout(timeout);
                 $clicker.remove();
                 dfd.reject();
             });
+
+            $elem.on('layer.pause', function() {
+                $clicker.remove();
+                clearTimeout(timeout);
+            });
+
+            $elem.on('layer.resume', action);
+
+            action();
 
             return dfd.promise();
         };
