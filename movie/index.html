@@ -63,7 +63,8 @@
                             ['moveTo', [490, 25], {'duration': 1000}],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 700],
-                            'click'
+                            'click',
+                            ['removeClass', 'cursor-pointer']
                         ]
                     }];">
                     <div class="subtitles" style="top: 60%; opacity: 200; display: block;">
@@ -81,11 +82,11 @@
                      }, {
                         'cursor': [
                             ['wait', 700],
-                            ['removeClass', 'cursor-pointer'],
                             ['moveTo', [162, 108]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
-                            'click'
+                            'click',
+                            ['removeClass', 'cursor-pointer']
                         ]
                      }, {
                         'gender-switch': [
@@ -103,13 +104,10 @@
                                 'text': 'Выбираем фасон'
                             }],
                             ['wait', 3000],
-                            ['popup', 'hide'],
-                            ['wait', 800]
+                            ['popup', 'hide']
                         ]
                      }, {
                         'cursor': [
-                            ['wait', 300],
-                            ['removeClass', 'cursor-pointer'],
                             ['moveTo', [330, 116]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
@@ -126,8 +124,7 @@
                             ['moveTo', [357, 367]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
-                            'click',
-                            ['wait', 900]
+                            'click'
                         ]
                      }, {
                         'model-man-base': [
@@ -151,16 +148,15 @@
                                 'text': 'Выбираем высоту талии'
                             }],
                             ['wait', 3000],
-                            ['popup', 'hide'],
-                            ['wait', 800]
+                            ['popup', 'hide']
                         ]
                      }, {
                         'cursor': [
-                            ['wait', 500],
                             ['moveTo', [612, 290]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
-                            'click'
+                            'click',
+                            ['removeClass', 'cursor-pointer']
                         ]
                      }, {
                         'model-man-straight': [
@@ -178,12 +174,10 @@
                                 'text': 'Выбираем цвет ткани'
                             }],
                             ['wait', 3000],
-                            ['popup', 'hide'],
-                            ['wait', 900]
+                            ['popup', 'hide']
                         ]
                      }, {
                         'cursor': [
-                            ['wait', 900],
                             ['moveTo', [320, 368]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
@@ -196,10 +190,12 @@
                      }, {
                         'cursor': [
                             ['wait', 900],
+                            ['removeClass', 'cursor-pointer'],
                             ['moveTo', [433, 287]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
-                            'click'
+                            'click',
+                            ['removeClass', 'cursor-pointer']
                         ]
                      }, {
                         'color': [
@@ -214,12 +210,10 @@
                      }, {
                         'cursor': [
                             ['wait', 900],
-                            ['removeClass', 'cursor-pointer'],
                             ['moveTo', [185, 205]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
-                            'click',
-                            ['wait', 900]
+                            'click'
                         ]
                      }];">
                     <div class="gender-switch g-display-none">
@@ -258,9 +252,8 @@
                         ]
                      }, {
                         'cursor': [
-                            ['wait', 900],
                             ['removeClass', 'cursor-pointer'],
-                            ['moveTo', [637, 249]],
+                            ['moveTo', [637, 248]],
                             ['addClass', 'cursor-pointer']
                         ]
                      }, {
@@ -382,7 +375,7 @@
                             ['moveTo', [194, 168], {'easing': 'swing', 'speed': '40'}],
                             ['wait', 900],
                             'click',
-                            ['wait', 900]
+                            ['removeClass', 'cursor-pointer']
                         ]
                      }];">
                     <div class="subtitles" style="top: 46%;opacity: 0; display: block;">
@@ -568,12 +561,10 @@
                         ]
                      }, {
                         'cursor': [
-                            ['wait', 300],
                             ['moveTo', [828, 486]],
                             ['addClass', 'cursor-pointer'],
                             ['wait', 900],
-                            ['click'],
-                            ['wait', 900]
+                            ['click']
                         ]
                      }, {
                         'video': [
@@ -774,7 +765,7 @@
                         'cursor': [
                             ['wait', 900],
                             ['removeClass', 'cursor-text'],
-                            ['fadeTo', 1, 500]
+                            ['fadeTo', 1, 100]
                         ],
                         'size__length': [
                             ['wait', 600],
@@ -1108,14 +1099,14 @@
                             ['wait', 600],
                             ['circleAround', [272, 34]],
                             ['wait', 600],
-                            ['moveTo', [405, 53]],
+                            /*['moveTo', [405, 53]],
                             ['wait', 600],
                             ['circleAround', [405, 34]],
                             ['wait', 600],
                             ['moveTo', [552, 53]],
                             ['wait', 600],
                             ['circleAround', [552, 34]],
-                            ['wait', 600],
+                            ['wait', 600],*/
                             ['moveTo', [214, 85]],
                             ['addClass', 'cursor-text'],
                             ['wait', 600]
