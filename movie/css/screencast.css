@@ -23,8 +23,14 @@
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.splash::before {
     background-color: rgb(211, 211, 211);
     background-color: rgba(211, 211, 211, .9);
+}
+.screencast-paused::before {
+    background-color: rgba(211, 211, 211, .2);
 }
 
 .splash::after,
@@ -132,7 +138,7 @@
 .anti-tool {
     position: absolute;
     left: 338px;
-    top: 227px;
+    top: 226px;
     width: 43px;
     height: 41px;
 }

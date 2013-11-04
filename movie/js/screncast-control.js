@@ -106,8 +106,9 @@ $(function () {
   });
 
   $navLinks.on('click', function () {
+    var $this = $(this);
     // Переход к началу секции
-    fotoramaGoTo($(this).data('section'));
+    $this.hasClass('switch_selected') || fotoramaGoTo($this.data('section'));
   });
 
   $(document).on('complete', '.screencast', function () {
