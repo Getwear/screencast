@@ -11,6 +11,9 @@ $(function () {
       $navLinks = $('.switch', '#screencast-nav');
 
   $fotorama
+      .on('fotorama:show', function () {
+        $('.screencast-paused', $fotorama).removeClass('screencast-paused');
+      })
       .on('fotorama:showend', function (e, fotorama, extra) {
         var activeFrame = fotorama.activeFrame,
             $frame = activeFrame.$stageFrame;
