@@ -20,7 +20,7 @@
 
 .splash:before {
   background-color: #d3d3d3;
-  background-color: rgba(211, 211, 211, .9);
+  background-color: rgba(211, 211, 211, .7);
 }
 
 .screencast-paused:before {
