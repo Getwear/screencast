@@ -6,6 +6,7 @@ $(function () {
       screencastIsPlaying,
       screencastIsEnded,
       lastActiveFrame,
+      $splash = $('.splash', $stage),
       $play = $('#screencast-play'),
       $replay = $('#screencast-replay'),
       $navLinks = $('.switch', '#screencast-nav');
@@ -31,19 +32,12 @@ $(function () {
         } else {
           catchFrame(activeFrame, $frame);
         }
-      })
-      .on('click', function () {
-        if (currentScreencast) {
-          // Пауза
-          currentScreencast[screencastIsPlaying ? 'pause' : 'resume']();
-          screencastIsPlaying = !screencastIsPlaying;
-        }
       });
 
   function catchFrame (activeFrame, $frame) {
-    if (lastActiveFrame === activeFrame) {
+    /*if (lastActiveFrame === activeFrame) {
       return;
-    }
+    }*/
 
     if (currentScreencast) {
       // Останавливаем текущий кусочек скринкаста
@@ -62,7 +56,7 @@ $(function () {
       screencastIsPlaying = true;
     }
 
-    lastActiveFrame = activeFrame;
+    //lastActiveFrame = activeFrame;
   }
 
   function fotoramaTurnOn () {
@@ -100,16 +94,29 @@ $(function () {
     fotorama.show({index: id});
   };
 
-  $play.add($replay).on('click', function () {
+  function onFotoramaClick () {
+    if (currentScreencast) {
+      // Пауза
+      currentScreencast[screencastIsPlaying ? 'pause' : 'resume']();
+      screencastIsPlaying = !screencastIsPlaying;
+    }
+  }
+
+  $fotorama.touchClick(onFotoramaClick);
+
+  function onSplashClick () {
     // Заводим фотораму
     fotoramaGoTo('home');
-  });
+  }
 
-  $navLinks.on('click', function () {
+  $splash.touchClick(onSplashClick);
+
+  function onNavClick () {
     var $this = $(this);
-    // Переход к началу секции
-    $this.hasClass('switch_selected') || fotoramaGoTo($this.data('section'));
-  });
+    fotoramaGoTo($this.data('section'));
+  }
+
+  $navLinks.touchClick(onNavClick);
 
   $(document).on('complete', '.screencast', function () {
     // Слушаем события о завершении анимации скринкаста
